@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2B1B3F">
+<title>Hybrid Heroes: The Pairs Championship</title>
+<style>
+:root{--ink:#1F1A33;--plum:#2B1B3F;--plum2:#3A2754;--lav:#F3F0F8;--coral:#FF6F59;--teal:#2EC4B6;--sun:#FFC857;--violet:#8E7DFF;--mint:#7BD389;--grey:#8C8799;--white:#fff}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--plum);color:var(--white);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Calibri,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+body{min-height:100vh}
+.wrap{max-width:760px;margin:0 auto;padding:18px 16px 90px}
+.wide{max-width:1200px}
+h1,h2,h3{margin:.2em 0 .4em;line-height:1.15}
+h1{font-size:30px}h2{font-size:24px}h3{font-size:18px}
+p{line-height:1.45}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.06em;font-size:13px;color:var(--sun);text-transform:uppercase}
+.bubble{position:relative;border-radius:18px;padding:16px 18px;margin:12px 0}
+.bubble.tail:after{content:"";position:absolute;left:28px;bottom:-12px;border:12px solid transparent;border-top-color:inherit;border-bottom:0}
+.card{background:var(--plum2);border-radius:16px;padding:16px;margin:12px 0}
+.light{background:var(--lav);color:var(--ink)}
+.coral{background:var(--coral);color:var(--ink);border-color:var(--coral)}
+.teal{background:var(--teal);color:var(--ink);border-color:var(--teal)}
+.sun{background:var(--sun);color:var(--ink);border-color:var(--sun)}
+.violet{background:var(--violet);color:var(--ink);border-color:var(--violet)}
+.mint{background:var(--mint);color:var(--ink);border-color:var(--mint)}
+.btn{display:inline-block;border:0;border-radius:999px;padding:13px 22px;font-size:16px;font-weight:800;cursor:pointer;background:var(--sun);color:var(--ink);margin:6px 6px 6px 0;transition:transform .08s}
+.btn:active{transform:scale(.96)}
+.btn.ghost{background:transparent;color:var(--white);border:2px solid #ffffff55}
+.btn.small{padding:8px 14px;font-size:14px}
+.btn.block{display:block;width:100%;text-align:center}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+input,select,textarea{font:inherit;font-size:16px;border-radius:12px;border:2px solid #ffffff33;background:#ffffff14;color:var(--white);padding:11px 12px;width:100%}
+select option{color:var(--ink)}
+textarea{min-height:110px}
+.light input,.light select,.light textarea{background:#fff;color:var(--ink);border-color:#d9d2e6}
+label{font-weight:700;font-size:14px;display:block;margin:12px 0 6px;color:#e9e4f3}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:1fr 1fr}
+@media(max-width:560px){.g2{grid-template-columns:1fr}}
+.round{display:flex;align-items:center;gap:14px;padding:14px;border-radius:16px;margin:10px 0;cursor:pointer;border:0;width:100%;text-align:left;font:inherit;color:var(--ink)}
+.round .num{width:46px;height:46px;border-radius:50%;background:#ffffffaa;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;flex:none}
+.round .t{font-weight:800;font-size:17px}
+.round .s{font-size:13px;opacity:.85}
+.round .pts{margin-left:auto;font-weight:900;font-size:15px;white-space:nowrap}
+.locked{background:#ffffff1a;color:#ffffffaa}
+.locked .num{background:#ffffff22}
+.opt{display:block;width:100%;text-align:left;border:2px solid #ffffff33;background:#ffffff10;color:var(--white);border-radius:14px;padding:13px 14px;margin:8px 0;font:inherit;font-size:16px;cursor:pointer}
+.opt.sel{border-color:var(--sun);background:#FFC85733}
+.opt.right{border-color:var(--mint);background:#7BD38955}
+.opt.wrong{border-color:var(--coral);background:#FF6F5955}
+.why{border-left:0;background:#ffffff14;border-radius:12px;padding:10px 12px;margin-top:10px;font-size:14px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.chip{display:inline-block;border-radius:999px;padding:5px 12px;font-weight:800;font-size:13px}
+.timer{font-variant-numeric:tabular-nums;font-weight:900;font-size:22px}
+.timer.warn{color:var(--coral)}
+.progress{height:8px;border-radius:9px;background:#ffffff22;overflow:hidden;margin:8px 0 14px}
+.progress>div{height:100%;background:var(--teal);transition:width .3s}
+.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:30px;font-weight:900;letter-spacing:.06em;background:#fff;color:var(--ink);border-radius:14px;padding:14px;text-align:center;margin:10px 0}
+.score-big{font-size:64px;font-weight:900;color:var(--sun);line-height:1}
+.center{text-align:center}
+.muted{opacity:.75;font-size:14px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pill{border:2px solid #ffffff44;border-radius:999px;padding:9px 14px;cursor:pointer;background:transparent;color:var(--white);font:inherit;font-weight:700}
+.pill.on{background:var(--teal);border-color:var(--teal);color:var(--ink)}
+.check{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:#ffffff10;margin:8px 0;cursor:pointer}
+.check input{width:24px;height:24px;flex:none}
+svg.fig{background:#fff;border-radius:14px;width:100%;max-width:420px;display:block;margin:10px auto}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--sun);color:var(--ink);padding:12px 18px;border-radius:999px;font-weight:800;z-index:50;box-shadow:0 6px 24px #0006;max-width:90vw;text-align:center}
+.slider{display:flex;align-items:center;gap:10px}
+.slider input{flex:1;padding:0}
+.order-item{display:flex;align-items:center;gap:10px;background:#ffffff14;border-radius:12px;padding:12px;margin:8px 0;font-weight:700}
+.order-item .n{width:30px;height:30px;border-radius:50%;background:var(--sun);color:var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;flex:none}
+table{border-collapse:collapse;width:100%}
+th,td{padding:6px 6px;text-align:center;border-bottom:1px solid #ffffff22;font-size:14px}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#e9e4f3}
+td input{padding:6px;text-align:center;font-size:15px;width:58px}
+td.name input{width:140px;text-align:left}
+.lb-row{display:grid;grid-template-columns:56px 1fr 90px;align-items:center;gap:12px;margin:10px 0}
+.lb-rank{font-size:30px;font-weight:900;text-align:center}
+.lb-bar{height:46px;border-radius:12px;display:flex;align-items:center;padding:0 14px;font-weight:900;color:var(--ink);font-size:20px;white-space:nowrap;overflow:hidden;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.lb-pts{font-size:28px;font-weight:900;text-align:right}
+.podium{display:flex;align-items:flex-end;justify-content:center;gap:18px;min-height:380px;margin-top:20px}
+.step{width:30%;max-width:260px;border-radius:18px 18px 0 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:16px;color:var(--ink);font-weight:900;opacity:0;transform:translateY(40px);transition:all .8s}
+.step.show{opacity:1;transform:none}
+.step .medal{font-size:56px}
+.step .nm{font-size:22px;text-align:center;padding:0 8px}
+.step .pp{font-size:18px;margin-top:6px}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:40}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.hide{display:none!important}
+.kbd{font-family:ui-monospace,Menlo,Consolas,monospace;background:#ffffff22;border-radius:6px;padding:2px 6px}
+.dealtable td,.dealtable th{font-size:13px}
+.best{background:#7BD38933;font-weight:800}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div id="app"></div>
+<div id="toast" class="toast hide"></div>
+<script>
+"use strict";
+/* ============================================================
+   HYBRID HEROES: The Pairs Championship
+   Content: Robbins, Coulter & Long (16th global edn) Ch.14, 15, 17;
+   Mullins & Rees (13th edn) Ch.6; Zak (2017) The Neuroscience of Trust.
+   ============================================================ */
+
+// ---------- storage (safe) ----------
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return mem[k] !== undefined ? mem[k] : d; } },
+  set(k, v) { mem[k] = v; try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+const mem = {};
+let S = store.get("hh_pair", { team: "", pair: 0, scores: {}, done: {}, unlocked: {}, data: {} });
+let HOST = store.get("hh_host", null);
+const save = () => store.set("hh_pair", S);
+const saveHost = () => store.set("hh_host", HOST);
+
+// ---------- helpers ----------
+const $ = (s) => document.querySelector(s);
+const esc = (t) => String(t).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+function toast(msg, ms = 2200) { const t = $("#toast"); t.textContent = msg; t.classList.remove("hide"); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.add("hide"), ms); }
+function view(html) { stopTimers(); $("#app").innerHTML = html; window.scrollTo(0, 0); }
+function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function checksum(p, r, s, extra = "") {
+  const str = `HH|${p}|${r}|${s}|${extra}|UG4001`; let h = 2166136261;
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+  const A = "ABCDEFGHJKLMNPQRSTUVWXYZ"; return A[h % 24] + A[Math.floor(h / 24) % 24];
+}
+function makeCode(r, s) { return `${S.pair}-${r}-${s}-${checksum(S.pair, r, s)}`; }
+
+// ---------- timers ----------
+let timers = [];
+function stopTimers() { timers.forEach(clearInterval); timers = []; }
+function countdown(el, secs, onEnd, onTick) {
+  let left = secs; const draw = () => { if (!el) return; const m = Math.floor(left / 60), s = left % 60; el.textContent = `${m}:${String(s).padStart(2, "0")}`; el.classList.toggle("warn", left <= 15); };
+  draw();
+  const id = setInterval(() => { left--; if (onTick) onTick(left); if (left <= 0) { left = 0; draw(); clearInterval(id); onEnd && onEnd(); } else draw(); }, 1000);
+  timers.push(id); return { left: () => left, stop: () => clearInterval(id) };
+}
+
+// ---------- confetti ----------
+function confetti(ms = 3500) {
+  const c = $("#confetti"), ctx = c.getContext("2d"); c.width = innerWidth; c.height = innerHeight;
+  const cols = ["#FF6F59", "#2EC4B6", "#FFC857", "#8E7DFF", "#7BD389", "#ffffff"];
+  const P = Array.from({ length: 180 }, () => ({ x: Math.random() * c.width, y: -20 - Math.random() * c.height * .5, r: 4 + Math.random() * 6, c: cols[Math.floor(Math.random() * cols.length)], vy: 2 + Math.random() * 4, vx: -2 + Math.random() * 4, a: Math.random() * 6 }));
+  const end = Date.now() + ms;
+  (function f() { ctx.clearRect(0, 0, c.width, c.height); P.forEach(p => { p.y += p.vy; p.x += p.vx; p.a += .1; ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.a); ctx.fillStyle = p.c; ctx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r * 1.6); ctx.restore(); });
+    if (Date.now() < end) requestAnimationFrame(f); else ctx.clearRect(0, 0, c.width, c.height); })();
+}
+
+// ============================================================
+//  ROUNDS
+// ============================================================
+const ROUNDS = [
+  { id: 1, key: "DRAW", title: "Draw It Right", sub: "One-way vs two-way communication", max: 10, col: "sun", type: "draw", ch: "RCL Ch. 17" },
+  { id: 2, key: "CHANNEL", title: "Channel Match", sub: "Pick the right channel, fast", max: 20, col: "teal", type: "quiz", ch: "RCL Ch. 17" },
+  { id: 3, key: "HALO", title: "Perception Detective", sub: "Spot the perception trap", max: 12, col: "coral", type: "perception", ch: "Mullins & Rees Ch. 6" },
+  { id: 4, key: "PING", title: "Fix the Ping", sub: "Rewrite a message (lecturer scores)", max: 10, col: "violet", type: "ping", ch: "RCL Ch. 17 · M&R Ch. 6" },
+  { id: 5, key: "STORM", title: "Team Builder", sub: "Team stages + conflict styles", max: 15, col: "mint", type: "team", ch: "RCL Ch. 15" },
+  { id: 6, key: "BATNA", title: "The Deal", sub: "Pair vs pair negotiation", max: 25, col: "sun", type: "deal", ch: "RCL Ch. 15" },
+  { id: 7, key: "MOTIVE", title: "Motivation Clinic", sub: "Diagnose and treat", max: 16, col: "teal", type: "quiz", ch: "RCL Ch. 14" },
+  { id: 8, key: "OXYTOCIN", title: "Trust Builder", sub: "Match Zak's 8 behaviours", max: 16, col: "coral", type: "match", ch: "Zak (2017)" },
+  { id: 9, key: "FINAL", title: "Lightning Final", sub: "10 questions × 15 seconds", max: 20, col: "violet", type: "lightning", ch: "All readings" },
+];
+const TOTAL_MAX = ROUNDS.reduce((a, r) => a + r.max, 0);
+const R = (id) => ROUNDS.find((r) => r.id === id);
+
+// ---------- content ----------
+const CHANNELS = ["Face-to-face / video call", "Phone call", "Chat / instant message", "Email", "Intranet / shared document"];
+const Q_CHANNEL = [
+  { q: "Telling a remote team member their contract will not be renewed.", ans: [0], why: "Bad news, high emotion, needs empathy and instant feedback → the richest channel available (then confirm in writing)." },
+  { q: "Announcing the new holiday-request procedure to 200 staff.", ans: [3, 4], why: "Routine, factual, many receivers, needs a permanent record → a lean channel is efficient." },
+  { q: "\"Is today's meeting at 3 or at 4?\"", ans: [2], why: "Quick, simple, low-stakes → chat is fast and good enough." },
+  { q: "A key client is angry about a late delivery and has posted about it online.", ans: [0, 1], why: "Emotional and urgent → rich, immediate two-way contact first, written follow-up after." },
+  { q: "Brainstorming a new product name with a team spread across 3 countries.", ans: [0], why: "Creative, needs rapid back-and-forth and energy → video (plus a shared whiteboard for time zones)." },
+  { q: "Confirming the exact terms of a supplier contract.", ans: [3, 4], why: "Detail and a permanent record matter more than richness." },
+  { q: "A teammate looks stressed and has missed two deadlines.", ans: [0], why: "Sensitive, personal, ambiguous → private face-to-face or video conversation to listen first." },
+  { q: "Reminding everyone that the IT system will be down on Saturday.", ans: [3, 4], why: "One-way, factual information → lean channel." },
+];
+const TRAPS = ["Selective perception", "Halo effect", "Stereotyping", "Attribution error", "Projection", "First impression"];
+const Q_PERCEPTION = [
+  { q: "Sam is brilliant at presentations, so the manager assumes Sam's spreadsheets must be flawless too.", ans: [1], why: "Halo effect: one positive characteristic colours the whole judgement." },
+  { q: "A manager assumes the youngest person on the team must be the most tech-savvy.", ans: [2], why: "Stereotyping: judging someone on the basis of the group they belong to." },
+  { q: "When Priya's report is late, her boss thinks she is lazy. When the boss is late, he blames the Wi-Fi.", ans: [3], why: "Attribution error: others' failures → internal causes (character); our own → external causes (situation)." },
+  { q: "Reading a project report, the sales director only notices the sales figures and misses the customer complaints.", ans: [0], why: "Selective perception: we notice what fits our own interests, background and expectations." },
+  { q: "Leo loves sending messages at midnight and assumes everyone on the team is happy to reply at that time too.", ans: [4], why: "Projection: assuming others think and feel the way we do." },
+  { q: "A new colleague joined their first video call late with the camera off. Months later the manager still sees them as 'uncommitted'.", ans: [5], why: "First impressions: early cues anchor later judgements, even when new evidence appears." },
+];
+const PINGS = [
+  { from: "Manager, sent at 23:47", msg: "Can we talk tomorrow?" },
+  { from: "Teammate, after you asked for feedback", msg: "Fine." },
+  { from: "Client, in a reply-all", msg: "As per my last email…" },
+  { from: "Colleague, in the group chat after you presented", msg: "Great job on the slides 👍" },
+];
+const STAGES = ["Forming", "Storming", "Norming", "Performing", "Adjourning"];
+const STYLES = ["Competing", "Collaborating", "Compromising", "Avoiding", "Accommodating"];
+const Q_STYLES = [
+  { q: "The fire alarm goes off. The manager orders everyone out immediately, with no discussion.", ans: 0 },
+  { q: "Two designers want different layouts. They spend an hour finding a solution that fully meets BOTH of their goals.", ans: 1 },
+  { q: "The deadline is in one hour. Each side gives up something and they split the difference.", ans: 2 },
+  { q: "A heated debate about the colour of the meeting-room chairs. The manager decides to let it go.", ans: 3 },
+  { q: "You don't mind which day the team meets; your colleague cares a lot, so you agree to her day.", ans: 4 },
+];
+const THEORIES = ["Equity theory", "Goal-setting theory", "Expectancy theory", "Job characteristics model", "Maslow's hierarchy of needs", "Theory X"];
+const Q_MOTIVE = [
+  { q: "🩺 AISHA, data analyst (fully remote). Top performer, recently silent in meetings. Two office-based colleagues with similar results were just promoted. Which theory best explains her drop in motivation?", opts: THEORIES, ans: [0], why: "Equity theory: Aisha compares her inputs/outcomes with colleagues' and perceives unfairness (with a whiff of proximity bias)." },
+  { q: "🩺 AISHA: best first action?", opts: ["Give her a bigger monitor", "Tell her to come to the office more so she gets noticed", "Review promotion criteria transparently and recognise her contribution publicly", "Wait and see if it passes"], ans: [2], why: "Restore perceived fairness (equity) and recognise excellence: Zak's 'Ovation'." },
+  { q: "🩺 TOM, graduate trainee (hybrid). Unsure what 'good' looks like, answers Slack at midnight, 'never knows if he's doing OK'. Which theory fits best?", opts: THEORIES, ans: [1], why: "Goal-setting theory: specific, challenging goals with feedback motivate; vague goals don't." },
+  { q: "🩺 TOM: best first action?", opts: ["Agree 3 specific goals, weekly feedback and clear online hours", "Send him an inspirational quote", "Give him more work to keep him busy", "Monitor his online status closely"], ans: [0], why: "Specific goals + feedback (Ch. 14) + boundaries that reduce stress (Zak: stress blocks trust)." },
+  { q: "🩺 MARCO, sales rep. New, harder territory but the same targets. 'Why bother? I'll never hit them.' Which theory fits best?", opts: THEORIES, ans: [2], why: "Expectancy theory: he believes effort won't lead to performance (low expectancy), so motivation collapses." },
+  { q: "🩺 MARCO: best first action?", opts: ["Raise his commission rate only", "Reset targets to hard-but-achievable and give territory support", "Threaten a performance review", "Ignore it: targets are targets"], ans: [1], why: "Repair the effort → performance link; Zak's 'eXpectation' = challenging but achievable." },
+  { q: "🩺 LENA, team leader. Works 60 hours, does everything herself 'because it's faster'. Her team is bored and disengaged. Which theory best explains the TEAM's low motivation?", opts: THEORIES, ans: [3], why: "Job characteristics model: the team's jobs lack autonomy, skill variety and task identity." },
+  { q: "🩺 LENA: best first action?", opts: ["Work even longer hours", "Delegate whole pieces of work with real authority and agreed check-ins", "Hire a personal assistant", "Hold more status meetings"], ans: [1], why: "Delegation enriches the team's jobs (autonomy, task identity) and frees Lena's time; Zak's 'Yield'." },
+];
+const OXY = ["Ovation", "eXpectation", "Yield", "Transfer", "Openness", "Caring", "Invest", "Natural"];
+const OXY_DESC = ["recognise excellence", "set challenging but achievable goals", "give discretion over how work is done", "let people choose/craft their projects", "share information broadly", "intentionally build relationships", "facilitate whole-person growth", "show vulnerability"];
+const Q_OXY = [
+  { q: "Thank a teammate publicly in the #wins channel right after a milestone.", ans: 0 },
+  { q: "Set a stretch, but achievable, goal for the next sprint.", ans: 1 },
+  { q: "Let the team decide how to organise their own working week.", ans: 2 },
+  { q: "Allow an engineer to spend one day a week on a project they choose.", ans: 3 },
+  { q: "Share the company's strategy and numbers in a monthly open meeting.", ans: 4 },
+  { q: "Start online meetings with a 5-minute personal check-in.", ans: 5 },
+  { q: "Fund a course the employee wants to take, even outside their current role.", ans: 6 },
+  { q: "The manager says: \"I don't know the answer. Can you help me?\"", ans: 7 },
+];
+const Q_FINAL = [
+  { q: "Communication is the transfer AND understanding of meaning.", opts: ["True", "False"], ans: 0 },
+  { q: "Which channel is the RICHEST?", opts: ["Email", "Face-to-face", "Memo", "Intranet post"], ans: 1 },
+  { q: "A sender manipulating information so it looks more favourable to the receiver is called…", opts: ["Filtering", "Projection", "Decoding", "Noise"], ans: 0 },
+  { q: "In the five-stage model, the stage after STORMING is…", opts: ["Forming", "Performing", "Norming", "Adjourning"], ans: 2 },
+  { q: "For Herzberg, salary is a…", opts: ["Motivator", "Hygiene factor", "Valence", "Need for power"], ans: 1 },
+  { q: "McClelland's three needs: achievement, power and…", opts: ["Security", "Affiliation", "Esteem", "Autonomy"], ans: 1 },
+  { q: "In expectancy theory, the belief that effort will lead to performance is…", opts: ["Valence", "Instrumentality", "Expectancy", "Equity"], ans: 2 },
+  { q: "Which type of conflict is almost always dysfunctional?", opts: ["Task", "Process", "Relationship", "Functional"], ans: 2 },
+  { q: "According to Zak, high stress ______ oxytocin.", opts: ["Boosts", "Inhibits", "Doesn't affect", "Doubles"], ans: 1 },
+  { q: "Judging a whole person by one characteristic is the…", opts: ["Halo effect", "Contrast effect", "BATNA", "Grapevine"], ans: 0 },
+];
+// Negotiation
+const DEAL = {
+  issues: [
+    { name: "Office days per week", opts: ["1 day", "2 days", "3 days", "4 days"] },
+    { name: "In-office mentoring for new juniors", opts: ["None", "1 day per month", "1 day per week", "2 days per week"] },
+    { name: "Protected focus time (no meetings)", opts: ["None", "1 morning per week", "2 mornings per week", "Every morning"] },
+    { name: "Pilot before the rule is permanent", opts: ["No pilot", "1-month pilot", "3-month pilot", "6-month pilot"] },
+    { name: "Home-office budget per person", opts: ["€0", "€300", "€600", "€900"] },
+  ],
+  M: [[0, 8, 16, 20], [0, 6, 14, 20], [6, 5, 3, 0], [4, 2, 10, 6], [10, 7, 3, 0]],
+  T: [[20, 14, 6, 0], [8, 7, 5, 0], [0, 8, 14, 20], [0, 4, 10, 7], [0, 3, 7, 10]],
+  noDeal: { M: 6, T: 6 },
+};
+const maxSide = (t) => t.reduce((a, row) => a + Math.max(...row), 0);
+
+// Drawing figures for Round 1
+const FIGS = [
+  { title: "Figure 1", svg: `<rect x="40" y="40" width="80" height="80" transform="rotate(45 80 80)" fill="none" stroke="#1F1A33" stroke-width="4"/><circle cx="170" cy="170" r="36" fill="none" stroke="#1F1A33" stroke-width="4"/><polygon points="250,40 300,120 200,120" fill="none" stroke="#1F1A33" stroke-width="4"/><circle cx="250" cy="98" r="8" fill="#1F1A33"/><line x1="30" y1="250" x2="310" y2="250" stroke="#1F1A33" stroke-width="4"/>`,
+    items: ["Diamond (tilted square) top-left", "Circle in the middle, below the diamond", "Triangle (point up) top-right", "Small filled dot inside the triangle", "Long horizontal line along the bottom"] },
+  { title: "Figure 2", svg: `<polygon points="30,40 130,40 80,130" fill="none" stroke="#1F1A33" stroke-width="4"/><rect x="170" y="50" width="130" height="60" fill="none" stroke="#1F1A33" stroke-width="4"/><circle cx="90" cy="200" r="28" fill="none" stroke="#1F1A33" stroke-width="4"/><circle cx="150" cy="200" r="28" fill="none" stroke="#1F1A33" stroke-width="4"/><line x1="230" y1="160" x2="300" y2="260" stroke="#1F1A33" stroke-width="4"/>`,
+    items: ["Upside-down triangle top-left", "Wide rectangle top-right", "Two circles side by side, bottom-left", "Circles are touching", "Diagonal line bottom-right (top-left to bottom-right)"] },
+];
+const fig = (i) => `<svg class="fig" viewBox="0 0 340 290">${FIGS[i].svg}</svg>`;
+
+// ============================================================
+//  ROUTER
+// ============================================================
+function route() {
+  const h = location.hash.replace("#", "");
+  if (h === "host") return HOST ? hostBoard() : hostSetup();
+  if (!S.team || !S.pair) return setup();
+  home();
+}
+window.addEventListener("hashchange", route);
+function go(h) { if (location.hash === "#" + h) route(); else location.hash = h; }
+
+// ---------- setup ----------
+function setup() {
+  view(`<div class="wrap">
+    <div class="brand">⚡ UG4001 · Managerial Communication & Skills</div>
+    <h1 style="font-size:40px;margin-top:14px">Hybrid<br><span style="color:var(--coral)">Heroes</span></h1>
+    <div class="bubble tail coral"><b>The Pairs Championship.</b> 9 rounds. ${TOTAL_MAX} points. One podium. 🏆</div>
+    <div class="card">
+      <label for="team">Your pair's team name</label>
+      <input id="team" maxlength="24" placeholder="e.g. The Unmuted" value="${esc(S.team)}">
+      <label for="pair">Your pair number (from your lecturer)</label>
+      <select id="pair">${Array.from({ length: 10 }, (_, i) => `<option value="${i + 1}" ${S.pair == i + 1 ? "selected" : ""}>Pair ${i + 1}</option>`).join("")}</select>
+      <div style="margin-top:16px"><button class="btn block" onclick="saveSetup()">Let's go →</button></div>
+    </div>
+    <p class="center muted">Lecturer? <a href="#host" style="color:var(--sun)">Open the scoreboard</a></p>
+  </div>`);
+}
+function saveSetup() {
+  const t = $("#team").value.trim(); if (!t) return toast("Give your pair a team name 🙂");
+  S.team = t; S.pair = +$("#pair").value; save(); go("play");
+}
+
+// ---------- home ----------
+function home() {
+  const total = Object.values(S.scores).reduce((a, b) => a + b, 0);
+  view(`<div class="wrap">
+    <div class="top"><div class="brand">⚡ Hybrid Heroes</div><button class="btn ghost small" onclick="editTeam()">Pair ${S.pair}</button></div>
+    <h2>${esc(S.team)}</h2>
+    <div class="card row" style="justify-content:space-between">
+      <div><div class="muted">Points banked on this device</div><div class="score-big">${total}</div></div>
+      <div class="muted" style="text-align:right">of ${TOTAL_MAX} available<br>Round 4 and the final standings<br>are scored by your lecturer</div>
+    </div>
+    ${ROUNDS.map((r) => {
+      const open = S.unlocked[r.id], done = S.done[r.id];
+      return `<button class="round ${open ? r.col : "locked"}" onclick="openRound(${r.id})">
+        <div class="num">${done ? "✓" : open ? r.id : "🔒"}</div>
+        <div><div class="t">Round ${r.id} · ${r.title}</div><div class="s">${r.sub} · ${r.ch}</div></div>
+        <div class="pts">${done ? (S.scores[r.id] ?? "—") + " / " : ""}${r.max} pts</div></button>`;
+    }).join("")}
+    <p class="muted center">Each round unlocks with a code word shown on your lecturer's slide.</p>
+  </div>`);
+}
+function editTeam() { S.team = S.team; view(""); setup(); }
+
+function openRound(id) {
+  const r = R(id);
+  if (S.done[id]) return showResult(id);
+  if (!S.unlocked[id]) {
+    view(`<div class="wrap"><button class="btn ghost small" onclick="go('play')">← Back</button>
+      <h2>🔒 Round ${id}: ${r.title}</h2><p>Type the code word from your lecturer's slide.</p>
+      <div class="card"><input id="code" autocomplete="off" autocapitalize="characters" placeholder="CODE WORD">
+      <button class="btn block" style="margin-top:12px" onclick="tryUnlock(${id})">Unlock</button></div></div>`);
+    setTimeout(() => $("#code") && $("#code").focus(), 50); return;
+  }
+  ({ draw: rDraw, quiz: rQuizStart, perception: rPerception, ping: rPing, team: rTeam, deal: rDeal, match: rMatch, lightning: rLightning })[r.type](id);
+}
+function tryUnlock(id) {
+  if ($("#code").value.trim().toUpperCase() === R(id).key) { S.unlocked[id] = true; save(); toast("🔓 Unlocked!"); openRound(id); }
+  else toast("Not quite: check the slide 👀");
+}
+function header(id, extra = "") {
+  const r = R(id);
+  return `<div class="top"><button class="btn ghost small" onclick="go('play')">← Rounds</button>${extra}</div>
+  <div class="chip ${r.col}">Round ${id} · ${r.max} pts · ${r.ch}</div><h2 style="margin-top:10px">${r.title}</h2>`;
+}
+function finish(id, score, extraLine = "") {
+  S.scores[id] = score; S.done[id] = true; save();
+  if (score >= R(id).max * 0.8) confetti(2500);
+  showResult(id, extraLine);
+}
+function showResult(id, extraLine = "") {
+  const r = R(id), s = S.scores[id];
+  const line = extraLine || (S.data["line" + id] || "");
+  if (extraLine) { S.data["line" + id] = extraLine; save(); }
+  view(`<div class="wrap center">${header(id)}
+    <div class="card"><div class="muted">Your score</div><div class="score-big">${s ?? "—"}<span style="font-size:28px;color:#fff"> / ${r.max}</span></div>
+    ${line ? `<p>${line}</p>` : ""}
+    ${s !== undefined && s !== null ? `<div class="muted" style="margin-top:12px">Score code: show it to your lecturer</div><div class="code">${makeCode(id, s)}</div>` : ""}</div>
+    ${S.data["review" + id] ? `<div class="card" style="text-align:left"><h3>Review</h3>${S.data["review" + id]}</div>` : ""}
+    <button class="btn" onclick="go('play')">Back to rounds</button></div>`);
+}
+
+// ============================================================
+//  ROUND 1: Draw It Right
+// ============================================================
+function rDraw(id) {
+  const st = S.data.draw || { step: 0 }; S.data.draw = st; save();
+  const steps = [
+    () => `<div class="bubble tail sun"><b>Round A: "email mode"</b>. Partner 1 describes Figure 1. Partner 2 draws on paper, <b>with no questions, no gestures and no peeking</b>. Sit back to back. 2 minutes.</div>
+      <p>Partner 1: press and hold to see the figure. Keep the screen hidden!</p>
+      <button class="btn block" onpointerdown="peek(0,true)" onpointerup="peek(0,false)" onpointerleave="peek(0,false)">👁 Hold to view Figure 1</button>
+      <div id="peek" class="hide">${fig(0)}</div>
+      <div class="card row" style="justify-content:space-between"><span>Timer</span><span id="t" class="timer">2:00</span><button class="btn small" onclick="startT(120)">Start</button></div>
+      <button class="btn block ghost" onclick="drawNext()">Done: next round →</button>`,
+    () => `<div class="bubble tail teal"><b>Round B: "video-call mode"</b>. Swap roles! Partner 2 describes Figure 2. Partner 1 draws, and this time <b>questions are allowed</b>. Face each other. 3 minutes.</div>
+      <button class="btn block" onpointerdown="peek(1,true)" onpointerup="peek(1,false)" onpointerleave="peek(1,false)">👁 Hold to view Figure 2</button>
+      <div id="peek" class="hide">${fig(1)}</div>
+      <div class="card row" style="justify-content:space-between"><span>Timer</span><span id="t" class="timer">3:00</span><button class="btn small" onclick="startT(180)">Start</button></div>
+      <button class="btn block ghost" onclick="drawNext()">Done: compare drawings →</button>`,
+    () => `<p>Compare your drawings with the originals. Tick each element that is <b>correct and roughly in the right place</b>. Be honest: your lecturer may spot-check! 🕵️</p>
+      ${[0, 1].map((f) => `<div class="card light"><h3>${FIGS[f].title} (${f ? "two-way" : "one-way"})</h3>${fig(f)}
+        ${FIGS[f].items.map((it, i) => `<label class="check" style="color:var(--ink)"><input type="checkbox" data-f="${f}" data-i="${i}"> ${it}</label>`).join("")}</div>`).join("")}
+      <div class="card"><b>Think:</b> which round was more accurate? Which took longer? Where did encoding, decoding or feedback break down? (RCL Ch. 17)</div>
+      <button class="btn block" onclick="drawScore()">Submit score</button>`,
+  ];
+  view(`<div class="wrap">${header(id)}${steps[st.step]()}</div>`);
+}
+function peek(i, on) { const p = $("#peek"); if (p) p.classList.toggle("hide", !on); }
+function startT(s) { stopTimers(); countdown($("#t"), s, () => toast("⏰ Time's up!")); }
+function drawNext() { S.data.draw.step++; save(); rDraw(1); }
+function drawScore() {
+  const boxes = [...document.querySelectorAll("input[type=checkbox][data-f]")];
+  const a = boxes.filter((b) => b.dataset.f === "0" && b.checked).length, b = boxes.filter((x) => x.dataset.f === "1" && x.checked).length;
+  finish(1, a + b, `One-way: <b>${a}/5</b> · Two-way: <b>${b}/5</b>. ${b > a ? "Feedback wins! 🎯" : b === a ? "A draw. Did two-way feel more confident?" : "Interesting: one-way won this time. Why?"}`);
+}
+
+// ============================================================
+//  GENERIC QUIZ (Round 2 Channel Match, Round 7 Motivation Clinic)
+// ============================================================
+let QZ = null;
+function rQuizStart(id) {
+  if (id === 2) QZ = { id, items: Q_CHANNEL.map((x) => ({ ...x, opts: CHANNELS })), pts: 2, timeLimit: 360, multi: true };
+  else QZ = { id, items: Q_MOTIVE, pts: 2, timeLimit: 0 };
+  QZ.i = 0; QZ.correct = 0; QZ.review = [];
+  view(`<div class="wrap">${header(id)}
+    ${id === 2 ? `<div class="bubble tail teal">Pick the <b>best channel</b> for each of 8 messages. 2 pts each + a <b>speed bonus</b> of up to 4 pts. Clock: 6 minutes. Discuss with your partner, but be quick! ⏱</div>`
+      : `<div class="bubble tail teal">Four 'patients' need help. For each one: which <b>Ch. 14 theory</b> explains the problem, and what's the <b>best first action</b>? 8 questions × 2 pts.</div>`}
+    <button class="btn block" onclick="qzStart()">Start</button></div>`);
+}
+function qzStart() { QZ.started = Date.now(); qzShow(); }
+function qzShow() {
+  const it = QZ.items[QZ.i], n = QZ.items.length;
+  view(`<div class="wrap">${header(QZ.id, QZ.timeLimit ? `<span id="t" class="timer"></span>` : "")}
+    <div class="progress"><div style="width:${(QZ.i / n) * 100}%"></div></div>
+    <div class="muted">Question ${QZ.i + 1} of ${n}</div>
+    <h3 style="font-size:20px">${it.q}</h3>
+    ${it.opts.map((o, k) => `<button class="opt" data-k="${k}" onclick="qzPick(${k})">${o}</button>`).join("")}
+    <div id="fb"></div></div>`);
+  if (QZ.timeLimit) { const left = Math.max(0, QZ.timeLimit - Math.floor((Date.now() - QZ.started) / 1000)); countdown($("#t"), left, () => { toast("⏰ Time! Finishing…"); qzEnd(); }); }
+}
+function qzPick(k) {
+  const it = QZ.items[QZ.i]; if (QZ.locked) return; QZ.locked = true;
+  const ok = it.ans.includes(k); if (ok) QZ.correct++;
+  document.querySelectorAll(".opt").forEach((b) => { const kk = +b.dataset.k; b.disabled = true; if (it.ans.includes(kk)) b.classList.add("right"); else if (kk === k) b.classList.add("wrong"); });
+  QZ.review.push(`<p>${ok ? "✅" : "❌"} ${it.q}<br><span class="muted">${it.why}</span></p>`);
+  $("#fb").innerHTML = `<div class="why">${ok ? "✅ Correct! " : "❌ Not quite. "}${it.why}</div>
+    <button class="btn block" style="margin-top:12px" onclick="qzNext()">${QZ.i + 1 < QZ.items.length ? "Next →" : "Finish"}</button>`;
+}
+function qzNext() { QZ.locked = false; QZ.i++; if (QZ.i < QZ.items.length) qzShow(); else qzEnd(); }
+function qzEnd() {
+  if (QZ.ended) return; QZ.ended = true;
+  let score = QZ.correct * QZ.pts, line = `${QZ.correct} of ${QZ.items.length} correct.`;
+  if (QZ.timeLimit) {
+    const used = Math.floor((Date.now() - QZ.started) / 1000), left = Math.max(0, QZ.timeLimit - used);
+    const bonus = QZ.i >= QZ.items.length ? Math.min(4, Math.floor(left / 60)) : 0;
+    score += bonus; line += ` Speed bonus: +${bonus} ⚡`;
+  }
+  S.data["review" + QZ.id] = QZ.review.join(""); const id = QZ.id; QZ = null; finish(id, score, line);
+}
+
+// ============================================================
+//  ROUND 3: Perception Detective (+ warm/cold lab)
+// ============================================================
+function rPerception(id) {
+  const warm = S.pair % 2 === 1; const st = S.data.perc || { step: 0 }; S.data.perc = st; save();
+  if (st.step === 0) {
+    view(`<div class="wrap">${header(id)}
+      <div class="bubble tail coral"><b>Part A: Perception Lab</b> (not scored). Meet your new teammate.</div>
+      <div class="card light"><p>Alex joins your project team next week and will work remotely. Colleagues from Alex's last team describe Alex as:</p>
+      <p style="font-size:20px;font-weight:900;color:#5b4bd6">intelligent · skilful · industrious · ${warm ? "warm" : "cold"} · determined · practical · cautious</p></div>
+      <p>Together, rate Alex from 1 (not at all) to 7 (very):</p>
+      ${["Generous", "Sociable", "Good-natured", "Someone you'd want on your team"].map((t, i) => `<label>${t}</label><div class="slider"><input type="range" min="1" max="7" value="4" id="s${i}" oninput="$('#v${i}').textContent=this.value"><b id="v${i}" style="width:20px">4</b></div>`).join("")}
+      <button class="btn block" style="margin-top:16px" onclick="percLab()">Save ratings</button></div>`);
+  } else if (st.step === 1) {
+    view(`<div class="wrap">${header(id)}
+      <div class="card center"><div class="muted">Your average rating of Alex</div><div class="score-big">${st.avg}</div>
+      <p>👉 Tell your lecturer this number when asked. Don't tell other pairs anything yet!</p></div>
+      <div class="bubble tail coral"><b>Part B: Trap Hunt</b>. 6 workplace stories. Name the perception trap. 2 pts each.</div>
+      <button class="btn block" onclick="percQuiz()">Start the Trap Hunt</button></div>`);
+  }
+}
+function percLab() {
+  const v = [0, 1, 2, 3].map((i) => +$("#s" + i).value); const avg = (v.reduce((a, b) => a + b, 0) / 4).toFixed(1);
+  S.data.perc = { step: 1, avg }; save(); rPerception(3);
+}
+function percQuiz() {
+  QZ = { id: 3, items: Q_PERCEPTION.map((x) => ({ ...x, opts: TRAPS })), pts: 2, timeLimit: 0, i: 0, correct: 0, review: [], started: Date.now() };
+  qzShow();
+}
+
+// ============================================================
+//  ROUND 4: Fix the Ping (lecturer-scored)
+// ============================================================
+function rPing(id) {
+  const d = S.data.ping || { pick: null, text: "" };
+  view(`<div class="wrap">${header(id)}
+    <div class="bubble tail violet">Pick ONE message. Decode it, then rewrite it so it's <b>clear, kind and complete</b>. Your lecturer scores your rewrite out of 10 when you read it aloud.</div>
+    ${PINGS.map((p, i) => `<button class="opt ${d.pick === i ? "sel" : ""}" onclick="pingPick(${i})"><span class="muted">${p.from}</span><br><b style="font-size:19px">"${p.msg}"</b></button>`).join("")}
+    <div class="card"><b>Before you rewrite, discuss:</b><ul>
+      <li>3 ways the receiver might read it. Which perception trap could kick in? (M&R Ch. 6)</li>
+      <li>Which communication barrier is at work: emotions, filtering, information overload…? (RCL Ch. 17)</li>
+      <li>Is chat even the right channel? Is the timing a non-verbal message?</li></ul></div>
+    <label for="rw">Your rewrite</label><textarea id="rw" placeholder="Write the improved message here…" oninput="pingSave()">${esc(d.text)}</textarea>
+    <div class="card light"><b>Scoring rubric (lecturer):</b> Clear: purpose, context, ask (0-3) · Kind: empathy, tone (0-3) · Complete: what, when, why (0-2) · Smart channel/timing choice (0-2)</div>
+    <button class="btn block" onclick="pingDone()">I'm ready to read it aloud ✋</button></div>`);
+}
+function pingPick(i) { S.data.ping = { ...(S.data.ping || { text: "" }), pick: i }; save(); rPing(4); }
+function pingSave() { S.data.ping = { ...(S.data.ping || { pick: null }), text: $("#rw").value }; save(); }
+function pingDone() {
+  if (!S.data.ping || S.data.ping.pick === null || !S.data.ping.text.trim()) return toast("Pick a message and write your rewrite first ✍️");
+  view(`<div class="wrap center">${header(4)}<div class="card"><h3>Ready! 🎤</h3><p>Read your rewrite aloud when your lecturer calls your pair. Your lecturer enters your score on the scoreboard.</p>
+    <div class="card light" style="text-align:left"><span class="muted">Original: "${esc(PINGS[S.data.ping.pick].msg)}"</span><p style="font-size:18px"><b>${esc(S.data.ping.text)}</b></p></div></div>
+    <button class="btn ghost" onclick="rPing(4)">Edit</button> <button class="btn" onclick="go('play')">Back to rounds</button></div>`);
+}
+
+// ============================================================
+//  ROUND 5: Team Builder
+// ============================================================
+let TB = null;
+function rTeam(id) {
+  TB = { order: [], pool: shuffle(STAGES), picks: {} };
+  view(`<div class="wrap">${header(id)}
+    <div class="bubble tail mint"><b>Part A (5 pts):</b> tap the five stages of group development in the right order (RCL Ch. 15).</div>
+    <div id="pool" class="row"></div><div id="ord"></div>
+    <div class="bubble tail mint" style="margin-top:22px"><b>Part B (10 pts):</b> which conflict-handling style is being used?</div>
+    ${Q_STYLES.map((q, i) => `<div class="card"><p style="margin-top:0">${i + 1}. ${q.q}</p><select id="st${i}"><option value="">Choose a style…</option>${STYLES.map((s, k) => `<option value="${k}">${s}</option>`).join("")}</select></div>`).join("")}
+    <button class="btn block" onclick="teamScore()">Submit</button></div>`);
+  tbDraw();
+}
+function tbDraw() {
+  $("#pool").innerHTML = TB.pool.filter((s) => !TB.order.includes(s)).map((s) => `<button class="pill" onclick="tbAdd('${s}')">${s}</button>`).join("") || `<button class="pill" onclick="tbReset()">↺ Reset order</button>`;
+  $("#ord").innerHTML = TB.order.map((s, i) => `<div class="order-item"><span class="n">${i + 1}</span>${s}</div>`).join("");
+}
+function tbAdd(s) { TB.order.push(s); tbDraw(); }
+function tbReset() { TB.order = []; tbDraw(); }
+function teamScore() {
+  if (TB.order.length < 5) return toast("Put all 5 stages in order first");
+  let a = 0; TB.order.forEach((s, i) => { if (STAGES[i] === s) a++; });
+  let b = 0, rev = [];
+  for (let i = 0; i < Q_STYLES.length; i++) { const v = $("#st" + i).value; if (v === "") return toast("Answer all 5 conflict questions"); const ok = +v === Q_STYLES[i].ans; if (ok) b += 2; rev.push(`<p>${ok ? "✅" : "❌"} ${Q_STYLES[i].q}<br><span class="muted">Answer: ${STYLES[Q_STYLES[i].ans]}</span></p>`); }
+  S.data.review5 = `<p><b>Stages:</b> ${STAGES.join(" → ")}</p>` + rev.join("");
+  finish(5, a + b, `Stages: ${a}/5 · Conflict styles: ${b}/10`);
+}
+
+// ============================================================
+//  ROUND 6: The Deal
+// ============================================================
+function rDeal(id) {
+  const d = S.data.deal || { side: S.pair % 2 === 1 ? "M" : "T", step: 0, sel: [null, null, null, null, null] }; S.data.deal = d; save();
+  const side = d.side, tbl = DEAL[side], max = maxSide(tbl);
+  if (d.step === 0) {
+    view(`<div class="wrap">${header(id)}
+      <div class="row"><span class="muted">Your side:</span>
+        <button class="pill ${side === "M" ? "on" : ""}" onclick="dealSide('M')">Operations Manager</button>
+        <button class="pill ${side === "T" ? "on" : ""}" onclick="dealSide('T')">Design Team Rep</button></div>
+      <div class="bubble tail sun">${side === "M"
+        ? "<b>You are NovaTech's Operations Manager.</b> The CEO wants staff in the office 4 days a week. Two big clients complain designers are hard to reach, and three new juniors start next month and need mentoring."
+        : "<b>You represent NovaTech's design team.</b> The team wants to stay remote: designers need long focus blocks, two have caring responsibilities, and the team feels it isn't trusted."}
+        <br><br>Negotiate a deal on 5 issues with the pair your lecturer assigns. 🔒 <b>Your points table is SECRET.</b> Don't show your screen!</div>
+      <div class="card"><table class="dealtable"><tr><th style="text-align:left">Issue</th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+        ${DEAL.issues.map((is, i) => `<tr><td style="text-align:left">${is.name}<br><span class="muted">${is.opts.join(" · ")}</span></td>${tbl[i].map((v) => `<td class="${v === Math.max(...tbl[i]) ? "best" : ""}">${v}</td>`).join("")}</tr>`).join("")}
+      </table><p class="muted">Columns A-D = the four options for each issue, in the order listed. Maximum possible: ${max} points. No deal = ${DEAL.noDeal[side]} points (your BATNA).</p></div>
+      <div class="card"><b>Tips from RCL Ch. 15:</b> collaborating beats competing when both sides' concerns matter. Look for issues that matter <i>more to you</i> than to them, and trade! (integrative bargaining)</div>
+      <div class="card row" style="justify-content:space-between"><span>Negotiation clock</span><span id="t" class="timer">12:00</span><button class="btn small" onclick="startT(720)">Start</button></div>
+      <button class="btn block" onclick="dealStep(1)">We've finished: enter the result →</button></div>`);
+  } else {
+    view(`<div class="wrap">${header(id)}
+      <p>Enter the <b>agreed</b> option for each issue. Both pairs must enter the <b>same</b> deal. Your lecturer checks the deal codes match.</p>
+      ${DEAL.issues.map((is, i) => `<label>${is.name}</label><select id="d${i}"><option value="">Choose…</option>${is.opts.map((o, k) => `<option value="${k}" ${d.sel[i] === k ? "selected" : ""}>${o}</option>`).join("")}</select>`).join("")}
+      <button class="btn block" style="margin-top:16px" onclick="dealSubmit(false)">Submit our deal ✅</button>
+      <button class="btn block ghost" onclick="dealSubmit(true)">We reached NO deal ❌</button>
+      <button class="btn ghost small" onclick="dealStep(0)">← Back to my table</button></div>`);
+  }
+}
+function dealSide(s) { S.data.deal.side = s; save(); rDeal(6); }
+function dealStep(n) { S.data.deal.step = n; save(); rDeal(6); }
+function dealSubmit(none) {
+  const d = S.data.deal, tbl = DEAL[d.side], max = maxSide(tbl);
+  let raw, dealStr;
+  if (none) { raw = DEAL.noDeal[d.side]; dealStr = "NO DEAL"; }
+  else {
+    const sel = DEAL.issues.map((_, i) => $("#d" + i).value);
+    if (sel.some((v) => v === "")) return toast("Choose an option for every issue");
+    d.sel = sel.map(Number); raw = d.sel.reduce((a, k, i) => a + tbl[i][k], 0); dealStr = d.sel.map((k) => "ABCD"[k]).join("");
+  }
+  const score = Math.round((raw / max) * 20) + (none ? 0 : 5);
+  save();
+  finish(6, score, `Your side: <b>${d.side === "M" ? "Manager" : "Design Team"}</b> · Raw value ${raw}/${max}${none ? "" : " + 5 deal bonus"}<br>Deal code: <b class="kbd">${dealStr}</b> (must match the other pair's)`);
+}
+
+// ============================================================
+//  ROUND 8: Trust Builder (matching)
+// ============================================================
+function rMatch(id) {
+  view(`<div class="wrap">${header(id)}
+    <div class="bubble tail coral">Zak (2017) found eight management behaviours that raise oxytocin and build trust: <b>O-X-Y-T-O-C-I-N</b>. Match each action to its behaviour. 2 pts each.</div>
+    <div class="card light">${OXY.map((o, i) => `<div><b>${o}</b>: ${OXY_DESC[i]}</div>`).join("")}</div>
+    ${Q_OXY.map((q, i) => `<div class="card"><p style="margin-top:0">${i + 1}. ${q.q}</p><select id="ox${i}"><option value="">Which behaviour?</option>${OXY.map((s, k) => `<option value="${k}">${s}</option>`).join("")}</select></div>`).join("")}
+    <button class="btn block" onclick="matchScore()">Submit</button></div>`);
+}
+function matchScore() {
+  let sc = 0, rev = [];
+  for (let i = 0; i < Q_OXY.length; i++) { const v = $("#ox" + i).value; if (v === "") return toast("Match all 8 actions first"); const ok = +v === Q_OXY[i].ans; if (ok) sc += 2; rev.push(`<p>${ok ? "✅" : "❌"} ${Q_OXY[i].q}<br><span class="muted">${OXY[Q_OXY[i].ans]}</span></p>`); }
+  S.data.review8 = rev.join(""); finish(8, sc, `${sc / 2} of 8 matched correctly.`);
+}
+
+// ============================================================
+//  ROUND 9: Lightning Final
+// ============================================================
+let LF = null;
+function rLightning(id) {
+  view(`<div class="wrap">${header(id)}
+    <div class="bubble tail violet">10 questions. <b>15 seconds each.</b> 1 point for a correct answer + 1 bonus point if you answer in under 8 seconds. No going back! ⚡</div>
+    <button class="btn block" onclick="lfStart()">I'm ready: GO!</button></div>`);
+}
+function lfStart() { LF = { i: 0, score: 0, correct: 0, review: [] }; lfShow(); }
+function lfShow() {
+  const q = Q_FINAL[LF.i]; LF.t0 = Date.now(); LF.locked = false;
+  view(`<div class="wrap">${header(9, `<span id="t" class="timer"></span>`)}
+    <div class="progress"><div style="width:${(LF.i / 10) * 100}%"></div></div>
+    <div class="muted">Question ${LF.i + 1} / 10 · Score ${LF.score}</div>
+    <h3 style="font-size:22px">${q.q}</h3>
+    ${q.opts.map((o, k) => `<button class="opt" data-k="${k}" onclick="lfPick(${k})">${o}</button>`).join("")}</div>`);
+  countdown($("#t"), 15, () => lfPick(-1));
+}
+function lfPick(k) {
+  if (LF.locked) return; LF.locked = true; stopTimers();
+  const q = Q_FINAL[LF.i], secs = (Date.now() - LF.t0) / 1000, ok = k === q.ans;
+  if (ok) { LF.correct++; LF.score += 1 + (secs < 8 ? 1 : 0); }
+  LF.review.push(`<p>${ok ? "✅" : "❌"} ${q.q} <span class="muted">${q.opts[q.ans]}</span></p>`);
+  document.querySelectorAll(".opt").forEach((b) => { const kk = +b.dataset.k; b.disabled = true; if (kk === q.ans) b.classList.add("right"); else if (kk === k) b.classList.add("wrong"); });
+  setTimeout(() => { LF.i++; if (LF.i < 10) lfShow(); else { S.data.review9 = LF.review.join(""); finish(9, LF.score, `${LF.correct}/10 correct with speed bonuses`); } }, 900);
+}
+
+// ============================================================
+//  HOST (lecturer) MODE
+// ============================================================
+function hostSetup() {
+  view(`<div class="wrap"><div class="brand">🎓 Lecturer scoreboard</div><h1>Set up the championship</h1>
+    <div class="card"><label for="np">Number of pairs</label>
+    <select id="np">${[4, 5, 6, 7, 8, 9, 10].map((n) => `<option ${n === 7 ? "selected" : ""}>${n}</option>`).join("")}</select>
+    <p class="muted">Data stays on this device only. Project this screen for the class.</p>
+    <button class="btn block" onclick="hostCreate()">Create scoreboard</button></div>
+    <p class="center"><a href="#play" style="color:var(--sun)">← Back to player app</a></p></div>`);
+}
+function hostCreate() {
+  const n = +$("#np").value;
+  HOST = { pairs: Array.from({ length: n }, (_, i) => ({ name: `Pair ${i + 1}`, s: {}, lab: "" })), tab: "scores" }; saveHost(); hostBoard();
+}
+const hostTotal = (p) => ROUNDS.reduce((a, r) => a + (+p.s[r.id] || 0), 0);
+function hostBoard() {
+  const t = HOST.tab || "scores";
+  view(`<div class="wrap wide"><div class="top"><div class="brand">🎓 Hybrid Heroes · Lecturer scoreboard</div><a href="#play" style="color:var(--sun);font-size:13px">player app</a></div>
+    <div class="tabs">${[["scores", "✏️ Enter scores"], ["board", "📊 Leaderboard"], ["lab", "🔬 Perception Lab"], ["podium", "🏆 Podium"], ["reset", "⚙️ Reset"]].map(([k, l]) => `<button class="pill ${t === k ? "on" : ""}" onclick="hostTab('${k}')">${l}</button>`).join("")}</div>
+    <div id="hostbody"></div></div>`);
+  ({ scores: hScores, board: hBoard, lab: hLab, podium: hPodium, reset: hReset })[t]();
+}
+function hostTab(t) { HOST.tab = t; saveHost(); hostBoard(); }
+function hScores() {
+  $("#hostbody").innerHTML = `<div class="card"><label for="sc">Quick entry: type a pair's score code (e.g. <span class="kbd">3-2-18-KQ</span>) and press Enter</label>
+    <div class="row"><input id="sc" style="max-width:300px" placeholder="pair-round-score-XX" onkeydown="if(event.key==='Enter')hostCode()"><button class="btn small" onclick="hostCode()">Add</button><span id="scmsg" class="muted">${HOST._msg || ""}</span></div></div>
+    <div class="card" style="overflow-x:auto"><table><tr><th>#</th><th style="text-align:left">Team name</th>${ROUNDS.map((r) => `<th title="${r.title}">R${r.id}<br><span style="font-weight:400">/${r.max}</span></th>`).join("")}<th>Total</th></tr>
+    ${HOST.pairs.map((p, i) => `<tr><td>${i + 1}</td><td class="name"><input value="${esc(p.name)}" onchange="hostName(${i},this.value)"></td>
+      ${ROUNDS.map((r) => `<td><input inputmode="numeric" value="${p.s[r.id] ?? ""}" onchange="hostSet(${i},${r.id},this.value)"></td>`).join("")}<td><b id="tot${i}">${hostTotal(p)}</b></td></tr>`).join("")}
+    </table><p class="muted">Round 4 (Fix the Ping) is scored by you: Clear 0-3 · Kind 0-3 · Complete 0-2 · Channel/timing 0-2. You can override any score.</p></div>`;
+}
+function hostName(i, v) { HOST.pairs[i].name = v.trim() || `Pair ${i + 1}`; saveHost(); }
+function hostSet(i, rid, v) {
+  const n = v === "" ? undefined : Math.max(0, Math.min(R(rid).max, Math.round(+v || 0)));
+  if (n === undefined) delete HOST.pairs[i].s[rid]; else HOST.pairs[i].s[rid] = n; saveHost();
+  const el = $("#tot" + i); if (el) el.textContent = hostTotal(HOST.pairs[i]);
+}
+function hostCode() {
+  const raw = $("#sc").value.trim().toUpperCase(), m = raw.match(/^(\d+)-(\d+)-(\d+)-([A-Z]{2})$/), msg = $("#scmsg");
+  if (!m) { msg.textContent = "❌ Format: pair-round-score-XX"; return; }
+  const [_, p, r, s, c] = m; const pi = +p - 1;
+  if (!HOST.pairs[pi] || !R(+r)) { msg.textContent = "❌ Unknown pair or round"; return; }
+  if (checksum(+p, +r, +s) !== c) { msg.textContent = "⚠️ Code doesn't verify: check it with the pair"; return; }
+  hostSet(pi, +r, s); HOST._msg = `✅ ${HOST.pairs[pi].name}: Round ${r} = ${s}`; hScores(); setTimeout(() => { const e = $("#sc"); if (e) e.focus(); }, 30);
+}
+function ranked() { return HOST.pairs.map((p, i) => ({ ...p, i, total: hostTotal(p) })).sort((a, b) => b.total - a.total); }
+function hBoard() {
+  const rk = ranked(), max = Math.max(1, ...rk.map((p) => p.total)), cols = ["#FFC857", "#2EC4B6", "#FF6F59", "#8E7DFF", "#7BD389"];
+  $("#hostbody").innerHTML = `<h1 style="font-size:40px">Leaderboard</h1>${rk.map((p, k) => `<div class="lb-row"><div class="lb-rank">${["🥇", "🥈", "🥉"][k] || k + 1}</div>
+    <div><div class="lb-bar" style="width:6%;background:${cols[k % 5]}" data-w="${Math.max(8, (p.total / max) * 100)}">${esc(p.name)}</div></div><div class="lb-pts">${p.total}</div></div>`).join("")}`;
+  requestAnimationFrame(() => setTimeout(() => document.querySelectorAll(".lb-bar").forEach((b) => (b.style.width = b.dataset.w + "%")), 60));
+}
+function hLab() {
+  const val = (p) => parseFloat(p.lab); const A = HOST.pairs.filter((_, i) => i % 2 === 0).map(val).filter((x) => !isNaN(x)), B = HOST.pairs.filter((_, i) => i % 2 === 1).map(val).filter((x) => !isNaN(x));
+  const avg = (a) => (a.length ? (a.reduce((x, y) => x + y, 0) / a.length).toFixed(1) : "—");
+  $("#hostbody").innerHTML = `<div class="card"><h2>🔬 Perception Lab: who's Alex?</h2><p>Enter each pair's average rating of Alex (shown in their app, Round 3 Part A). Odd-numbered pairs saw card A; even-numbered pairs saw card B.</p>
+    <div class="grid g2">${HOST.pairs.map((p, i) => `<div class="row"><span style="width:150px">${esc(p.name)} <span class="muted">(${i % 2 === 0 ? "A" : "B"})</span></span><input style="max-width:90px" value="${esc(p.lab || "")}" onchange="HOST.pairs[${i}].lab=this.value;saveHost();hLab()"></div>`).join("")}</div></div>
+    <div class="grid g2"><div class="card center coral"><h3>Card A average</h3><div class="score-big" style="color:var(--ink)">${avg(A)}</div></div><div class="card center teal"><h3>Card B average</h3><div class="score-big" style="color:var(--ink)">${avg(B)}</div></div></div>
+    <button class="btn" onclick="this.nextElementSibling.classList.remove('hide')">Reveal the secret</button>
+    <div class="card hide"><h3>The cards differed by ONE word: <span style="color:var(--coral)">warm</span> (A) vs <span style="color:var(--teal)">cold</span> (B).</h3><p>A central trait colours the whole impression: halo effect and first impressions at work (Mullins & Rees Ch. 6; Asch, 1946). What's the "one word" people judge you on in a hybrid team?</p></div>`;
+}
+function hPodium() {
+  $("#hostbody").innerHTML = `<div class="center"><h1 style="font-size:44px">🏆 And the winners are…</h1>
+    <button class="btn" id="revbtn" onclick="reveal()">Reveal 3rd place</button></div>
+    <div class="podium"><div class="step sun" id="p2" style="height:240px"></div><div class="step coral" id="p1" style="height:320px"></div><div class="step teal" id="p3" style="height:180px"></div></div>`;
+  HOST._rev = 0;
+}
+function reveal() {
+  const rk = ranked(), order = [3, 2, 1], k = HOST._rev; if (k > 2) return;
+  const place = order[k], p = rk[place - 1]; const el = $("#p" + place);
+  if (p) { el.innerHTML = `<div class="medal">${["🥇", "🥈", "🥉"][place - 1]}</div><div class="nm">${esc(p.name)}</div><div class="pp">${p.total} pts</div>`; el.classList.add("show"); }
+  HOST._rev++; const b = $("#revbtn");
+  if (HOST._rev === 1) b.textContent = "Reveal 2nd place"; else if (HOST._rev === 2) b.textContent = "Reveal the CHAMPIONS 🥁"; else { b.textContent = "🎉 Congratulations!"; b.disabled = true; confetti(6000); }
+  if (place !== 1) confetti(1200);
+}
+function hReset() {
+  $("#hostbody").innerHTML = `<div class="card"><h3>Start a new championship</h3><p>This clears all scores on this device.</p>
+    <button class="btn" style="background:var(--coral)" onclick="this.classList.add('hide');this.nextElementSibling.classList.remove('hide')">Clear scoreboard…</button>
+    <button class="btn hide" style="background:var(--coral)" onclick="HOST=null;saveHost();hostSetup()">Yes, really clear everything</button></div>`;
+}
+
+// expose for inline handlers & tests
+Object.assign(window, { saveSetup, editTeam, openRound, tryUnlock, go, peek, startT, drawNext, drawScore, qzStart, qzPick, qzNext, percLab, percQuiz, pingPick, pingSave, pingDone, rPing,
+  tbAdd, tbReset, teamScore, dealSide, dealStep, dealSubmit, matchScore, lfStart, lfPick, hostCreate, hostTab, hostName, hostSet, hostCode, reveal, saveHost, hLab, hostSetup, $ });
+
+route();
+</script>
+</body>
+</html>
