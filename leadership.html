@@ -117,7 +117,7 @@ td.name input{width:150px;text-align:left}
 /* LEADERSHIP QUEST v2: Robbins, Coulter & Long (16th global edn) Ch.14, 16, 17; Mullins & Rees (13th edn) Ch.9; Ibarra & Scoular (2019). */
 const mem = {};
 const store = { get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return mem[k] !== undefined ? mem[k] : d; } }, set(k, v) { mem[k] = v; try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
-let S = store.get("lq2_pair", { team: "", pair: 0, avatar: "🦊", xp: {}, done: {}, unlocked: {}, sound: true, data: {} });
+let S = store.get("lq2_pair", { team: "", pair: 0, avatar: "🐉", xp: {}, done: {}, unlocked: {}, sound: true, data: {} });
 let HOST = store.get("lq2_host", null);
 const save = () => store.set("lq2_pair", S), saveHost = () => store.set("lq2_host", HOST);
 const $ = (s) => document.querySelector(s);
@@ -137,22 +137,22 @@ function confetti(ms = 3000) { const c = $("#confetti"), x = c.getContext("2d");
 
 // ============================================================ CHAPTERS
 const CH = [
-  { id: 1, key: "START", title: "Day One", sub: "Leading vs managing · trait theories", max: 100, ico: "☀️", col: "#FFD23F", ref: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
-  { id: 2, key: "STYLE", title: "Finding Your Style", sub: "Behavioural theories", max: 100, ico: "🎨", col: "#A66BFF", ref: "RCL Ch.16", type: "quiz" },
-  { id: 3, key: "READY", title: "Read the Room", sub: "Contingency theories · power", max: 100, ico: "🧭", col: "#3DF58A", ref: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
-  { id: 4, key: "VISION", title: "Inspire the Team", sub: "Transactional vs transformational · LMX", max: 100, ico: "🚀", col: "#00D4FF", ref: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
-  { id: 5, key: "INTEGRITY", title: "The Right Thing", sub: "Authentic & ethical leadership · trust", max: 100, ico: "⚖️", col: "#FF3D7F", ref: "RCL Ch.16", type: "quiz" },
-  { id: 6, key: "GROW", title: "Coach, Don't Tell", sub: "The leader as coach · live practice", max: 150, ico: "🎯", col: "#FFD23F", ref: "Ibarra & Scoular (2019)", type: "dojo" },
-  { id: 7, key: "REMOTE", title: "Team Without Walls", sub: "Digital leadership · remote teams", max: 100, ico: "🌍", col: "#A66BFF", ref: "RCL Ch.14 & 17", type: "quiz" },
-  { id: 8, key: "GENERATIONS", title: "Four Generations, One Team", sub: "Generational expectations", max: 100, ico: "👥", col: "#3DF58A", ref: "RCL Ch.14 & 16", type: "quiz" },
-  { id: 9, key: "CRISIS", title: "The Crisis", sub: "Final challenge · leading through uncertainty", max: 150, ico: "⚡", col: "#FF3D7F", ref: "All readings", type: "boss" },
+  { id: 1, key: "START", title: "Day One", sub: "Leading vs managing · trait theories", max: 100, ico: "🚩", col: "#FFD23F", ref: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
+  { id: 2, key: "STYLE", title: "Finding Your Style", sub: "Behavioural theories", max: 100, ico: "🧬", col: "#A66BFF", ref: "RCL Ch.16", type: "quiz" },
+  { id: 3, key: "READY", title: "Read the Room", sub: "Contingency theories · power", max: 100, ico: "🔭", col: "#3DF58A", ref: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
+  { id: 4, key: "VISION", title: "Inspire the Team", sub: "Transactional vs transformational · LMX", max: 100, ico: "🌟", col: "#00D4FF", ref: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
+  { id: 5, key: "INTEGRITY", title: "The Right Thing", sub: "Authentic & ethical leadership · trust", max: 100, ico: "🛡️", col: "#FF3D7F", ref: "RCL Ch.16", type: "quiz" },
+  { id: 6, key: "GROW", title: "Coach, Don't Tell", sub: "The leader as coach · live practice", max: 150, ico: "🎧", col: "#FFD23F", ref: "Ibarra & Scoular (2019)", type: "dojo" },
+  { id: 7, key: "REMOTE", title: "Team Without Walls", sub: "Digital leadership · remote teams", max: 100, ico: "🛰️", col: "#A66BFF", ref: "RCL Ch.14 & 17", type: "quiz" },
+  { id: 8, key: "GENERATIONS", title: "Four Generations, One Team", sub: "Generational expectations", max: 100, ico: "🧩", col: "#3DF58A", ref: "RCL Ch.14 & 16", type: "quiz" },
+  { id: 9, key: "CRISIS", title: "The Crisis", sub: "Final challenge · leading through uncertainty", max: 150, ico: "🌪️", col: "#FF3D7F", ref: "All readings", type: "boss" },
 ];
 const TOTAL = CH.reduce((a, c) => a + c.max, 0);
 const C = (id) => CH.find((x) => x.id === id);
 const RANKS = [[0, "New Team Lead"], [150, "Rising Leader"], [300, "Trusted Manager"], [450, "Senior Manager"], [600, "Director"], [750, "Vice President"], [900, "Chief Executive"]];
 const rank = (xp) => RANKS.filter((r) => xp >= r[0]).pop()[1];
 const totalXP = () => Object.values(S.xp).reduce((a, b) => a + b, 0);
-const AVATARS = ["🦊", "🐼", "🦉", "🐯", "🐙", "🦄", "🐸", "🐧", "🦁", "🐨"];
+const AVATARS = ["🐉", "🦈", "🐺", "🦅", "🤖", "👾", "🥷", "🧙", "🦖", "👽"];
 
 /* Each question: who (face, name), s = situation, q = the question, o = options (FIRST = correct; shuffled at runtime), w = why */
 const Q = {
@@ -174,7 +174,7 @@ const Q = {
   { f: "☕", n: "You", s: "You check in on how people feel about their workload, listen and act on their ideas.", q: "Which Ohio State dimension is this?", o: ["Consideration", "Initiating structure", "Production orientation", "Transactional leadership"], w: "Consideration = mutual trust and respect for followers' ideas and feelings." },
   { f: "📈", n: "Your boss, Viktor", s: "Viktor only ever talks about output figures, deadlines and efficiency. Never about people.", q: "Which University of Michigan style describes Viktor?", o: ["Production-oriented", "Employee-oriented", "Democratic", "Servant"], w: "Michigan: production-oriented = technical/task aspects of the job." },
   { f: "😮‍💨", n: "Your team survey", s: "Your team is hitting every target, but people say they feel burned out and ignored.", q: "On the Managerial Grid, you're probably closest to…", o: ["Task management (9,1)", "Team management (9,9)", "Country club management (1,9)", "Impoverished management (1,1)"], w: "High concern for production + low concern for people = task management." },
-  { f: "🎯", n: "Your goal", s: "You want to move towards 'team management' (9,9) on the Grid.", q: "What should you change?", o: ["Keep high results AND show much more concern for people", "Lower the targets so people relax", "Stop setting goals altogether", "Focus only on people, not results"], w: "9,9 combines high concern for production with high concern for people." },
+  { f: "🎧", n: "Your goal", s: "You want to move towards 'team management' (9,9) on the Grid.", q: "What should you change?", o: ["Keep high results AND show much more concern for people", "Lower the targets so people relax", "Stop setting goals altogether", "Focus only on people, not results"], w: "9,9 combines high concern for production with high concern for people." },
 ],
 3: [
   { f: "🙍", n: "Lea, joined yesterday", s: "Lea has no experience in the role and doesn't seem keen on it yet. (Unable + unwilling: R1)", q: "Situational Leadership: best approach?", o: ["Telling: clear, specific instructions", "Delegating: let her decide", "Participating: share the decisions", "Avoid her until she settles in"], w: "R1 → Telling (high task, low relationship behaviour)." },
@@ -204,7 +204,7 @@ const Q = {
   { f: "🌱", n: "Your daily routine", s: "You spend most of your time removing obstacles for the team and helping each person grow.", q: "Which approach does this reflect?", o: ["Servant leadership", "Laissez-faire leadership", "Autocratic leadership", "Charismatic leadership"], w: "Servant leaders go beyond self-interest and focus on helping followers grow." },
   { f: "🛡️", n: "Senior management meeting", s: "You promised to back your team's proposal, and you do, even when the room turns against it.", q: "Which dimension of trust are you showing?", o: ["Loyalty", "Competence", "Openness", "Consistency"], w: "Loyalty = willingness to protect and save face for others." },
   { f: "🗞️", n: "Bad news", s: "The project will be late. You tell the team and the client the truth straight away.", q: "Which trust dimension?", o: ["Integrity", "Loyalty", "Competence", "Consistency"], w: "Integrity (honesty and truthfulness) is often seen as the most critical dimension." },
-  { f: "🎯", n: "Team feedback", s: "\"We always know how you'll react. You handle the same situations the same way.\"", q: "Which trust dimension?", o: ["Consistency", "Openness", "Loyalty", "Charisma"], w: "Consistency = reliability, predictability and good judgement." },
+  { f: "🎧", n: "Team feedback", s: "\"We always know how you'll react. You handle the same situations the same way.\"", q: "Which trust dimension?", o: ["Consistency", "Openness", "Loyalty", "Charisma"], w: "Consistency = reliability, predictability and good judgement." },
 ],
 7: [
   { f: "💻", n: "Two remote engineers", s: "They're 'online' less than office staff, but deliver everything on time and to a high standard.", q: "How should you judge their performance?", o: ["On agreed outcomes and results", "On hours shown as 'online'", "On how fast they answer at night", "On camera-on time in meetings"], w: "Lead remote work by outcomes, not visibility." },
@@ -380,7 +380,7 @@ function qNext() { B.locked = false; B.i++; if (B.i < B.qs.length) qShow(); else
 function dojo(id) {
   const d = S.data.dojo || { step: 0 }; S.data.dojo = d; save();
   startChTimer(6); setTimeout(() => runChTimer(6), 0);
-  const head = `${topBar()}<div class="row" style="justify-content:flex-end;margin-top:10px">${timerChip()}</div><div class="hero" style="margin-top:8px"><div style="font-size:40px">🎯</div><h2 style="color:#fff">Chapter 6: Coach, Don't Tell</h2><p>Ibarra & Scoular (2019): the best leaders ask more than they tell.</p></div>`;
+  const head = `${topBar()}<div class="row" style="justify-content:flex-end;margin-top:10px">${timerChip()}</div><div class="hero" style="margin-top:8px"><div style="font-size:40px">🎧</div><h2 style="color:#fff">Chapter 6: Coach, Don't Tell</h2><p>Ibarra & Scoular (2019): the best leaders ask more than they tell.</p></div>`;
   if (d.step === 0) {
     view(`<div class="wrap">${head}
       <div class="card"><h3>Four ways to help someone</h3>
@@ -423,7 +423,7 @@ function dojoFinish() { const d = S.data.dojo, cb = CHECKS.filter((_, i) => $("#
 // ============================================================ FINAL CHALLENGE
 let F = null;
 function bossIntro(id) {
-  view(`<div class="wrap">${topBar()}<div class="hero" style="margin-top:14px;background:linear-gradient(135deg,#0B1230,#5A0F3A 60%,#FF3D7F)"><div style="font-size:44px">⚡</div><h2 style="color:#fff">Final challenge: The Crisis</h2>
+  view(`<div class="wrap">${topBar()}<div class="hero" style="margin-top:14px;background:linear-gradient(135deg,#0B1230,#5A0F3A 60%,#FF3D7F)"><div style="font-size:44px">🌪️</div><h2 style="color:#fff">Final challenge: The Crisis</h2>
     <p>It's Monday morning at Lumen. Over the next five days, everything you've learned today will be tested.</p></div>
     <div class="card"><ul style="line-height:1.9;margin:0;padding-left:20px"><li>6 decisions · <b>45 seconds</b> each: crises don't wait</li><li>Best decision = <b>+25 XP</b>; partial credit for reasonable choices</li><li>Watch your team's <b>trust meter</b> rise or fall</li><li>⏱ Chapter clock: <b>${LIMIT[9]} minutes</b></li></ul></div>
     <button class="btn block coral" onclick="bossStart()">Face the crisis →</button></div>`);
@@ -433,7 +433,7 @@ function bossShow() {
   const b = BOSS[F.i]; setTimeout(() => runChTimer(9), 0);
   view(`<div class="wrap">${topBar()}<div class="row" style="justify-content:space-between;margin:14px 0 6px"><span class="muted">Decision ${F.i + 1} of 6 · ${timerChip()}</span><span id="t" class="timer"></span></div>
     <div class="card"><div class="row" style="justify-content:space-between"><b>Team trust</b><b>${F.trust}%</b></div><div class="bar" style="margin-top:8px"><div style="width:${F.trust}%;background:linear-gradient(90deg,#FF3D7F,#FFD23F,#3DF58A)"></div></div></div>
-    <div class="card"><div class="scene"><div class="face">⚡</div><div><div class="who">Lumen · crisis week</div><div class="txt">${b.s}</div></div></div><div class="ask">${b.q}</div>
+    <div class="card"><div class="scene"><div class="face">🌪️</div><div><div class="who">Lumen · crisis week</div><div class="txt">${b.s}</div></div></div><div class="ask">${b.q}</div>
     ${F.order[F.i].map((k, pos) => `<button class="opt" data-k="${k}" onclick="bossPick(${k})"><span class="k">${"ABC"[pos]}</span><span>${b.o[k][0]}</span></button>`).join("")}<div id="fb"></div></div></div>`);
   countdown($("#t"), 45, () => bossPick(-1));
 }
