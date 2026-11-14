@@ -152,7 +152,7 @@ const C = (id) => CH.find((x) => x.id === id);
 const RANKS = [[0, "New Team Lead"], [150, "Rising Leader"], [300, "Trusted Manager"], [450, "Senior Manager"], [600, "Director"], [750, "Vice President"], [900, "Chief Executive"]];
 const rank = (xp) => RANKS.filter((r) => xp >= r[0]).pop()[1];
 const totalXP = () => Object.values(S.xp).reduce((a, b) => a + b, 0);
-const AVATARS = ["🐉", "🦈", "🐺", "🦅", "🤖", "👾", "🥷", "🧙", "🦖", "👽"];
+const AVATARS = ["🐉", "🦈", "🐺", "🦅", "🤖", "👾", "🦂", "🧙", "🦖", "👽"];
 
 /* Each question: who (face, name), s = situation, q = the question, o = options (FIRST = correct; shuffled at runtime), w = why */
 const Q = {
