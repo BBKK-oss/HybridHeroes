@@ -106,6 +106,9 @@ td.name input{width:150px;text-align:left}
 .pill.on{background:linear-gradient(135deg,#00D4FF,#7A5CFF);color:#060914;border-color:transparent;box-shadow:0 0 18px #00D4FF55}
 .kbd{font-family:ui-monospace,Menlo,Consolas,monospace;background:#ffffff14;padding:2px 6px;border-radius:6px}
 .shake{animation:shake .35s}@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.dealtable th,.dealtable td{font-size:13px;padding:8px 5px}.dealtable td.best{color:#3DF58A;font-weight:700;text-shadow:0 0 10px #3DF58A88}
+.brief{border-radius:16px;padding:16px;margin:14px 0;border:1px solid #00D4FF55;background:linear-gradient(135deg,#00D4FF14,#A66BFF14);line-height:1.55}
+.vs{font-size:26px;font-weight:700;text-align:center;margin:6px 0;background:linear-gradient(90deg,#00D4FF,#FF3D7F);-webkit-background-clip:text;background-clip:text;color:transparent}
 </style>
 </head>
 <body>
@@ -145,11 +148,12 @@ const CH = [
   { id: 6, key: "GROW", title: "Coach, Don't Tell", sub: "The leader as coach · live practice", max: 150, ico: "🎧", col: "#FFD23F", ref: "Ibarra & Scoular (2019)", type: "dojo" },
   { id: 7, key: "REMOTE", title: "Team Without Walls", sub: "Digital leadership · remote teams", max: 100, ico: "🛰️", col: "#A66BFF", ref: "RCL Ch.14 & 17", type: "quiz" },
   { id: 8, key: "GENERATIONS", title: "Four Generations, One Team", sub: "Generational expectations", max: 100, ico: "🧩", col: "#3DF58A", ref: "RCL Ch.14 & 16", type: "quiz" },
-  { id: 9, key: "CRISIS", title: "The Crisis", sub: "Final challenge · leading through uncertainty", max: 150, ico: "🌪️", col: "#FF3D7F", ref: "All readings", type: "boss" },
+  { id: 9, key: "CRISIS", title: "The Crisis", sub: "Boss level · leading through uncertainty", max: 150, ico: "🌪️", col: "#FF3D7F", ref: "All readings", type: "boss" },
+  { id: 10, key: "SHOWDOWN", title: "The Showdown", sub: "Pair vs pair · lead a merger", max: 150, ico: "⚔️", col: "#00D4FF", ref: "All readings", type: "duel" },
 ];
 const TOTAL = CH.reduce((a, c) => a + c.max, 0);
 const C = (id) => CH.find((x) => x.id === id);
-const RANKS = [[0, "New Team Lead"], [150, "Rising Leader"], [300, "Trusted Manager"], [450, "Senior Manager"], [600, "Director"], [750, "Vice President"], [900, "Chief Executive"]];
+const RANKS = [[0, "New Team Lead"], [150, "Rising Leader"], [300, "Trusted Manager"], [450, "Senior Manager"], [600, "Director"], [750, "Vice President"], [900, "Chief Executive"], [1050, "Leader of the Year"]];
 const rank = (xp) => RANKS.filter((r) => xp >= r[0]).pop()[1];
 const totalXP = () => Object.values(S.xp).reduce((a, b) => a + b, 0);
 const AVATARS = ["🐉", "🦈", "🐺", "🦅", "🤖", "👾", "🦂", "🧙", "🦖", "👽"];
@@ -265,7 +269,7 @@ const BOSS = [
 ];
 
 // ============================================================ CHAPTER TIMERS (minutes of play per chapter)
-const LIMIT = { 1: 7, 2: 8, 3: 9, 4: 9, 5: 9, 6: 18, 7: 8, 8: 8, 9: 10 };
+const LIMIT = { 1: 5, 2: 6, 3: 7, 4: 7, 5: 7, 6: 16, 7: 6, 8: 6, 9: 8, 10: 16 };
 const fmt = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 function startChTimer(id) { if (!S.data["t" + id]) { S.data["t" + id] = Date.now(); save(); } runChTimer(id); }
 function chLeft(id) { return Math.max(0, Math.round(LIMIT[id] * 60 - (Date.now() - S.data["t" + id]) / 1000)); }
@@ -299,7 +303,7 @@ function setup() {
       <div class="chip dark">Leadership in Modern Organisations</div>
       <h1 style="font-size:36px;margin-top:14px">Leadership Quest</h1>
       <p style="font-size:17px;margin:0">You've just been promoted to <b>Team Lead at Lumen</b>, a fast-growing tech company. Can you lead your team through your first year?</p>
-      <p class="muted" style="color:#9FB0E0;margin-bottom:0">9 chapters · ${TOTAL} XP · play in pairs</p></div>
+      <p class="muted" style="color:#9FB0E0;margin-bottom:0">${CH.length} chapters · ${TOTAL} XP · play in pairs</p></div>
     <div class="card"><label>Choose your avatar</label><div class="row">${AVATARS.map((a) => `<button class="avatar ${S.avatar === a ? "on" : ""}" onclick="pickAv('${a}')">${a}</button>`).join("")}</div>
       <label for="team">Team name</label><input id="team" maxlength="24" placeholder="e.g. The Visionaries" value="${esc(S.team)}">
       <label for="pair">Pair number (from your lecturer)</label>
@@ -330,7 +334,7 @@ function openCh(id) {
       <input id="code" autocomplete="off" autocapitalize="characters" placeholder="CODE WORD" onkeydown="if(event.key==='Enter')tryUnlock(${id})"><button class="btn block" style="margin-top:12px" onclick="tryUnlock(${id})">Unlock chapter</button></div></div>`);
     setTimeout(() => $("#code") && $("#code").focus(), 50); return;
   }
-  ({ quiz: quizIntro, dojo, boss: bossIntro })[c.type](id);
+  ({ quiz: quizIntro, dojo, boss: bossIntro, duel })[c.type](id);
 }
 function tryUnlock(id) { const i = $("#code"); if (i.value.trim().toUpperCase() === C(id).key) { S.unlocked[id] = true; save(); SFX.win(); toast("Chapter unlocked 🔓"); openCh(id); } else { i.classList.add("shake"); setTimeout(() => i.classList.remove("shake"), 400); toast("Not quite: check the slide"); } }
 function finish(id, xp, line) { clearInterval(window._cht); S.xp[id] = xp; S.done[id] = true; S.data["line" + id] = line || ""; save(); if (xp >= C(id).max * 0.7) { SFX.win(); confetti(2500); } result(id); }
@@ -423,7 +427,7 @@ function dojoFinish() { const d = S.data.dojo, cb = CHECKS.filter((_, i) => $("#
 // ============================================================ FINAL CHALLENGE
 let F = null;
 function bossIntro(id) {
-  view(`<div class="wrap">${topBar()}<div class="hero" style="margin-top:14px;background:linear-gradient(135deg,#0B1230,#5A0F3A 60%,#FF3D7F)"><div style="font-size:44px">🌪️</div><h2 style="color:#fff">Final challenge: The Crisis</h2>
+  view(`<div class="wrap">${topBar()}<div class="hero" style="margin-top:14px;background:linear-gradient(135deg,#0B1230,#5A0F3A 60%,#FF3D7F)"><div style="font-size:44px">🌪️</div><h2 style="color:#fff">Boss level: The Crisis</h2>
     <p>It's Monday morning at Lumen. Over the next five days, everything you've learned today will be tested.</p></div>
     <div class="card"><ul style="line-height:1.9;margin:0;padding-left:20px"><li>6 decisions · <b>45 seconds</b> each: crises don't wait</li><li>Best decision = <b>+25 XP</b>; partial credit for reasonable choices</li><li>Watch your team's <b>trust meter</b> rise or fall</li><li>⏱ Chapter clock: <b>${LIMIT[9]} minutes</b></li></ul></div>
     <button class="btn block coral" onclick="bossStart()">Face the crisis →</button></div>`);
@@ -451,6 +455,76 @@ function bossNext() {
   const xp = F.xp; S.data.rev9 = F.rev.join("");
   const end = xp >= 140 ? "🏆 Exceptional: the crisis is over and your team trusts you more than ever." : xp >= 100 ? "💪 Strong leadership: a tough week, and the team held together." : xp >= 60 ? "🙂 You got through it. Review the best moves to grow even stronger." : "🌱 A hard week. Review the best moves: every leader learns from crises.";
   const tr = F.trust; F = null; finish(9, xp, `${end}<br>Final team trust: <b>${tr}%</b>`);
+}
+
+// ============================================================ CHAPTER 10: THE SHOWDOWN (pair vs pair negotiation)
+const DEAL = {
+  issues: [
+    { name: "Who leads the merged team?", opts: ["Lumen's Team Lead decides alone", "Co-leads who share decisions", "Nova's founder leads", "Self-managing squads, no single lead"] },
+    { name: "Where people work", opts: ["Office 5 days", "Office 3 days", "Office 2 days, team chooses which", "Remote-first"] },
+    { name: "How performance is managed", opts: ["Annual ratings and rankings", "Quarterly goals (OKRs)", "Monthly GROW coaching 1:1s", "No formal reviews"] },
+    { name: "Speed of integration", opts: ["1 month", "3 months", "6 months", "12 months"] },
+    { name: "Learning budget per person", opts: ["€0", "€500", "€1,000", "€1,500"] },
+  ],
+  L: [[20, 14, 4, 0], [12, 10, 6, 0], [4, 10, 8, 0], [10, 7, 3, 0], [6, 5, 3, 0]],
+  N: [[0, 10, 7, 4], [0, 4, 8, 12], [0, 8, 10, 4], [0, 3, 7, 10], [0, 6, 14, 20]],
+  noDeal: { L: 10, N: 10 },
+  role: { L: "Lumen Team Lead", N: "Nova Founder" },
+  brief: {
+    L: `<b>You are the Lumen Team Lead.</b> Lumen has just bought <b>Nova</b>, a 12-person AI start-up, and your 10-person team is merging with theirs. Your director wants <b>one clear point of accountability</b>, predictable delivery for Lumen's biggest clients and a <b>fast integration</b> before the Q1 launch. Your team worries the "start-up people" will ignore processes and is used to being in the office. Money is tight this year, but the learning budget isn't frozen.`,
+    N: `<b>You are Nova's founder.</b> Lumen has just bought your 12-person AI start-up and your team is merging with a Lumen team. Your people joined you for <b>autonomy, remote work and learning</b>, and three of your best engineers already have offers from rivals. If this feels like a takeover, they'll leave. Titles matter less to you than you expected, but your people's <b>growth</b> and <b>flexibility</b> matter a lot.`,
+  },
+};
+const dealMax = (t) => t.reduce((a, r) => a + Math.max(...r), 0);
+function duel(id) {
+  startChTimer(10); setTimeout(() => runChTimer(10), 0);
+  const d = S.data.duel || { side: S.pair % 2 === 1 ? "L" : "N", step: 0, sel: [null, null, null, null, null] }; S.data.duel = d; save();
+  const side = d.side, tbl = DEAL[side], max = dealMax(tbl), other = side === "L" ? "N" : "L";
+  const head = `${topBar()}<div class="row" style="justify-content:flex-end;margin-top:10px">${timerChip()}</div>
+    <div class="hero" style="margin-top:8px;background:linear-gradient(135deg,#0B1230,#003B5C 50%,#5A0F3A)"><div style="font-size:44px">⚔️</div><h2 style="color:#fff">Chapter 10: The Showdown</h2>
+    <p>Pair vs pair. Lead a merger and negotiate a deal with your rival pair. Everything from today counts.</p><div class="vs">${DEAL.role[side]} vs ${DEAL.role[other]}</div></div>`;
+  if (d.step === 0) {
+    view(`<div class="wrap">${head}
+      <div class="row"><span class="muted">Your role:</span>
+        <button class="pill ${side === "L" ? "on" : ""}" onclick="duelSide('L')">Lumen Team Lead</button>
+        <button class="pill ${side === "N" ? "on" : ""}" onclick="duelSide('N')">Nova Founder</button></div>
+      <div class="brief">${DEAL.brief[side]}<br><br>Agree a plan on <b>5 issues</b> with the rival pair your lecturer assigns. 🔒 <b>Your points table is SECRET</b>: don't show your screen!</div>
+      <div class="card" style="overflow-x:auto"><table class="dealtable"><tr><th style="text-align:left">Issue</th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+        ${DEAL.issues.map((is, i) => `<tr><td style="text-align:left">${is.name}<br><span class="muted">${is.opts.map((o, k) => `${"ABCD"[k]}: ${o}`).join(" · ")}</span></td>${tbl[i].map((v) => `<td class="${v === Math.max(...tbl[i]) ? "best" : ""}">${v}</td>`).join("")}</tr>`).join("")}
+      </table><p class="muted" style="margin-bottom:0">Your maximum: ${max} points. No deal = ${DEAL.noDeal[side]} points. A deal also earns a <b>+30 XP</b> bonus.</p></div>
+      <div class="card"><h3>Lead the negotiation</h3><ul style="line-height:1.8;margin:0;padding-left:20px">
+        <li>🎧 <b>Coach, don't tell:</b> ask what matters most to them before you make offers.</li>
+        <li>🔁 <b>Trade:</b> give way on issues that matter little to you to win the ones you care about.</li>
+        <li>🛡️ <b>Build trust:</b> integrity and openness make trading possible. Bluffing can backfire.</li>
+        <li>🌟 <b>Think transformational:</b> what does the merged team want to become together?</li></ul></div>
+      <div class="card row" style="justify-content:space-between"><span><b>Negotiation clock</b></span><span id="t" class="timer">12:00</span><button class="btn small" onclick="duelClock()">Start 12 min</button></div>
+      <button class="btn block" onclick="duelStep(1)">We've finished: enter the deal →</button></div>`);
+  } else {
+    view(`<div class="wrap">${head}
+      <p>Enter the <b>agreed</b> option for each issue. Both pairs must enter the <b>same</b> deal: your lecturer checks that the deal codes match.</p>
+      <div class="card">${DEAL.issues.map((is, i) => `<label>${is.name}</label><select id="d${i}"><option value="">Choose…</option>${is.opts.map((o, k) => `<option value="${k}" ${d.sel[i] === k ? "selected" : ""}>${"ABCD"[k]}: ${o}</option>`).join("")}</select>`).join("")}</div>
+      <button class="btn block teal" onclick="duelSubmit(false)">Submit our deal ✅</button>
+      <button class="btn block coral" onclick="duelSubmit(true)">We reached NO deal ❌</button>
+      <button class="btn ghost small" onclick="duelStep(0)">← Back to my brief</button></div>`);
+  }
+}
+function duelSide(s) { S.data.duel.side = s; save(); SFX.tap(); duel(10); }
+function duelStep(n) { S.data.duel.step = n; save(); duel(10); }
+function duelClock() { stopTimers(); runChTimer(10); countdown($("#t"), 720, () => { toast("⏰ Negotiation time is up: enter your deal now!", 4000); SFX.soft(); }); SFX.tap(); }
+function duelSubmit(none) {
+  const d = S.data.duel, tbl = DEAL[d.side], max = dealMax(tbl);
+  let raw, code;
+  if (none) { raw = DEAL.noDeal[d.side]; code = "NO DEAL"; }
+  else {
+    const sel = DEAL.issues.map((_, i) => $("#d" + i).value);
+    if (sel.some((v) => v === "")) return toast("Choose an option for every issue");
+    d.sel = sel.map(Number); raw = d.sel.reduce((a, k, i) => a + tbl[i][k], 0); code = d.sel.map((k) => "ABCD"[k]).join("");
+  }
+  const xp = Math.min(150, Math.round((raw / max) * 120) + (none ? 0 : 30)); save();
+  S.data.rev10 = `<p><b>The hidden structure</b></p><p>🔁 <b>Who leads</b> mattered most to the Lumen lead, while the <b>learning budget</b> mattered most to Nova: the best deals traded these two.</p>
+    <p>🤝 <b>GROW coaching or quarterly goals</b> worked well for BOTH sides: a win-win if you asked about it.</p><p>⚖️ <b>Speed of integration</b> was a pure tug-of-war: every month one side gained, the other lost.</p>
+    <p>💡 Pairs who asked questions and shared priorities usually found more value than pairs who only argued positions.</p>`;
+  finish(10, xp, `Your role: <b>${DEAL.role[d.side]}</b> · Deal value ${raw}/${max}${none ? "" : " + 30 deal bonus"}<br>Deal code: <b class="kbd">${code}</b> (must match your rival pair's)`);
 }
 
 // ============================================================ HQ
