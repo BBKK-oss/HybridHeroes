@@ -3,98 +3,104 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0E0B24">
-<title>Leadership Quest: The Pairs Championship</title>
+<meta name="theme-color" content="#1E1B4B">
+<title>Leadership Quest: Your First Year as a Leader</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0E0B24;--panel:#1B1640;--panel2:#251E57;--ink:#0E0B24;--pink:#FF4FA3;--cyan:#33E1FF;--yellow:#FFE14D;--green:#7CFF6B;--purple:#B388FF;--grey:#8A8FB0;--white:#fff;--px:"Press Start 2P",ui-monospace,Menlo,Consolas,monospace}
+:root{--indigo:#1E1B4B;--ink:#16142F;--violet:#7C5CFF;--violet2:#A78BFA;--teal:#22C1A6;--amber:#FFB547;--coral:#FF6B81;--blue:#4DA3FF;--muted:#6B6F8A;--bg:#F4F3FF;--card:#fff;--line:#E6E4F5}
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--white);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
-body{min-height:100vh;background-image:radial-gradient(#ffffff10 1px,transparent 1px);background-size:22px 22px}
-.wrap{max-width:760px;margin:0 auto;padding:16px 14px 90px}
+html,body{margin:0;font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);-webkit-tap-highlight-color:transparent}
+body{min-height:100vh;background:radial-gradient(1200px 600px at 10% -10%,#B9A7FF55,transparent),radial-gradient(900px 500px at 110% 10%,#7FE3D355,transparent),var(--bg)}
+.wrap{max-width:720px;margin:0 auto;padding:18px 16px 100px}
 .wide{max-width:1200px}
-.px{font-family:var(--px);letter-spacing:.02em;line-height:1.5}
-h1,h2,h3{margin:.3em 0 .5em;line-height:1.3}
-h1{font-family:var(--px);font-size:24px}h2{font-family:var(--px);font-size:16px}h3{font-size:18px}
-p{line-height:1.5}
-.panel{background:var(--panel);border:3px solid #ffffff22;border-radius:6px;padding:14px;margin:12px 0;box-shadow:4px 4px 0 #00000088}
-.panel.light{background:#EEF0FF;color:var(--ink);border-color:#fff}
-.pink{background:var(--pink);color:var(--ink)}.cyan{background:var(--cyan);color:var(--ink)}.yellow{background:var(--yellow);color:var(--ink)}.green{background:var(--green);color:var(--ink)}.purple{background:var(--purple);color:var(--ink)}
-.btn{font-family:var(--px);display:inline-block;border:0;border-radius:4px;padding:14px 18px;font-size:12px;cursor:pointer;background:var(--yellow);color:var(--ink);margin:6px 6px 6px 0;box-shadow:0 5px 0 #B39A1A;transition:transform .05s}
-.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #B39A1A}
-.btn.ghost{background:transparent;color:var(--white);border:2px solid #ffffff55;box-shadow:none}
-.btn.small{padding:9px 12px;font-size:10px}
-.btn.block{display:block;width:100%;text-align:center}
-.btn.pinkb{background:var(--pink);box-shadow:0 5px 0 #A3205F}
-.btn[disabled]{opacity:.4}
-input,select,textarea{font:inherit;font-size:16px;border-radius:4px;border:2px solid #ffffff44;background:#ffffff12;color:var(--white);padding:11px 12px;width:100%}
-select option{color:var(--ink)}
-textarea{min-height:90px}
-label{font-weight:700;font-size:14px;display:block;margin:12px 0 6px}
+h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:.2em 0 .3em}
+h2{font-size:21px;font-weight:800;letter-spacing:-.01em;margin:.3em 0 .5em}
+h3{font-size:18px;font-weight:700;margin:.2em 0 .5em}
+p{line-height:1.55}
+.card{background:var(--card);border-radius:22px;padding:18px;margin:14px 0;box-shadow:0 10px 30px #1E1B4B12,0 1px 2px #1E1B4B10}
+.hero{background:linear-gradient(135deg,#1E1B4B,#4B3CC9 60%,#7C5CFF);color:#fff;border-radius:26px;padding:22px;box-shadow:0 18px 40px #4B3CC955}
+.hero p{color:#E4E0FF}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:14px 20px;font:inherit;font-weight:800;font-size:16px;cursor:pointer;background:var(--violet);color:#fff;margin:6px 6px 6px 0;box-shadow:0 8px 18px #7C5CFF44;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translateY(-1px)}.btn:active{transform:scale(.97)}
+.btn.block{display:flex;width:100%}
+.btn.ghost{background:#fff;color:var(--indigo);box-shadow:0 2px 8px #1E1B4B14;border:1px solid var(--line)}
+.btn.small{padding:9px 14px;font-size:14px;border-radius:11px}
+.btn.teal{background:var(--teal);box-shadow:0 8px 18px #22C1A644}
+.btn.coral{background:var(--coral);box-shadow:0 8px 18px #FF6B8144}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+input,select,textarea{font:inherit;font-size:16px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--ink);padding:12px 13px;width:100%;outline:none}
+input:focus,select:focus{border-color:var(--violet)}
+label{font-weight:700;font-size:14px;display:block;margin:14px 0 6px;color:var(--indigo)}
 .top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.hud{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-family:var(--px);font-size:11px}
-.hud span{background:#00000055;border:2px solid #ffffff33;padding:6px 8px;border-radius:4px}
-.level{display:flex;align-items:center;gap:12px;padding:12px;border-radius:6px;margin:10px 0;cursor:pointer;border:3px solid #00000055;width:100%;text-align:left;font:inherit;color:var(--ink);box-shadow:4px 4px 0 #00000088}
-.level .ico{font-size:32px;width:46px;text-align:center;flex:none}
-.level .t{font-family:var(--px);font-size:11px;line-height:1.6}
-.level .s{font-size:13px;opacity:.85;margin-top:3px}
-.level .pts{margin-left:auto;font-family:var(--px);font-size:10px;white-space:nowrap;text-align:right}
-.locked{background:#ffffff14;color:#ffffffaa;border-color:#ffffff22}
-.opt{display:block;width:100%;text-align:left;border:3px solid #ffffff33;background:#ffffff10;color:var(--white);border-radius:6px;padding:13px 14px;margin:8px 0;font:inherit;font-size:16px;cursor:pointer}
-.opt:hover{border-color:var(--cyan)}
-.opt.right{border-color:var(--green);background:#7CFF6B44}
-.opt.wrong{border-color:var(--pink);background:#FF4FA344}
-.opt.gone{opacity:.15;pointer-events:none}
-.why{background:#ffffff14;border-radius:6px;padding:10px 12px;margin-top:10px;font-size:14px}
-.arena{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:8px 0 14px}
-.fighter{text-align:center;width:46%}
-.sprite{font-size:58px;line-height:1;display:inline-block;filter:drop-shadow(3px 3px 0 #000)}
-.hpbar{height:14px;background:#00000088;border:2px solid #fff;border-radius:2px;margin-top:6px;overflow:hidden}
-.hpbar>div{height:100%;background:var(--green);transition:width .4s}
-.hpbar.enemy>div{background:var(--pink)}
-.nm{font-family:var(--px);font-size:9px;margin-top:6px;line-height:1.5}
-.hearts{font-size:20px;letter-spacing:2px}
-.shake{animation:shake .4s}
-@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
-.hit{animation:hit .45s}
-@keyframes hit{0%{transform:scale(1)}30%{transform:scale(1.3) rotate(-8deg);filter:brightness(3)}100%{transform:scale(1)}}
-.float{position:fixed;left:50%;top:38%;transform:translate(-50%,0);font-family:var(--px);font-size:22px;color:var(--yellow);text-shadow:3px 3px 0 #000;pointer-events:none;animation:up 1s forwards;z-index:60}
-@keyframes up{to{transform:translate(-50%,-80px);opacity:0}}
-.progress{height:10px;background:#ffffff22;border:2px solid #ffffff44;margin:6px 0 12px}
-.progress>div{height:100%;background:var(--cyan);transition:width .3s}
-.code{font-family:var(--px);font-size:20px;background:#fff;color:var(--ink);border-radius:4px;padding:16px;text-align:center;margin:10px 0;letter-spacing:.05em}
-.xp-big{font-family:var(--px);font-size:40px;color:var(--yellow);text-shadow:4px 4px 0 #000}
-.center{text-align:center}.muted{opacity:.75;font-size:14px}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;background:#fff;box-shadow:0 2px 8px #1E1B4B12}
+.chip.dark{background:#ffffff22;color:#fff;box-shadow:none}
+.brand{font-weight:800;font-size:14px;color:var(--violet);letter-spacing:.02em}
+.chapter{display:flex;align-items:center;gap:14px;padding:14px;border-radius:20px;margin:10px 0;cursor:pointer;border:0;width:100%;text-align:left;font:inherit;background:#fff;box-shadow:0 8px 24px #1E1B4B10;transition:transform .12s}
+.chapter:hover{transform:translateY(-2px)}
+.chapter .ico{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}
+.chapter .t{font-weight:800;font-size:16px}
+.chapter .s{font-size:13px;color:var(--muted);margin-top:2px}
+.chapter .pts{margin-left:auto;font-weight:800;font-size:13px;white-space:nowrap;text-align:right;color:var(--muted)}
+.chapter.locked{opacity:.6}
+.chapter.done .pts{color:var(--teal)}
+.opt{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:16px;padding:14px;margin:10px 0;font:inherit;font-size:16px;cursor:pointer;transition:all .15s;line-height:1.45}
+.opt:hover{border-color:var(--violet2);transform:translateX(2px)}
+.opt .k{width:28px;height:28px;border-radius:9px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex:none;color:var(--violet)}
+.opt.right{border-color:var(--teal);background:#E6FAF6}.opt.right .k{background:var(--teal);color:#fff}
+.opt.wrong{border-color:var(--coral);background:#FFF0F2}.opt.wrong .k{background:var(--coral);color:#fff}
+.opt.gone{opacity:.25;pointer-events:none}
+.scene{display:flex;gap:12px;align-items:flex-start}
+.face{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,#EDE9FF,#D9F5EF);display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}
+.scene .who{font-size:13px;font-weight:700;color:var(--violet)}
+.scene .txt{font-size:17px;line-height:1.5;margin-top:2px}
+.ask{font-weight:800;font-size:17px;margin:14px 0 4px;color:var(--indigo)}
+.sheet{border-radius:18px;padding:14px 16px;margin-top:12px;animation:rise .3s ease}
+.sheet.ok{background:#E6FAF6;border:1.5px solid #A7EBDD}.sheet.no{background:#FFF5E6;border:1.5px solid #FFDCA8}
+@keyframes rise{from{transform:translateY(10px);opacity:0}to{transform:none;opacity:1}}
+.bar{height:10px;border-radius:99px;background:#E6E4F5;overflow:hidden}
+.bar>div{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--violet),var(--teal));transition:width .5s}
+.streak{display:inline-flex;align-items:center;gap:6px;font-weight:800;color:#E2582E}
+.pop{position:fixed;left:50%;top:40%;transform:translate(-50%,0);font-weight:800;font-size:26px;color:var(--violet);pointer-events:none;animation:pop 1s forwards;z-index:60;text-shadow:0 4px 16px #fff}
+@keyframes pop{0%{transform:translate(-50%,10px) scale(.8);opacity:0}20%{opacity:1;transform:translate(-50%,0) scale(1.1)}100%{transform:translate(-50%,-70px);opacity:0}}
+.big{font-size:56px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:26px;font-weight:800;background:var(--indigo);color:#fff;border-radius:16px;padding:16px;text-align:center;margin:10px 0;letter-spacing:.06em}
+.center{text-align:center}.muted{color:var(--muted);font-size:14px}
 .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.avatar{font-size:34px;border:3px solid #ffffff33;border-radius:6px;background:#ffffff10;width:60px;height:60px;cursor:pointer}
-.avatar.on{border-color:var(--yellow);background:#FFE14D33}
-.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--yellow);color:var(--ink);padding:12px 16px;border-radius:4px;font-family:var(--px);font-size:11px;z-index:70;box-shadow:4px 4px 0 #000;max-width:92vw;text-align:center;line-height:1.6}
+.avatar{font-size:28px;border:2px solid var(--line);border-radius:16px;background:#fff;width:56px;height:56px;cursor:pointer;transition:all .15s}
+.avatar.on{border-color:var(--violet);background:#EDE9FF;transform:scale(1.06)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--indigo);color:#fff;padding:12px 18px;border-radius:14px;font-weight:700;z-index:70;box-shadow:0 10px 30px #1E1B4B44;max-width:92vw;text-align:center}
 .hide{display:none!important}
-.check{display:flex;align-items:center;gap:12px;padding:12px;border-radius:6px;background:#ffffff10;margin:8px 0;cursor:pointer}
-.check input{width:24px;height:24px;flex:none}
-.timer{font-family:var(--px);font-size:16px}.timer.warn{color:var(--pink)}
+.check{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;background:var(--bg);margin:8px 0;cursor:pointer;font-weight:600}
+.check input{width:22px;height:22px;flex:none;accent-color:var(--violet)}
+.timer{font-weight:800;font-size:18px;font-variant-numeric:tabular-nums}.timer.warn{color:var(--coral)}
+.matrix{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.matrix div{border-radius:16px;padding:12px;font-size:14px;color:#fff}
+.matrix b{display:block;font-size:13px;margin-bottom:4px;letter-spacing:.04em}
+.prompt{background:var(--bg);border-radius:12px;padding:10px 12px;margin:6px 0}
+.ring{width:120px;height:120px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:6px auto}
+.ring span{background:#fff;width:94px;height:94px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;font-weight:800;font-size:24px}
+.ring small{font-size:11px;color:var(--muted);font-weight:700}
 table{border-collapse:collapse;width:100%}
-th,td{padding:6px;text-align:center;border-bottom:1px solid #ffffff22;font-size:14px}
-th{font-family:var(--px);font-size:9px;line-height:1.6}
-td input{padding:6px;text-align:center;font-size:15px;width:62px}
+th,td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--line);font-size:14px}
+th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+td input{padding:7px;text-align:center;font-size:15px;width:62px}
 td.name input{width:150px;text-align:left}
-.hs-row{display:grid;grid-template-columns:70px 1fr 140px;align-items:center;gap:12px;margin:8px 0;font-family:var(--px);font-size:18px;padding:12px;border-radius:4px;background:#ffffff0d}
-.hs-row:nth-child(1){color:var(--yellow)}.hs-row:nth-child(2){color:var(--cyan)}.hs-row:nth-child(3){color:var(--pink)}
-.blink{animation:blink 1s steps(2) infinite}@keyframes blink{50%{opacity:0}}
-.podium{display:flex;align-items:flex-end;justify-content:center;gap:18px;min-height:380px;margin-top:20px}
-.step{width:30%;max-width:260px;border-radius:4px 4px 0 0;display:flex;flex-direction:column;align-items:center;padding-top:16px;color:var(--ink);opacity:0;transform:translateY(40px);transition:all .8s;box-shadow:6px 6px 0 #000}
+.lb{display:grid;grid-template-columns:56px 1fr 110px;align-items:center;gap:14px;background:#fff;border-radius:18px;padding:14px 18px;margin:10px 0;box-shadow:0 8px 24px #1E1B4B10;opacity:0;transform:translateY(12px);transition:all .5s}
+.lb.show{opacity:1;transform:none}
+.lb .rk{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;background:var(--bg);color:var(--indigo)}
+.lb .nm{font-weight:800;font-size:20px}.lb .xp{font-weight:800;font-size:22px;text-align:right;color:var(--violet)}
+.lb .barw{height:8px;border-radius:9px;background:var(--bg);margin-top:8px;overflow:hidden}.lb .barw div{height:100%;background:linear-gradient(90deg,var(--violet),var(--teal));width:0;transition:width 1s .3s}
+.podium{display:flex;align-items:flex-end;justify-content:center;gap:16px;min-height:380px;margin-top:20px}
+.step{width:30%;max-width:250px;border-radius:24px 24px 0 0;display:flex;flex-direction:column;align-items:center;padding-top:18px;color:#fff;opacity:0;transform:translateY(40px);transition:all .8s}
 .step.show{opacity:1;transform:none}
-.step .medal{font-size:56px}.step .nm2{font-family:var(--px);font-size:14px;text-align:center;padding:8px;line-height:1.6}.step .pp{font-family:var(--px);font-size:12px}
+.step .medal{font-size:54px}.step .n2{font-weight:800;font-size:22px;text-align:center;padding:6px 10px}.step .pp{font-weight:700;font-size:16px;opacity:.9}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:40}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
-.pill{font-family:var(--px);font-size:10px;border:2px solid #ffffff44;border-radius:4px;padding:10px 12px;cursor:pointer;background:transparent;color:var(--white)}
-.pill.on{background:var(--cyan);border-color:var(--cyan);color:var(--ink)}
-.kbd{font-family:var(--px);font-size:11px;background:#ffffff22;padding:3px 6px;border-radius:3px}
-.matrix{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
-.matrix div{border-radius:6px;padding:12px;color:var(--ink);font-size:14px}
-.matrix b{font-family:var(--px);font-size:10px;display:block;margin-bottom:6px}
-.prompt{background:#ffffff10;border-left:4px solid var(--cyan);padding:8px 12px;margin:6px 0;border-radius:4px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.pill{border:1.5px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer;background:#fff;color:var(--indigo);font:inherit;font-weight:700;font-size:14px}
+.pill.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.kbd{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--bg);padding:2px 6px;border-radius:6px}
+.shake{animation:shake .35s}@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 </style>
 </head>
 <body>
@@ -103,417 +109,403 @@ td.name input{width:150px;text-align:left}
 <div id="toast" class="toast hide"></div>
 <script>
 "use strict";
-/* LEADERSHIP QUEST: Robbins, Coulter & Long (16th global edn) Ch.14, 16, 17; Mullins & Rees (13th edn) Ch.9; Ibarra & Scoular (2019). */
+/* LEADERSHIP QUEST v2: Robbins, Coulter & Long (16th global edn) Ch.14, 16, 17; Mullins & Rees (13th edn) Ch.9; Ibarra & Scoular (2019). */
 const mem = {};
-const store = {
-  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return mem[k] !== undefined ? mem[k] : d; } },
-  set(k, v) { mem[k] = v; try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
-};
-let S = store.get("lq_pair", { team: "", pair: 0, avatar: "🦊", xp: {}, done: {}, unlocked: {}, hints: 3, sound: true, data: {} });
-let HOST = store.get("lq_host", null);
-const save = () => store.set("lq_pair", S), saveHost = () => store.set("lq_host", HOST);
+const store = { get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return mem[k] !== undefined ? mem[k] : d; } }, set(k, v) { mem[k] = v; try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
+let S = store.get("lq2_pair", { team: "", pair: 0, avatar: "🦊", xp: {}, done: {}, unlocked: {}, hints: 3, sound: true, data: {} });
+let HOST = store.get("lq2_host", null);
+const save = () => store.set("lq2_pair", S), saveHost = () => store.set("lq2_host", HOST);
 const $ = (s) => document.querySelector(s);
 const esc = (t) => String(t).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 function toast(m, ms = 2200) { const t = $("#toast"); t.textContent = m; t.classList.remove("hide"); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.add("hide"), ms); }
 let timers = []; function stopTimers() { timers.forEach(clearInterval); timers = []; }
 function view(h) { stopTimers(); $("#app").innerHTML = h; window.scrollTo(0, 0); }
 function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
-function checksum(p, r, s) { const str = `LQ|${p}|${r}|${s}|LEAD`; let h = 2166136261; for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } const A = "ABCDEFGHJKLMNPQRSTUVWXYZ"; return A[h % 24] + A[Math.floor(h / 24) % 24]; }
+function checksum(p, r, s) { const str = `LQ2|${p}|${r}|${s}|LEAD`; let h = 2166136261; for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } const A = "ABCDEFGHJKLMNPQRSTUVWXYZ"; return A[h % 24] + A[Math.floor(h / 24) % 24]; }
 const makeCode = (r, s) => `${S.pair}-${r}-${s}-${checksum(S.pair, r, s)}`;
-function floatText(t, col) { const d = document.createElement("div"); d.className = "float"; d.textContent = t; if (col) d.style.color = col; document.body.appendChild(d); setTimeout(() => d.remove(), 1000); }
-function countdown(el, secs, onEnd) { let left = secs; const draw = () => { if (!el) return; el.textContent = `${Math.floor(left / 60)}:${String(left % 60).padStart(2, "0")}`; el.classList.toggle("warn", left <= 15); }; draw(); const id = setInterval(() => { left--; if (left <= 0) { left = 0; draw(); clearInterval(id); onEnd && onEnd(); } else draw(); }, 1000); timers.push(id); }
-
-// ---------- 8-bit sound ----------
+function pop(t, col) { const d = document.createElement("div"); d.className = "pop"; d.textContent = t; if (col) d.style.color = col; document.body.appendChild(d); setTimeout(() => d.remove(), 1000); }
+function countdown(el, secs, onEnd) { let left = secs; const draw = () => { if (!el) return; el.textContent = `${Math.floor(left / 60)}:${String(left % 60).padStart(2, "0")}`; el.classList.toggle("warn", left <= 10); }; draw(); const id = setInterval(() => { left--; if (left <= 0) { left = 0; draw(); clearInterval(id); onEnd && onEnd(); } else draw(); }, 1000); timers.push(id); }
 let AC = null;
-function beep(seq) {
-  if (!S.sound) return;
-  try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); let t = AC.currentTime;
-    seq.forEach(([f, d, type = "square"]) => { const o = AC.createOscillator(), g = AC.createGain(); o.type = type; o.frequency.value = f; g.gain.setValueAtTime(0.07, t); g.gain.exponentialRampToValueAtTime(0.001, t + d); o.connect(g); g.connect(AC.destination); o.start(t); o.stop(t + d); t += d * 0.9; });
-  } catch (e) {}
-}
-const SFX = { good: () => beep([[660, .08], [880, .08], [1320, .14]]), bad: () => beep([[220, .15, "sawtooth"], [150, .25, "sawtooth"]]), unlock: () => beep([[523, .08], [659, .08], [784, .08], [1047, .2]]), win: () => beep([[523, .1], [659, .1], [784, .1], [1047, .1], [784, .1], [1047, .35]]), click: () => beep([[880, .03]]), lose: () => beep([[392, .2], [330, .2], [262, .4, "triangle"]]) };
+function tone(seq) { if (!S.sound) return; try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); let t = AC.currentTime; seq.forEach(([f, d]) => { const o = AC.createOscillator(), g = AC.createGain(); o.type = "sine"; o.frequency.value = f; g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.12, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + d); o.connect(g); g.connect(AC.destination); o.start(t); o.stop(t + d); t += d * 0.75; }); } catch (e) {} }
+const SFX = { good: () => tone([[784, .12], [1175, .22]]), streak: () => tone([[784, .1], [988, .1], [1319, .25]]), soft: () => tone([[392, .2], [349, .25]]), win: () => tone([[523, .12], [659, .12], [784, .12], [1047, .4]]), tap: () => tone([[1200, .05]]) };
+function confetti(ms = 3000) { const c = $("#confetti"), x = c.getContext("2d"); c.width = innerWidth; c.height = innerHeight; const cols = ["#7C5CFF", "#22C1A6", "#FFB547", "#FF6B81", "#4DA3FF"]; const P = Array.from({ length: 160 }, () => ({ x: Math.random() * c.width, y: -20 - Math.random() * c.height * .5, r: 3 + Math.random() * 5, c: cols[Math.floor(Math.random() * 5)], vy: 2 + Math.random() * 3.5, vx: -1.5 + Math.random() * 3, a: Math.random() * 6 })); const end = Date.now() + ms; (function f() { x.clearRect(0, 0, c.width, c.height); P.forEach(p => { p.y += p.vy; p.x += p.vx; p.a += .08; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.beginPath(); x.roundRect ? x.roundRect(-p.r, -p.r / 2, p.r * 2, p.r, 2) : x.rect(-p.r, -p.r / 2, p.r * 2, p.r); x.fill(); x.restore(); }); if (Date.now() < end) requestAnimationFrame(f); else x.clearRect(0, 0, c.width, c.height); })(); }
 
-function confetti(ms = 3500) {
-  const c = $("#confetti"), x = c.getContext("2d"); c.width = innerWidth; c.height = innerHeight;
-  const cols = ["#FF4FA3", "#33E1FF", "#FFE14D", "#7CFF6B", "#B388FF", "#fff"];
-  const P = Array.from({ length: 170 }, () => ({ x: Math.random() * c.width, y: -20 - Math.random() * c.height * .5, s: 6 + Math.random() * 6, c: cols[Math.floor(Math.random() * 6)], vy: 2 + Math.random() * 4, vx: -2 + Math.random() * 4 }));
-  const end = Date.now() + ms; (function f() { x.clearRect(0, 0, c.width, c.height); P.forEach(p => { p.y += p.vy; p.x += p.vx; x.fillStyle = p.c; x.fillRect(Math.round(p.x / 4) * 4, Math.round(p.y / 4) * 4, p.s, p.s); }); if (Date.now() < end) requestAnimationFrame(f); else x.clearRect(0, 0, c.width, c.height); })();
-}
-
-// ============================================================ LEVELS
-const LEVELS = [
-  { id: 1, key: "START", title: "Leader or Manager?", sub: "Tutorial · trait theories", max: 100, col: "cyan", ico: "🏘️", enemy: ["🟢", "Bureaucrat Slime"], ch: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
-  { id: 2, key: "STYLE", title: "Style Arena", sub: "Behavioural theories", max: 100, col: "yellow", ico: "🏟️", enemy: ["👻", "Laissez-Faire Ghost"], ch: "RCL Ch.16", type: "quiz" },
-  { id: 3, key: "READY", title: "Situation Swamp", sub: "Contingency theories + power", max: 100, col: "green", ico: "🐊", enemy: ["🐊", "Mismatch Croc"], ch: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
-  { id: 4, key: "VISION", title: "Transform Tower", sub: "Transactional vs transformational", max: 100, col: "purple", ico: "🗼", enemy: ["🗿", "Transactional Golem"], ch: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
-  { id: 5, key: "INTEGRITY", title: "Integrity Temple", sub: "Authentic & ethical leadership", max: 100, col: "pink", ico: "⛩️", enemy: ["🐍", "The Shortcut Serpent"], ch: "RCL Ch.16", type: "quiz" },
-  { id: 6, key: "GROW", title: "Coach's Dojo", sub: "The leader as coach (co-op level)", max: 150, col: "yellow", ico: "🥋", enemy: ["🧘", "Sensei"], ch: "Ibarra & Scoular (2019)", type: "dojo" },
-  { id: 7, key: "REMOTE", title: "Remote Realm", sub: "Digital leadership & remote teams", max: 100, col: "cyan", ico: "🛰️", enemy: ["📡", "Noise Wraith"], ch: "RCL Ch.14 & 17", type: "quiz" },
-  { id: 8, key: "GENERATIONS", title: "Generation Gate", sub: "Generational expectations", max: 100, col: "green", ico: "🚪", enemy: ["🧌", "Stereotype Troll"], ch: "RCL Ch.14 & 16", type: "quiz" },
-  { id: 9, key: "BOSS", title: "FINAL BOSS: The Crisis", sub: "Leading through uncertainty", max: 150, col: "pink", ico: "🐉", enemy: ["🐉", "THE CRISIS"], ch: "All readings", type: "boss" },
+// ============================================================ CHAPTERS
+const CH = [
+  { id: 1, key: "START", title: "Day One", sub: "Leading vs managing · trait theories", max: 100, ico: "☀️", col: "#FFB547", ref: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
+  { id: 2, key: "STYLE", title: "Finding Your Style", sub: "Behavioural theories", max: 100, ico: "🎨", col: "#4DA3FF", ref: "RCL Ch.16", type: "quiz" },
+  { id: 3, key: "READY", title: "Read the Room", sub: "Contingency theories · power", max: 100, ico: "🧭", col: "#22C1A6", ref: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
+  { id: 4, key: "VISION", title: "Inspire the Team", sub: "Transactional vs transformational · LMX", max: 100, ico: "🚀", col: "#7C5CFF", ref: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
+  { id: 5, key: "INTEGRITY", title: "The Right Thing", sub: "Authentic & ethical leadership · trust", max: 100, ico: "⚖️", col: "#FF6B81", ref: "RCL Ch.16", type: "quiz" },
+  { id: 6, key: "GROW", title: "Coach, Don't Tell", sub: "The leader as coach · live practice", max: 150, ico: "🎯", col: "#FFB547", ref: "Ibarra & Scoular (2019)", type: "dojo" },
+  { id: 7, key: "REMOTE", title: "Team Without Walls", sub: "Digital leadership · remote teams", max: 100, ico: "🌍", col: "#4DA3FF", ref: "RCL Ch.14 & 17", type: "quiz" },
+  { id: 8, key: "GENERATIONS", title: "Four Generations, One Team", sub: "Generational expectations", max: 100, ico: "👥", col: "#22C1A6", ref: "RCL Ch.14 & 16", type: "quiz" },
+  { id: 9, key: "CRISIS", title: "The Crisis", sub: "Final challenge · leading through uncertainty", max: 150, ico: "⚡", col: "#FF6B81", ref: "All readings", type: "boss" },
 ];
-const TOTAL = LEVELS.reduce((a, l) => a + l.max, 0);
-const L = (id) => LEVELS.find((x) => x.id === id);
-const RANKS = [[0, "Intern"], [150, "Team Member"], [300, "Team Leader"], [450, "Manager"], [600, "Director"], [750, "CEO"], [900, "Leadership Legend"]];
+const TOTAL = CH.reduce((a, c) => a + c.max, 0);
+const C = (id) => CH.find((x) => x.id === id);
+const RANKS = [[0, "New Team Lead"], [150, "Rising Leader"], [300, "Trusted Manager"], [450, "Senior Manager"], [600, "Director"], [750, "Vice President"], [900, "Chief Executive"]];
 const rank = (xp) => RANKS.filter((r) => xp >= r[0]).pop()[1];
 const totalXP = () => Object.values(S.xp).reduce((a, b) => a + b, 0);
-const AVATARS = ["🦊", "🐼", "🤖", "🦄", "🐙", "🦉", "🐯", "🐸", "🦖", "🐧"];
+const AVATARS = ["🦊", "🐼", "🦉", "🐯", "🐙", "🦄", "🐸", "🐧", "🦁", "🐨"];
 
-// ---------- question banks ----------
-const LM = ["LEADING", "MANAGING"];
+/* Each question: who (face, name), s = situation, q = the question, o = options (FIRST = correct; shuffled at runtime), w = why */
 const Q = {
 1: [
-  { q: "Setting a vision of where the team should be in three years.", o: LM, a: 0, w: "Leading: direction-setting and vision." },
-  { q: "Drawing up the quarterly budget and staffing schedule.", o: LM, a: 1, w: "Managing: planning and organising resources." },
-  { q: "Inspiring people to embrace a difficult change.", o: LM, a: 0, w: "Leading: influencing and inspiring others." },
-  { q: "Monitoring results against the plan and correcting deviations.", o: LM, a: 1, w: "Managing: controlling." },
-  { q: "Aligning people behind a shared direction.", o: LM, a: 0, w: "Leading: alignment and influence. Ideally, all managers should also be leaders." },
-  { q: "Designing job roles and reporting lines.", o: LM, a: 1, w: "Managing: organising." },
-  { q: "Trait theories of leadership try to…", o: ["Identify characteristics that separate leaders from non-leaders", "Match leaders to situations", "Explain leader-follower exchanges", "Measure follower readiness"], a: 0, w: "Trait theories look for personal characteristics (e.g. drive, honesty, intelligence) that differentiate leaders." },
-  { q: "What did researchers conclude about traits ALONE?", o: ["They fully explain leader effectiveness", "They are not enough: behaviour and situation matter too", "Only intelligence matters", "Traits are irrelevant"], a: 1, w: "Traits help, but alone they can't explain effectiveness, which led researchers to study behaviours and then situations." },
+  { f: "👩‍💼", n: "Dana, your director", s: "\"Congratulations on the promotion! I don't need another manager on this team. I need a leader.\"", q: "What is Dana most likely asking you to do?", o: ["Set a direction and influence people to commit to it", "Produce more detailed budgets and schedules", "Use your new formal authority more firmly", "Work longer hours than your team"], w: "Leadership = influencing a group towards goals. Planning, budgeting and control are managing. Ideally, every manager is also a leader (RCL Ch.16)." },
+  { f: "📊", n: "Monday morning", s: "You spend three hours building the Q3 budget, the staff rota and the project schedule.", q: "Which part of your role is this mainly?", o: ["Managing: planning and organising resources", "Leading: inspiring people to change", "Transformational leadership", "Coaching"], w: "Planning and organising are core management functions. Necessary, but not the same as leading." },
+  { f: "😟", n: "Your team", s: "The team is anxious about a new product strategy. You run a session explaining why it matters, what it means for each person, and how you'll support them.", q: "What are you mainly doing?", o: ["Leading: influencing people towards a goal", "Controlling: checking performance against standards", "Organising: designing job roles", "Budgeting"], w: "Explaining 'why' and gaining commitment is leadership in action." },
+  { f: "🧑‍💼", n: "HR partner", s: "\"Let's make Alex team lead. He's tall, confident and just LOOKS like a leader.\"", q: "Which leadership approach is HR relying on?", o: ["Trait theory", "Path-goal theory", "Leader-member exchange (LMX)", "Situational leadership"], w: "Trait theories look for personal characteristics that set leaders apart." },
+  { f: "🤔", n: "You", s: "You want to push back on HR's reasoning politely, but with evidence.", q: "What's the strongest argument?", o: ["Traits alone don't predict effectiveness: behaviour and the situation matter too", "Confident people are always poor leaders", "Only intelligence predicts leadership", "Leadership can't be studied"], w: "Research found traits help but can't explain effectiveness on their own, which is why researchers moved on to behaviours and situations." },
+  { f: "📋", n: "HR partner", s: "\"Fine. Then which traits HAVE been linked with leadership?\"", q: "Your best answer:", o: ["Drive, honesty and integrity, self-confidence, intelligence", "Height, age and accent", "Introversion, caution and perfectionism only", "None. Traits are irrelevant"], w: "RCL Ch.16 lists traits such as drive, the desire to lead, honesty and integrity, self-confidence, intelligence and job-relevant knowledge." },
+  { f: "👩‍💼", n: "Dana", s: "\"So, should ALL our managers also be leaders?\"", q: "What does the textbook view suggest?", o: ["Ideally yes: managers need to influence, not only plan and control", "No, leading is HR's job", "Only senior managers need to lead", "Only if they have charisma"], w: "RCL: ideally, all managers should be leaders." },
+  { f: "🎓", n: "A new intern", s: "\"What actually IS leadership? Is it just being the boss?\"", q: "Best definition to give them:", o: ["The process of leading a group and influencing it to achieve its goals", "Having the highest job title", "Controlling people through rules", "Being the most popular person"], w: "RCL Ch.16 definition. Leadership is about influence, not just position." },
 ],
 2: [
-  { q: "University of Iowa studies: a leader who decides alone, dictates methods and limits participation is…", o: ["Autocratic", "Democratic", "Laissez-faire", "Transformational"], a: 0, w: "Iowa: autocratic style." },
-  { q: "A leader who involves employees in decisions, delegates and uses feedback to coach is…", o: ["Autocratic", "Democratic", "Laissez-faire", "Charismatic"], a: 1, w: "Iowa: democratic style." },
-  { q: "A leader who gives the group complete freedom to decide and complete the work is…", o: ["Autocratic", "Democratic", "Laissez-faire", "Directive"], a: 2, w: "Iowa: laissez-faire. 👻 Boo!" },
-  { q: "Ohio State: defining roles, tasks and deadlines for the group is…", o: ["Consideration", "Initiating structure", "Employee orientation", "Charisma"], a: 1, w: "Initiating structure = task focus." },
-  { q: "Ohio State: building mutual trust and respect for followers' ideas and feelings is…", o: ["Consideration", "Initiating structure", "Production orientation", "Coercion"], a: 0, w: "Consideration = people focus." },
-  { q: "University of Michigan: emphasising interpersonal relations and employees' needs is…", o: ["Production-oriented", "Employee-oriented", "Task-oriented", "Laissez-faire"], a: 1, w: "Michigan: employee-oriented leaders (linked to higher productivity and satisfaction)." },
-  { q: "Managerial Grid: high concern for people AND production (9,9) is…", o: ["Impoverished management", "Country club management", "Team management", "Task management"], a: 2, w: "9,9 = team management, which Blake and Mouton saw as most effective." },
-  { q: "Managerial Grid: low concern for both people and production (1,1) is…", o: ["Impoverished management", "Middle-of-the-road", "Team management", "Country club management"], a: 0, w: "1,1 = impoverished management." },
+  { f: "🧔", n: "Marc, team lead next door", s: "Marc decides everything himself, tells people exactly how to do each task and rarely asks for input.", q: "Which style from the University of Iowa studies is this?", o: ["Autocratic", "Democratic", "Laissez-faire", "Transformational"], w: "Iowa: autocratic = centralised authority, dictated methods, limited participation." },
+  { f: "🗳️", n: "Your project kick-off", s: "You ask the team to help decide how to split the project, delegate tasks and use their feedback to coach them.", q: "Which Iowa style are you using?", o: ["Democratic", "Autocratic", "Laissez-faire", "Directive"], w: "Iowa: democratic = involving employees, delegating, using feedback to coach." },
+  { f: "🏖️", n: "Priya, another team lead", s: "Priya hands her team the brief and says, \"Do it however you like, see you in three weeks.\"", q: "Which style is this?", o: ["Laissez-faire", "Democratic", "Autocratic", "Participative"], w: "Iowa: laissez-faire = complete freedom to decide and complete the work." },
+  { f: "🗂️", n: "You", s: "You publish a clear plan with each person's role, tasks and deadlines.", q: "Which Ohio State dimension is this?", o: ["Initiating structure", "Consideration", "Employee orientation", "Individualised consideration"], w: "Initiating structure = defining roles and tasks (task focus)." },
+  { f: "☕", n: "You", s: "You check in on how people feel about their workload, listen and act on their ideas.", q: "Which Ohio State dimension is this?", o: ["Consideration", "Initiating structure", "Production orientation", "Transactional leadership"], w: "Consideration = mutual trust and respect for followers' ideas and feelings." },
+  { f: "📈", n: "Your boss, Viktor", s: "Viktor only ever talks about output figures, deadlines and efficiency. Never about people.", q: "Which University of Michigan style describes Viktor?", o: ["Production-oriented", "Employee-oriented", "Democratic", "Servant"], w: "Michigan: production-oriented = technical/task aspects of the job." },
+  { f: "😮‍💨", n: "Your team survey", s: "Your team is hitting every target, but people say they feel burned out and ignored.", q: "On the Managerial Grid, you're probably closest to…", o: ["Task management (9,1)", "Team management (9,9)", "Country club management (1,9)", "Impoverished management (1,1)"], w: "High concern for production + low concern for people = task management." },
+  { f: "🎯", n: "Your goal", s: "You want to move towards 'team management' (9,9) on the Grid.", q: "What should you change?", o: ["Keep high results AND show much more concern for people", "Lower the targets so people relax", "Stop setting goals altogether", "Focus only on people, not results"], w: "9,9 combines high concern for production with high concern for people." },
 ],
 3: [
-  { q: "Situational Leadership (Hersey & Blanchard): a new hire who is UNABLE and UNWILLING (R1). Best style?", o: ["Telling", "Selling", "Participating", "Delegating"], a: 0, w: "R1 → Telling: clear, specific direction." },
-  { q: "An enthusiastic junior: UNABLE but WILLING (R2). Best style?", o: ["Telling", "Selling", "Participating", "Delegating"], a: 1, w: "R2 → Selling: direction plus supportive explanation." },
-  { q: "A capable expert who has lost motivation: ABLE but UNWILLING (R3). Best style?", o: ["Telling", "Selling", "Participating", "Delegating"], a: 2, w: "R3 → Participating: share decisions, support motivation." },
-  { q: "A star performer: ABLE and WILLING (R4). Best style?", o: ["Telling", "Selling", "Participating", "Delegating"], a: 3, w: "R4 → Delegating: little direction or support needed." },
-  { q: "Fiedler's contingency model assumes a leader's style is…", o: ["Easy to change", "Fixed: change the situation or the leader", "Irrelevant", "Always task-oriented"], a: 1, w: "Fiedler: style is relatively fixed, so match leader to situation." },
-  { q: "Path-goal theory: a leader who sets challenging goals and expects top performance is…", o: ["Directive", "Supportive", "Participative", "Achievement-oriented"], a: 3, w: "Path-goal: achievement-oriented behaviour." },
-  { q: "Path-goal theory: a leader who consults followers and uses their suggestions is…", o: ["Directive", "Supportive", "Participative", "Achievement-oriented"], a: 2, w: "Path-goal: participative behaviour." },
-  { q: "People follow Sam because they admire him and want to be like him. Which source of power?", o: ["Legitimate", "Coercive", "Reward", "Referent"], a: 3, w: "Referent power: based on identification and admiration." },
+  { f: "🙍", n: "Lea, joined yesterday", s: "Lea has no experience in the role and doesn't seem keen on it yet. (Unable + unwilling: R1)", q: "Situational Leadership: best approach?", o: ["Telling: clear, specific instructions", "Delegating: let her decide", "Participating: share the decisions", "Avoid her until she settles in"], w: "R1 → Telling (high task, low relationship behaviour)." },
+  { f: "🙋", n: "Tom, graduate", s: "Tom is enthusiastic but doesn't yet know the software. (Unable + willing: R2)", q: "Best approach?", o: ["Selling: give direction AND explain and support", "Delegating", "Laissez-faire", "Participating only"], w: "R2 → Selling (high task, high relationship)." },
+  { f: "😐", n: "Sara, senior analyst", s: "Sara is highly skilled but lost motivation after the reorganisation. (Able + unwilling: R3)", q: "Best approach?", o: ["Participating: involve her in decisions, support her", "Telling: give detailed instructions", "Selling: explain the basics", "Ignore it: she knows the job"], w: "R3 → Participating (low task, high relationship)." },
+  { f: "🦸", n: "Jon, expert", s: "Jon is an expert and eager to own the new client project. (Able + willing: R4)", q: "Best approach?", o: ["Delegating", "Telling", "Selling", "Close daily supervision"], w: "R4 → Delegating (low task, low relationship)." },
+  { f: "🔁", n: "Dana", s: "\"You're a naturally task-focused leader. I don't think that will change, so I'm moving you to the chaotic project where that style fits.\"", q: "Which theory is Dana applying?", o: ["Fiedler's contingency model", "Trait theory", "LMX theory", "Servant leadership"], w: "Fiedler: style is fixed, so match the leader to the situation (or change the situation)." },
+  { f: "🌫️", n: "Your team", s: "The team is stuck on an ambiguous task. You clarify exactly what's expected, schedule the work and give specific guidance.", q: "Which path-goal leader behaviour is this?", o: ["Directive", "Supportive", "Participative", "Achievement-oriented"], w: "Path-goal: directive = clarifying expectations and guidance." },
+  { f: "🏔️", n: "Quarter planning", s: "You set a stretch goal and tell the team you're confident they can exceed it.", q: "Which path-goal behaviour?", o: ["Achievement-oriented", "Directive", "Supportive", "Participative"], w: "Path-goal: achievement-oriented = challenging goals + high expectations." },
+  { f: "📊", n: "Ana, data analyst", s: "Everyone follows Ana's advice on data, even senior people, because she's the analytics expert. She has no formal title.", q: "Which source of power does Ana have?", o: ["Expert power", "Legitimate power", "Coercive power", "Reward power"], w: "Expert power comes from expertise, skills or knowledge, not position." },
 ],
 4: [
-  { q: "A leader who guides followers by clarifying tasks and exchanging rewards for productivity is…", o: ["Transactional", "Transformational", "Servant", "Laissez-faire"], a: 0, w: "Transactional: social exchanges/rewards for performance. 🗿 The Golem cracks!" },
-  { q: "A leader who stimulates and inspires followers to achieve extraordinary outcomes is…", o: ["Transactional", "Transformational", "Autocratic", "Impoverished"], a: 1, w: "Transformational: inspires, develops and changes how followers see things." },
-  { q: "Transformational leadership is best seen as…", o: ["The opposite of transactional", "Built ON TOP of transactional leadership", "A type of laissez-faire", "A trait theory"], a: 1, w: "Transformational leadership develops from transactional leadership and goes beyond it." },
-  { q: "An enthusiastic, self-confident leader whose personality and actions influence people to behave in certain ways is…", o: ["Charismatic", "Transactional", "Directive", "Supportive"], a: 0, w: "Charismatic leadership." },
-  { q: "A charismatic leader who creates and articulates a realistic, credible, attractive vision of the future is…", o: ["Visionary", "Laissez-faire", "Transactional", "Impoverished"], a: 0, w: "Visionary leadership." },
-  { q: "Leader-member exchange (LMX) theory says leaders…", o: ["Treat everyone identically", "Create in-groups and out-groups", "Always delegate", "Never give rewards"], a: 1, w: "LMX: in-group members get more trust, attention and privileges." },
-  { q: "Which is a known RISK of charismatic leadership?", o: ["Too much participation", "Followers become dependent; leader may put own goals first", "Too little vision", "No risks"], a: 1, w: "Charisma can be misused; critical thinking matters." },
-  { q: "Why is leadership in modern organisations shifting towards transformational and coaching approaches?", o: ["Rapid change means leaders can't have all the answers", "Rules are simpler", "Teams are smaller", "Pay matters less"], a: 0, w: "Uncertainty requires engaged, adaptable followers (and links to Ibarra & Scoular)." },
+  { f: "💰", n: "You", s: "\"Hit 120% of target this quarter and you'll get the full bonus.\"", q: "Which leadership approach is this?", o: ["Transactional", "Transformational", "Servant", "Laissez-faire"], w: "Transactional: exchanging rewards for performance, clarifying roles and tasks." },
+  { f: "✨", n: "You", s: "You share an exciting vision, challenge people to rethink old problems and coach each person's growth.", q: "Which approach is this?", o: ["Transformational", "Transactional", "Autocratic", "Impoverished"], w: "Transformational leaders inspire, develop followers and change how they see problems." },
+  { f: "🗣️", n: "A colleague", s: "\"Transformational leaders don't need rewards, structure or targets at all.\"", q: "Your best response:", o: ["Not quite: transformational leadership builds ON TOP of transactional", "Agreed: rewards are outdated", "Transformational is the opposite of transactional", "It only works in start-ups"], w: "RCL: transformational leadership develops from transactional leadership." },
+  { f: "🎤", n: "The new CEO", s: "Full of energy and self-confidence, the new CEO wins the whole company over in one speech.", q: "This is most typical of…", o: ["Charismatic leadership", "Transactional leadership", "Laissez-faire leadership", "Initiating structure"], w: "Charismatic leaders are enthusiastic, self-confident and influence through personality and actions." },
+  { f: "⚠️", n: "Six months later", s: "People stop questioning the CEO's decisions, even risky ones.", q: "What's the risk here?", o: ["Dependence on the leader; the leader may pursue personal goals", "Too much participation", "Not enough charisma", "Too many rewards"], w: "A known downside of charisma: followers stop thinking critically." },
+  { f: "🤝", n: "Self-reflection", s: "You notice you give the best projects to the three people you get on with most.", q: "Which theory explains this?", o: ["Leader-member exchange (LMX)", "Fiedler's model", "Trait theory", "Path-goal theory"], w: "LMX: leaders create in-groups (more trust, attention) and out-groups." },
+  { f: "🔄", n: "Self-reflection", s: "You want to fix the in-group/out-group problem.", q: "Best action:", o: ["Rotate high-profile work and give everyone equal access and time", "Keep it: in-groups are efficient", "Give the out-group less work", "Only talk to people in the office"], w: "Fairness and broad access build trust across the whole team." },
+  { f: "🔭", n: "Team away-day", s: "You paint a credible, attractive picture of where the team will be in five years, and why it matters.", q: "Which leadership approach?", o: ["Visionary", "Laissez-faire", "Transactional", "Production-oriented"], w: "Visionary leaders create and articulate a realistic, credible, attractive vision of the future." },
 ],
 5: [
-  { q: "A leader admits a mistake to the team and explains what she learned. This is most typical of…", o: ["Authentic leadership", "Transactional leadership", "Autocratic leadership", "Laissez-faire"], a: 0, w: "Authentic leaders know who they are and act openly and candidly on their values." },
-  { q: "Authentic leaders…", o: ["Change their values to fit each audience", "Know what they believe and act on it openly", "Avoid sharing information", "Rely on coercive power"], a: 1, w: "Self-awareness + openness + consistency with values." },
-  { q: "🐍 You can hit the sales target by hiding a product flaw from a customer. The ethical leader…", o: ["Hides it: targets matter", "Discloses the flaw and accepts missing the target", "Lets the salesperson decide alone", "Waits to see if the customer notices"], a: 1, w: "Ethical leadership: doing the right thing even when it costs you." },
-  { q: "A leader who rewards results regardless of HOW they were achieved risks…", o: ["Encouraging unethical behaviour", "Lowering costs", "Higher trust", "Nothing"], a: 0, w: "What leaders reward signals what really matters." },
-  { q: "Ethical leaders shape behaviour mainly by…", o: ["Writing a long code nobody reads", "Role-modelling ethical behaviour and rewarding it", "Avoiding the topic", "Punishing all mistakes"], a: 1, w: "Leaders are role models; their actions speak louder than codes." },
-  { q: "Servant leadership focuses first on…", o: ["The leader's status", "Serving followers' needs, growth and well-being", "Strict control", "Quarterly profit"], a: 1, w: "Servant leaders go beyond self-interest to help others grow." },
-  { q: "Trust dimension: honesty and truthfulness is…", o: ["Competence", "Integrity", "Consistency", "Loyalty"], a: 1, w: "Integrity is often seen as the most critical dimension of trust." },
-  { q: "Trust dimension: willingness to share ideas and information freely is…", o: ["Openness", "Loyalty", "Competence", "Consistency"], a: 0, w: "Openness. Others: integrity, competence, consistency, loyalty." },
+  { f: "💳", n: "Quarter end", s: "You could hit your target by delaying a refund a customer is legally entitled to until next quarter.", q: "What does an ethical leader do?", o: ["Process the refund now and explain the missed target", "Delay it: it's only a few weeks", "Ask finance to hide it", "Let a junior decide so it's not your call"], w: "Ethical leadership means doing the right thing even when it costs you." },
+  { f: "🪞", n: "Team meeting", s: "You tell the team your plan failed, take responsibility and share what you learned.", q: "This best reflects…", o: ["Authentic leadership", "Transactional leadership", "Autocratic leadership", "Impression management"], w: "Authentic leaders know who they are and act on their values openly and candidly." },
+  { f: "😠", n: "Your top salesperson", s: "He beats every target, but junior colleagues say he humiliates them in meetings.", q: "Ethical leader response:", o: ["Address the behaviour: results don't excuse it", "Ignore it: he brings in the money", "Move the juniors to another team", "Give him a bonus to keep him happy"], w: "What leaders tolerate, they endorse. Role-modelling and accountability matter." },
+  { f: "🧾", n: "A team member", s: "\"Please don't report it, but my friend has been padding his expense claims.\"", q: "What do you do?", o: ["Report it through the proper channels and protect the person who told you", "Keep quiet to preserve team harmony", "Confront the friend publicly", "Pretend you didn't hear"], w: "Integrity plus care: act on misconduct, and protect people who speak up." },
+  { f: "🌱", n: "Your daily routine", s: "You spend most of your time removing obstacles for the team and helping each person grow.", q: "Which approach does this reflect?", o: ["Servant leadership", "Laissez-faire leadership", "Autocratic leadership", "Charismatic leadership"], w: "Servant leaders go beyond self-interest and focus on helping followers grow." },
+  { f: "🛡️", n: "Senior management meeting", s: "You promised to back your team's proposal, and you do, even when the room turns against it.", q: "Which dimension of trust are you showing?", o: ["Loyalty", "Competence", "Openness", "Consistency"], w: "Loyalty = willingness to protect and save face for others." },
+  { f: "🗞️", n: "Bad news", s: "The project will be late. You tell the team and the client the truth straight away.", q: "Which trust dimension?", o: ["Integrity", "Loyalty", "Competence", "Consistency"], w: "Integrity (honesty and truthfulness) is often seen as the most critical dimension." },
+  { f: "🎯", n: "Team feedback", s: "\"We always know how you'll react. You handle the same situations the same way.\"", q: "Which trust dimension?", o: ["Consistency", "Openness", "Loyalty", "Charisma"], w: "Consistency = reliability, predictability and good judgement." },
 ],
 7: [
-  { q: "The best way for a leader to judge a remote team member's performance is…", o: ["Their 'online' status", "Agreed outcomes and results", "How fast they reply at night", "Camera-on time"], a: 1, w: "Manage by outcomes, not visibility." },
-  { q: "'Proximity bias' means…", o: ["Favouring people you see in person", "Preferring short messages", "Living near the office", "Using one channel"], a: 0, w: "A key fairness risk in hybrid teams (and an LMX in-group trap)." },
-  { q: "A hybrid team charter should include…", o: ["Salaries", "Agreed channels, response times and core hours", "Only the dress code", "Nothing: it limits freedom"], a: 1, w: "Explicit norms replace the cues an office used to provide." },
-  { q: "Brainstorming with a team spread across 3 time zones. Best digital set-up?", o: ["One long email chain", "Short video kick-off + shared online whiteboard for async ideas", "Phone calls one by one", "Wait until everyone is in the office"], a: 1, w: "Mix sync (energy) and async (inclusion across time zones)." },
-  { q: "Your team has 400 unread chat messages a day. The leader should…", o: ["Add another app", "Set channel norms to cut information overload", "Ignore it", "Reply to everything faster"], a: 1, w: "Information overload is a communication barrier (RCL Ch.17)." },
-  { q: "An 'always-on' culture is best tackled by a leader who…", o: ["Messages at midnight to show commitment", "Models boundaries (e.g. schedule-send, no expectation of late replies)", "Bans phones", "Says nothing"], a: 1, w: "Leaders' own digital behaviour sets the norm." },
-  { q: "Virtual teams often struggle most with…", o: ["Too much face-to-face time", "Building trust and social rapport", "Too few tools", "Too much paper"], a: 1, w: "Fewer cues and less informal contact → trust takes deliberate effort." },
-  { q: "Which motivation idea helps keep remote workers engaged?", o: ["Theory X monitoring software", "Autonomy and regular feedback (job characteristics model)", "Removing all goals", "Only annual reviews"], a: 1, w: "Autonomy + feedback are core job dimensions (RCL Ch.14)." },
+  { f: "💻", n: "Two remote engineers", s: "They're 'online' less than office staff, but deliver everything on time and to a high standard.", q: "How should you judge their performance?", o: ["On agreed outcomes and results", "On hours shown as 'online'", "On how fast they answer at night", "On camera-on time in meetings"], w: "Lead remote work by outcomes, not visibility." },
+  { f: "🏢", n: "Promotion round", s: "You realise you've mostly recommended people you see in the office every day.", q: "What's happening and what should you do?", o: ["Proximity bias: recheck against objective results and give remote staff equal visibility", "Nothing: office staff simply work harder", "Ask remote staff to come in more", "Delay all promotions"], w: "Proximity bias is a hybrid version of the LMX in-group trap." },
+  { f: "📱", n: "Your hybrid team", s: "People argue about which app to use and how fast replies are expected.", q: "Best leadership move:", o: ["Co-create a team charter: channels, response times, core hours", "Add another app", "Let everyone use whatever they like", "Require replies within 5 minutes"], w: "Explicit norms replace the cues an office used to provide." },
+  { f: "🌐", n: "Brainstorm", s: "You need ideas from colleagues in Lisbon, Paris and Singapore.", q: "Best digital set-up:", o: ["Short video kick-off + shared online whiteboard for ideas over 24 hours", "One long email chain", "A 3-hour live call at 7am Singapore time", "Wait until everyone is in one office"], w: "Mix synchronous energy with asynchronous inclusion across time zones." },
+  { f: "📞", n: "Sensitive news", s: "You must tell a remote team member that their role is changing significantly.", q: "Which channel?", o: ["A video call, then a written follow-up", "A chat message", "An email to the whole team", "A note in the project tool"], w: "Sensitive, emotional messages need a rich channel (RCL Ch.17)." },
+  { f: "🔔", n: "Information overload", s: "The team gets 300 notifications a day and important messages get lost.", q: "Your fix:", o: ["Agree channel rules: what goes where, and what's urgent", "Ask people to read faster", "Add a new channel for each topic", "Switch off all notifications for good"], w: "Information overload is a communication barrier (RCL Ch.17)." },
+  { f: "🌙", n: "Your habit", s: "You send messages at 23:00 'just to get them off your list'.", q: "What should you change?", o: ["Use scheduled send and model clear boundaries", "Nothing: no one has to reply", "Send them even later", "Only message the most committed people"], w: "Leaders' digital behaviour sets the norm for 'always-on' culture." },
+  { f: "😶", n: "A remote team member", s: "She says she feels disconnected and less motivated.", q: "Best response:", o: ["Regular 1:1s plus more autonomy and feedback in her work", "Install monitoring software", "Tell her to come to the office", "Wait for the annual review"], w: "Autonomy and feedback are core job characteristics (RCL Ch.14), and connection builds trust." },
 ],
 8: [
-  { q: "Which birth years are commonly used to define Generation Z?", o: ["1946-1964", "1965-1980", "1981-1996", "1997-2012"], a: 3, w: "Common definitions (e.g. Pew Research): Boomers 1946-64, Gen X 1965-80, Millennials 1981-96, Gen Z 1997-2012." },
-  { q: "What does research generally suggest about generational differences in work attitudes?", o: ["They are huge and fixed", "They tend to be small; differences WITHIN generations are larger", "Only Gen Z is different", "They explain all conflict"], a: 1, w: "Meta-analytic evidence finds small differences, so be critical of popular claims." },
-  { q: "Many 'generational' differences may actually be explained by…", o: ["Age and career stage", "Star signs", "Office location", "Nothing at all"], a: 0, w: "Life stage and context often matter more than birth year." },
-  { q: "A manager assumes the 58-year-old won't want to learn the new app. This is…", o: ["Delegating", "Stereotyping", "Coaching", "Charisma"], a: 1, w: "A perceptual error: judging someone by their group." },
-  { q: "The best leadership approach for a multigenerational team is to…", o: ["Use one style for each generation", "Ask individuals about their needs and preferences", "Lead only the majority group", "Avoid feedback"], a: 1, w: "Individualised consideration beats generational labels." },
-  { q: "Surveys often say younger employees want frequent feedback. A good leader…", o: ["Gives it only to under-30s", "Offers regular feedback to everyone who wants it", "Stops giving feedback", "Gives feedback once a year"], a: 1, w: "Good practice for one group is usually good practice for all." },
-  { q: "'Reverse mentoring' means…", o: ["Juniors mentoring senior leaders (e.g. digital skills)", "Seniors mentoring juniors", "Mentoring backwards in time", "No mentoring"], a: 0, w: "A way to bridge generations and build trust both ways." },
-  { q: "Expectancy theory reminds leaders of mixed-age teams that…", o: ["Everyone values the same rewards", "Rewards must be valued by each individual (valence)", "Effort never matters", "Only money motivates"], a: 1, w: "Valence is personal, not generational (RCL Ch.14)." },
+  { f: "🗣️", n: "A director", s: "\"Gen Z just don't want to work hard.\"", q: "What does research suggest?", o: ["Differences between generations tend to be small; individuals differ far more", "It's proven: Gen Z work less", "Only Millennials are different", "Generations explain most workplace conflict"], w: "Meta-analytic research finds small generational differences in work attitudes, so be critical of popular claims." },
+  { f: "👩‍🦳", n: "Margit, 59", s: "You assume Margit won't want to learn the new AI tool, so you don't invite her to the training.", q: "What went wrong?", o: ["Stereotyping: ask her instead of assuming", "Nothing: older people dislike technology", "You should have made it compulsory only for her", "LMX in-group behaviour"], w: "A perceptual error: judging someone by their group." },
+  { f: "🧑", n: "Leo, 24", s: "Leo asks for quick feedback every week.", q: "Best response:", o: ["Give it, and offer the same option to everyone", "Refuse: feedback is for annual reviews", "Only give feedback to under-30s", "Tell him to be more independent"], w: "Good practice for one person is usually good for all; avoid age-based rules." },
+  { f: "📲", n: "Social media analytics", s: "A senior manager struggles with the new analytics dashboard. A junior team member is an expert.", q: "Smart solution:", o: ["Reverse mentoring: the junior coaches the senior", "Send the senior to a long external course only", "Give the task to the junior permanently", "Ignore it"], w: "Reverse mentoring builds skills and trust across age groups." },
+  { f: "🏠", n: "Team survey", s: "Older team members seem to value job security more than younger ones.", q: "A better explanation than 'generation' may be…", o: ["Life and career stage (e.g. family, mortgage)", "Star signs", "Birth year alone", "Personality is fixed by generation"], w: "Age, career stage and context often explain more than generational labels." },
+  { f: "📅", n: "Quick check", s: "You're preparing a slide on generations.", q: "Gen Z is commonly defined as people born…", o: ["1997-2012", "1965-1980", "1981-1996", "1946-1964"], w: "Common definitions (e.g. Pew Research): Boomers 1946-64, Gen X 1965-80, Millennials 1981-96, Gen Z 1997-2012." },
+  { f: "🎁", n: "Reward planning", s: "You're designing rewards for a team aged 22 to 63.", q: "What does expectancy theory recommend?", o: ["Find out which rewards each person values (valence)", "Give everyone the same reward", "Give older staff money, younger staff pizza", "Only reward the top performer"], w: "Valence is individual (RCL Ch.14)." },
+  { f: "🧩", n: "Your leadership philosophy", s: "You lead a team spanning four generations.", q: "Best overall approach:", o: ["Individualised consideration: understand each person's needs", "One style for each generation", "Lead only the majority age group", "Avoid the topic completely"], w: "Individualised consideration is part of transformational leadership." },
 ],
 };
+/* Mix: some questions are direct concept checks (no situation) */
+const DIRECT = {
+  1: { 5: { q: "Which traits has research linked with effective leadership?", o: ["Drive, honesty and integrity, self-confidence, intelligence", "Height, age and accent", "Introversion, caution and perfectionism", "Popularity and physical attractiveness"], w: "RCL Ch.16 lists traits such as drive, the desire to lead, honesty and integrity, self-confidence, intelligence and job-relevant knowledge." },
+       7: { q: "Leadership is best defined as…", o: ["The process of leading a group and influencing it to achieve its goals", "Having the highest job title in a team", "Controlling people through rules and procedures", "Being the most popular person in the group"], w: "RCL Ch.16 definition. Leadership is about influence, not just position." } },
+  2: { 3: { q: "In the Ohio State studies, 'initiating structure' means…", o: ["Defining your own and your team's roles, tasks and deadlines", "Building mutual trust and respect for followers' feelings", "Giving the group complete freedom to decide", "Exchanging rewards for performance"], w: "Initiating structure = task focus; consideration = people focus." },
+       7: { q: "On the Managerial Grid, 'team management' (9,9) means…", o: ["High concern for both people and production", "High concern for people, low for production", "Low concern for both", "Medium concern for both"], w: "Blake and Mouton saw 9,9 team management as the most effective style." } },
+  3: { 4: { q: "Fiedler's contingency model assumes a leader's style is…", o: ["Fixed, so match the leader to the situation (or change the situation)", "Easy to change from day to day", "Irrelevant to performance", "Always relationship-oriented"], w: "Fiedler: style is relatively fixed." },
+       7: { q: "Which of these is NOT one of the five sources of power?", o: ["Charismatic power", "Legitimate power", "Referent power", "Expert power"], w: "The five sources: legitimate, coercive, reward, expert and referent. Charisma links to referent power but isn't a separate source." } },
+  4: { 2: { q: "How does transformational leadership relate to transactional leadership?", o: ["It builds on top of transactional leadership", "It is the exact opposite of transactional leadership", "It replaces the need for any rewards or structure", "It is a type of laissez-faire leadership"], w: "RCL: transformational leadership develops from transactional leadership and goes beyond it." },
+       5: { q: "Leader-member exchange (LMX) theory says that leaders…", o: ["Create in-groups and out-groups", "Treat every follower identically", "Should always delegate", "Lead mainly through charisma"], w: "LMX: in-group members get more trust, attention and privileges." } },
+  5: { 1: { q: "Authentic leaders…", o: ["Know who they are and act on their values openly and candidly", "Adapt their values to suit each audience", "Keep their beliefs private to avoid conflict", "Rely mainly on legitimate power"], w: "Self-awareness + openness + consistency with values." },
+       5: { q: "Which of these is NOT one of the five dimensions of trust?", o: ["Popularity", "Integrity", "Competence", "Openness"], w: "The five dimensions: integrity, competence, consistency, loyalty and openness." } },
+  7: { 1: { q: "'Proximity bias' means…", o: ["Favouring people you see in person", "Preferring short, quick messages", "Choosing staff who live near the office", "Using only one communication channel"], w: "A key fairness risk in hybrid teams, like an LMX in-group based on presence." },
+       5: { q: "In communication, 'information overload' happens when…", o: ["The information we receive exceeds our capacity to process it", "A sender deliberately manipulates information", "Messages are sent only by email", "People read too slowly"], w: "RCL Ch.17: a common barrier, especially with digital tools." } },
+  8: { 0: { q: "What does research generally find about generational differences in work attitudes?", o: ["They tend to be small; individuals within a generation differ far more", "They are large and fixed for life", "Only Gen Z differs from other generations", "They explain most workplace conflict"], w: "Meta-analytic research finds small generational differences in work attitudes, so be critical of popular claims." },
+       5: { q: "Gen Z is commonly defined as people born…", o: ["1997-2012", "1965-1980", "1981-1996", "1946-1964"], w: "Common definitions (e.g. Pew Research): Boomers 1946-64, Gen X 1965-80, Millennials 1981-96, Gen Z 1997-2012." } },
+};
+Object.entries(DIRECT).forEach(([ch, m]) => Object.entries(m).forEach(([i, d]) => { Q[ch][i] = { f: "", n: "", s: "", ...d }; }));
 const COACH = { styles: ["Directive", "Laissez-faire", "Nondirective", "Situational"], qs: [
-  { q: "'Here's exactly how to fix the report.' Lots of advice put IN, little energy pulled OUT.", a: 0 },
-  { q: "A team member is performing well; the manager stays out of the way.", a: 1 },
-  { q: "The manager asks questions, listens and withholds judgment so the person finds their own solution.", a: 2 },
-  { q: "The manager blends telling and asking, depending on the person and the moment: the 'sweet spot'.", a: 3 },
-  { q: "Mentoring (sharing your own experience and advice) belongs to which style?", a: 0 },
-  { q: "During an emergency where mistakes could cause real harm, which style is usually needed?", a: 0 },
+  { s: "\"Here's exactly how to fix the report. Do it this way.\" Lots of advice put in, little energy drawn out.", a: 0 },
+  { s: "Your team member is doing great work. You stay out of the way and let her get on with it.", a: 1 },
+  { s: "You ask questions, listen and hold back your opinions, so he finds his own solution.", a: 2 },
+  { s: "You mix asking and telling, depending on the person and the moment: the 'sweet spot'.", a: 3 },
+  { s: "You share your own career experience and advice with a junior colleague (mentoring).", a: 0 },
+  { s: "A serious safety incident is unfolding RIGHT NOW. Which style is needed?", a: 0 },
 ] };
 const GROW = ["Goal", "Reality", "Options", "Will"];
-const GROWQ = [
-  { q: "\"What do you want to achieve by the end of this conversation?\"", a: 0 },
-  { q: "\"What's happening right now? What have you already tried?\"", a: 1 },
-  { q: "\"What could you do? What else? And if there were no limits?\"", a: 2 },
-  { q: "\"What will you do, and by when? How will I know?\"", a: 3 },
-];
+const GROWQ = ["\"What would you like to achieve by the end of this conversation?\"", "\"What's happening right now? What have you already tried?\"", "\"What could you do? What else? What if there were no limits?\"", "\"What will you do, and by when? How will I know?\""];
 const BOSS = [
-  { s: "MONDAY 09:00. A cyberattack takes your customer platform offline. Your 8-person hybrid team is scattered across 3 cities. Phones are ringing. What do you do in the first hour?",
-    o: [["Run a long open brainstorm so everyone feels heard", 5, "Coaching is great, but not in the first hour of a crisis."], ["Take charge: assign clear roles, set priorities and the next check-in time", 25, "In a crisis, directive leadership creates clarity (Ibarra & Scoular: when deviations could cause harm, be directive)."], ["Wait for head office to tell you what to do", 0, "Abdication. The team needs leadership now."]] },
-  { s: "11:00. Customers and staff want answers. You don't yet know how long the fix will take.",
-    o: [["Say nothing until all facts are known", 0, "Silence breeds rumours (the grapevine)."], ["Communicate early, honestly and regularly: what we know, what we don't, when the next update is", 25, "Crisis communication: transparency + rhythm builds trust under uncertainty."], ["Promise it will be fixed within the hour", 5, "Over-promising destroys credibility when it's wrong."]] },
-  { s: "13:00. Lina, your remote senior engineer (able AND willing), has an idea for a workaround.",
-    o: [["Override her: stick to the original plan", 0, "Ignores expert power and the situation."], ["Delegate: give her authority to try it within clear limits", 25, "Situational leadership: R4 → delegating. Empowerment speeds up crisis response."], ["Ask her to email a proposal for approval tomorrow", 5, "Too slow for a crisis."]] },
-  { s: "16:00. A director wants you to tell customers 'no data was exposed'. That is not yet confirmed.",
-    o: [["Agree: it calms everyone down", 0, "An unverified claim = an ethical failure that destroys trust later."], ["Refuse to state unverified claims; commit to transparent updates", 25, "Ethical and authentic leadership: integrity even under pressure."], ["Stay silent and let the director decide", 5, "Avoiding responsibility isn't ethical leadership."]] },
-  { s: "WEDNESDAY. The team is exhausted. People react differently: some want flexibility, some want recognition, some want rest.",
-    o: [["Give one big pep talk to everyone", 10, "Nice, but one size rarely fits all."], ["Hold short individual check-ins: ask each person what they need", 25, "Individualised consideration (transformational) + valence (expectancy theory)."], ["Assume the young staff want pizza and the older staff want quiet", 0, "Generational stereotyping: the troll strikes back!"]] },
-  { s: "FRIDAY. Systems are back. One team member's error let the attack in. They're upset.",
-    o: [["Find someone to blame publicly", 0, "Blame culture kills learning and trust."], ["Run a blameless review, coach the person with GROW, and thank the team publicly", 25, "Leader as coach + recognition: the team comes out stronger."], ["Move on quickly and never mention it", 5, "No learning, no closure."]] },
+  { s: "MONDAY 09:00. A cyberattack takes Lumen's customer platform offline. Your 8-person hybrid team is spread across 3 cities. Phones are ringing.", q: "What do you do in the first hour?", o: [["Take charge: assign clear roles, set priorities and the next check-in time", 25, "In a crisis, directive leadership creates clarity. Ibarra & Scoular note telling is right when mistakes could cause harm."], ["Run an open brainstorm so everyone feels heard", 5, "Coaching is valuable, but not in the first hour of a crisis."], ["Wait for head office to tell you what to do", 0, "That's abdication. Your team needs leadership now."]] },
+  { s: "11:00. Customers and staff want answers. You don't yet know how long the fix will take.", q: "How do you communicate?", o: [["Early, honest and regular: what we know, what we don't, when the next update is", 25, "Transparency plus a clear rhythm builds trust under uncertainty."], ["Promise it will be fixed within the hour", 5, "Over-promising destroys credibility when it's wrong."], ["Say nothing until all the facts are known", 0, "Silence fuels rumours on the grapevine."]] },
+  { s: "13:00. Lina, your remote senior engineer (able AND willing), has an idea for a workaround.", q: "What do you do?", o: [["Delegate: give her the authority to try it, within clear limits", 25, "Situational leadership: R4 → delegating. Empowering experts speeds up the response."], ["Ask her to email a proposal for approval tomorrow", 5, "Too slow for a crisis."], ["Override her and stick to the original plan", 0, "This ignores her expert power and the situation."]] },
+  { s: "16:00. A director wants you to tell customers 'no data was exposed'. That isn't confirmed yet.", q: "Your response:", o: [["Refuse to state unverified claims; commit to transparent updates", 25, "Ethical and authentic leadership: integrity under pressure."], ["Stay silent and let the director decide", 5, "Avoiding responsibility isn't ethical leadership."], ["Agree: it will calm everyone down", 0, "An unverified claim is an ethical failure that destroys trust later."]] },
+  { s: "WEDNESDAY. Everyone is exhausted. Some want flexibility, some want recognition, some just need rest.", q: "How do you support the team?", o: [["Short individual check-ins: ask each person what they need", 25, "Individualised consideration (transformational) + valence (expectancy theory)."], ["One big pep talk for everyone", 10, "Nice, but one size rarely fits all."], ["Assume the younger staff want pizza and the older staff want quiet", 0, "That's generational stereotyping."]] },
+  { s: "FRIDAY. Systems are back. One team member's mistake let the attack in, and they're very upset.", q: "How do you close the week?", o: [["Blameless review, a GROW coaching conversation with the person, and public thanks to the team", 25, "Leader as coach + recognition: the team comes out stronger."], ["Move on quickly and never mention it", 5, "No learning, no closure."], ["Identify who was at fault in front of the team", 0, "A blame culture kills learning and trust."]] },
 ];
 
-// ============================================================ ROUTER
+// ============================================================ CHAPTER TIMERS (minutes of play per chapter)
+const LIMIT = { 1: 7, 2: 8, 3: 9, 4: 9, 5: 9, 6: 18, 7: 8, 8: 8, 9: 10 };
+const fmt = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+function startChTimer(id) { if (!S.data["t" + id]) { S.data["t" + id] = Date.now(); save(); } runChTimer(id); }
+function chLeft(id) { return Math.max(0, Math.round(LIMIT[id] * 60 - (Date.now() - S.data["t" + id]) / 1000)); }
+function runChTimer(id) {
+  clearInterval(window._cht); let warned = false;
+  const tick = () => {
+    if (S.done[id]) return clearInterval(window._cht);
+    const left = chLeft(id), el = $("#cht");
+    if (el) { el.textContent = "⏱ " + fmt(left); el.style.color = left <= 60 ? "var(--coral)" : ""; }
+    if (left <= 60 && left > 0 && !warned) { warned = true; toast("⏰ 1 minute left in this chapter!"); }
+    if (left <= 0) { clearInterval(window._cht); timeUp(id); }
+  };
+  tick(); window._cht = setInterval(tick, 1000);
+}
+function timeUp(id) {
+  if (C(id).type === "quiz" && B && B.id === id) { const xp = B.xp, line = `⏰ Time's up! ${B.correct} correct before the bell · best streak ${B.best} 🔥`; S.data["rev" + id] = B.rev.join(""); B = null; finish(id, xp, line); }
+  else toast("⏰ Time's up! Finish this chapter now.", 4000);
+}
+const timerChip = () => `<span class="chip" id="cht" style="font-variant-numeric:tabular-nums">⏱</span>`;
+
+// ============================================================ ROUTER + SCREENS
 function route() { const h = location.hash.replace("#", ""); if (h === "host") return HOST ? hostBoard() : hostSetup(); if (!S.team || !S.pair) return setup(); home(); }
 window.addEventListener("hashchange", route);
 function go(h) { if (location.hash === "#" + h) route(); else location.hash = h; }
-const hudHTML = () => `<div class="hud"><span>${S.avatar} P${S.pair}</span><span>⭐ ${totalXP()} XP</span><span>💡×${S.hints}</span><span style="cursor:pointer" onclick="toggleSound()">${S.sound ? "🔊" : "🔇"}</span></div>`;
-function toggleSound() { S.sound = !S.sound; save(); const h = document.querySelector(".hud"); if (h) h.outerHTML = hudHTML(); }
+const topBar = (back = true) => `<div class="top">${back ? `<button class="btn ghost small" onclick="go('play')">← Chapters</button>` : `<span class="brand">LEADERSHIP QUEST</span>`}
+  <div class="row"><span class="chip">${S.avatar} Pair ${S.pair}</span><span class="chip">⭐ ${totalXP()} XP</span><span class="chip" style="cursor:pointer" onclick="toggleSound(this)">${S.sound ? "🔊" : "🔇"}</span></div></div>`;
+function toggleSound(el) { S.sound = !S.sound; save(); el.textContent = S.sound ? "🔊" : "🔇"; }
 
 function setup() {
-  view(`<div class="wrap center">
-    <p class="px" style="color:var(--cyan);font-size:10px;margin-top:20px">UG4001 · INTRODUCTION TO MANAGEMENT</p>
-    <h1 style="font-size:28px;color:var(--yellow);text-shadow:4px 4px 0 #FF4FA3">LEADERSHIP<br>QUEST</h1>
-    <p class="px blink" style="font-size:11px">PRESS START</p>
-    <div class="panel" style="text-align:left">
-      <label>Choose your avatar</label><div class="row">${AVATARS.map((a) => `<button class="avatar ${S.avatar === a ? "on" : ""}" onclick="pickAv('${a}')">${a}</button>`).join("")}</div>
-      <label for="team">Team name</label><input id="team" maxlength="22" placeholder="e.g. Pixel Pioneers" value="${esc(S.team)}">
+  view(`<div class="wrap"><div class="hero" style="margin-top:10px">
+      <div class="chip dark">UG4001 · Introduction to Management</div>
+      <h1 style="font-size:36px;margin-top:14px">Leadership Quest</h1>
+      <p style="font-size:17px;margin:0">You've just been promoted to <b>Team Lead at Lumen</b>, a fast-growing tech company. Can you lead your team through your first year?</p>
+      <p class="muted" style="color:#C9C2FF;margin-bottom:0">9 chapters · ${TOTAL} XP · play in pairs</p></div>
+    <div class="card"><label>Choose your avatar</label><div class="row">${AVATARS.map((a) => `<button class="avatar ${S.avatar === a ? "on" : ""}" onclick="pickAv('${a}')">${a}</button>`).join("")}</div>
+      <label for="team">Team name</label><input id="team" maxlength="24" placeholder="e.g. The Visionaries" value="${esc(S.team)}">
       <label for="pair">Pair number (from your lecturer)</label>
       <select id="pair">${Array.from({ length: 10 }, (_, i) => `<option value="${i + 1}" ${S.pair == i + 1 ? "selected" : ""}>Pair ${i + 1}</option>`).join("")}</select>
-      <button class="btn block" style="margin-top:16px" onclick="saveSetup()">▶ START GAME</button>
-    </div>
-    <p class="muted">9 levels · ${TOTAL} XP · 3 hint power-ups · 1 final boss</p>
-    <p class="muted">Lecturer? <a href="#host" style="color:var(--yellow)">Open HQ scoreboard</a></p></div>`);
+      <button class="btn block" style="margin-top:18px" onclick="saveSetup()">Start your first day →</button></div>
+    <p class="center muted">Lecturer? <a href="#host" style="color:var(--violet);font-weight:700">Open the HQ scoreboard</a></p></div>`);
 }
-function pickAv(a) { S.avatar = a; save(); document.querySelectorAll(".avatar").forEach((b) => b.classList.toggle("on", b.textContent === a)); SFX.click(); }
-function saveSetup() { const t = $("#team").value.trim(); if (!t) return toast("NAME YOUR TEAM!"); S.team = t; S.pair = +$("#pair").value; save(); SFX.unlock(); go("play"); }
+function pickAv(a) { S.avatar = a; save(); document.querySelectorAll(".avatar").forEach((b) => b.classList.toggle("on", b.textContent === a)); SFX.tap(); }
+function saveSetup() { const t = $("#team").value.trim(); if (!t) return toast("Give your pair a team name 🙂"); S.team = t; S.pair = +$("#pair").value; save(); SFX.win(); go("play"); }
 
 function home() {
-  const xp = totalXP();
-  view(`<div class="wrap">
-    <div class="top"><span class="px" style="font-size:11px;color:var(--yellow)">LEADERSHIP QUEST</span>${hudHTML()}</div>
-    <div class="panel"><div class="row" style="justify-content:space-between"><div><div class="px" style="font-size:12px">${S.avatar} ${esc(S.team)}</div><div class="muted" style="margin-top:6px">Rank: <b style="color:var(--cyan)">${rank(xp)}</b></div></div><div class="xp-big">${xp}</div></div>
-      <div class="progress"><div style="width:${(xp / TOTAL) * 100}%"></div></div><div class="muted">${xp} / ${TOTAL} XP · next rank at ${(RANKS.find((r) => r[0] > xp) || ["MAX"])[0]}</div></div>
-    <h2>🗺️ WORLD MAP</h2>
-    ${LEVELS.map((l) => { const open = S.unlocked[l.id], done = S.done[l.id];
-      return `<button class="level ${open ? l.col : "locked"}" onclick="openLevel(${l.id})"><div class="ico">${done ? "✅" : open ? l.ico : "🔒"}</div>
-        <div><div class="t">LV${l.id} ${l.title}</div><div class="s">${l.sub} · ${l.ch}</div></div><div class="pts">${done ? (S.xp[l.id] ?? 0) + "/" : ""}${l.max} XP</div></button>`; }).join("")}
-    <p class="muted center">Unlock each level with the code word on your lecturer's slide. <a href="#" onclick="setup();return false" style="color:var(--grey)">edit team</a></p></div>`);
+  const xp = totalXP(), next = RANKS.find((r) => r[0] > xp);
+  view(`<div class="wrap">${topBar(false)}
+    <div class="hero" style="margin-top:14px"><div class="row" style="justify-content:space-between;align-items:center">
+      <div><div class="chip dark">${S.avatar} ${esc(S.team)}</div><h2 style="color:#fff;margin:12px 0 2px">${rank(xp)}</h2><div style="color:#C9C2FF;font-size:14px">${next ? `${next[0] - xp} XP to ${next[1]}` : "Top rank reached 🏆"}</div></div>
+      <div class="ring" style="background:conic-gradient(#22C1A6 ${(xp / TOTAL) * 360}deg,#ffffff33 0)"><span style="color:var(--indigo)">${xp}<small>of ${TOTAL} XP</small></span></div></div></div>
+    <h2 style="margin-top:22px">Your first year</h2>
+    ${CH.map((c) => { const open = S.unlocked[c.id], done = S.done[c.id];
+      return `<button class="chapter ${open ? "" : "locked"} ${done ? "done" : ""}" onclick="openCh(${c.id})"><div class="ico" style="background:${c.col}22">${done ? "✅" : open ? c.ico : "🔒"}</div>
+      <div><div class="t">${c.id}. ${c.title}</div><div class="s">${c.sub}</div></div><div class="pts">${done ? `${S.xp[c.id]}/` : ""}${c.max} XP</div></button>`; }).join("")}
+    <p class="center muted">Each chapter unlocks with the code word on your lecturer's slide · <a href="#" onclick="setup();return false" style="color:var(--muted)">edit team</a></p></div>`);
 }
-function openLevel(id) {
-  const l = L(id); SFX.click();
+function openCh(id) {
+  const c = C(id); SFX.tap();
   if (S.done[id]) return result(id);
   if (!S.unlocked[id]) {
-    view(`<div class="wrap"><button class="btn ghost small" onclick="go('play')">◀ MAP</button><h2 style="margin-top:14px">🔒 LV${id}: ${l.title}</h2>
-      <div class="panel"><p>Enter the code word from the slide:</p><input id="code" autocomplete="off" autocapitalize="characters" placeholder="CODE WORD" onkeydown="if(event.key==='Enter')tryUnlock(${id})">
-      <button class="btn block" style="margin-top:12px" onclick="tryUnlock(${id})">UNLOCK</button></div></div>`);
+    view(`<div class="wrap">${topBar()}<div class="card" style="margin-top:20px"><div class="ico" style="font-size:40px">${c.ico}</div><h2>Chapter ${id}: ${c.title}</h2><p class="muted">Enter the code word shown on the slide.</p>
+      <input id="code" autocomplete="off" autocapitalize="characters" placeholder="CODE WORD" onkeydown="if(event.key==='Enter')tryUnlock(${id})"><button class="btn block" style="margin-top:12px" onclick="tryUnlock(${id})">Unlock chapter</button></div></div>`);
     setTimeout(() => $("#code") && $("#code").focus(), 50); return;
   }
-  ({ quiz: quizIntro, dojo: dojo, boss: bossIntro })[l.type](id);
+  ({ quiz: quizIntro, dojo, boss: bossIntro })[c.type](id);
 }
-function tryUnlock(id) { if ($("#code").value.trim().toUpperCase() === L(id).key) { S.unlocked[id] = true; save(); SFX.unlock(); toast("LEVEL UNLOCKED!"); openLevel(id); } else { SFX.bad(); toast("WRONG CODE"); } }
-function finish(id, xp, line) {
-  S.xp[id] = xp; S.done[id] = true; S.data["line" + id] = line || ""; save();
-  if (xp >= L(id).max * 0.7) { SFX.win(); confetti(2500); } else SFX.click();
-  result(id);
-}
+function tryUnlock(id) { const i = $("#code"); if (i.value.trim().toUpperCase() === C(id).key) { S.unlocked[id] = true; save(); SFX.win(); toast("Chapter unlocked 🔓"); openCh(id); } else { i.classList.add("shake"); setTimeout(() => i.classList.remove("shake"), 400); toast("Not quite: check the slide"); } }
+function finish(id, xp, line) { clearInterval(window._cht); S.xp[id] = xp; S.done[id] = true; S.data["line" + id] = line || ""; save(); if (xp >= C(id).max * 0.7) { SFX.win(); confetti(2500); } result(id); }
 function result(id) {
-  const l = L(id), xp = S.xp[id];
-  view(`<div class="wrap center"><div class="top"><button class="btn ghost small" onclick="go('play')">◀ MAP</button>${hudHTML()}</div>
-    <h2 style="margin-top:16px">${xp >= l.max * 0.7 ? "LEVEL CLEAR!" : "LEVEL COMPLETE"}</h2><div class="sprite">${l.ico}</div>
-    <div class="panel"><div class="muted">XP EARNED</div><div class="xp-big">${xp}<span style="font-size:16px;color:#fff"> / ${l.max}</span></div>
-    ${S.data["line" + id] ? `<p>${S.data["line" + id]}</p>` : ""}
-    <div class="muted" style="margin-top:12px">Score code: show your lecturer</div><div class="code">${makeCode(id, xp)}</div></div>
-    ${S.data["rev" + id] ? `<div class="panel" style="text-align:left"><h2>REVIEW</h2>${S.data["rev" + id]}</div>` : ""}
-    <button class="btn" onclick="go('play')">BACK TO MAP</button></div>`);
+  const c = C(id), xp = S.xp[id], pct = xp / c.max;
+  view(`<div class="wrap">${topBar()}<div class="hero center" style="margin-top:14px"><div style="font-size:44px">${c.ico}</div>
+    <h2 style="color:#fff">${pct >= .85 ? "Outstanding leadership!" : pct >= .6 ? "Chapter complete: well led!" : "Chapter complete: keep growing!"}</h2>
+    <div class="big">${xp}<span style="font-size:22px;opacity:.8"> / ${c.max} XP</span></div>${S.data["line" + id] ? `<p>${S.data["line" + id]}</p>` : ""}</div>
+    <div class="card center"><div class="muted">Your score code: show it to your lecturer</div><div class="code">${makeCode(id, xp)}</div></div>
+    ${S.data["rev" + id] ? `<div class="card"><h3>Review</h3>${S.data["rev" + id]}</div>` : ""}
+    <button class="btn block" onclick="go('play')">Back to chapters</button></div>`);
 }
 
-// ============================================================ QUIZ BATTLE
+// ============================================================ QUIZ (no game over; streak bonus)
 let B = null;
 function quizIntro(id) {
-  const l = L(id);
-  view(`<div class="wrap"><div class="top"><button class="btn ghost small" onclick="go('play')">◀ MAP</button>${hudHTML()}</div>
-    <h2 style="margin-top:12px">LV${id}: ${l.title}</h2>
-    <div class="panel center"><div class="sprite" style="font-size:80px">${l.enemy[0]}</div><p class="px" style="font-size:12px;color:var(--pink)">A wild ${l.enemy[1]} appears!</p>
-    <p>8 questions. Each correct answer hits the enemy (+10 XP). Each wrong answer costs a ❤️. Lose all 3 hearts and the level ends. Hearts left at the end = bonus XP. Combos ⚡ make extra noise!</p>
-    <p class="muted">💡 Hints remove two wrong answers. You have ${S.hints} for the WHOLE game. Use them wisely!</p></div>
-    <button class="btn block pinkb" onclick="battleStart(${id})">⚔️ FIGHT!</button></div>`);
+  const c = C(id);
+  view(`<div class="wrap">${topBar()}<div class="hero" style="margin-top:14px"><div style="font-size:40px">${c.ico}</div><h2 style="color:#fff">Chapter ${id}: ${c.title}</h2><p>${c.sub} · ${c.ref}</p></div>
+    <div class="card"><h3>How it works</h3><p style="margin:0">8 questions: mostly real situations, plus a few concept checks. Discuss each one with your partner, then choose.</p>
+    <ul style="line-height:1.8"><li>✅ Correct: <b>+10 XP</b></li><li>🔥 Streak bonus: <b>+4 XP</b> for every correct answer from your 4th in a row</li><li>💡 ${S.hints} hint${S.hints === 1 ? "" : "s"} left for the whole game (removes two wrong answers)</li><li>Wrong answers never stop you: you just learn why and keep going.</li><li>⏱ You have <b>${LIMIT[id]} minutes</b>. When time's up, the chapter ends with the XP you've earned.</li></ul></div>
+    <button class="btn block" onclick="qStart(${id})">Begin chapter →</button></div>`);
 }
-function battleStart(id) { B = { id, qs: Q[id], i: 0, hearts: 3, correct: 0, combo: 0, rev: [], ehp: 100 }; battleShow(); }
-function battleShow() {
-  const l = L(B.id), q = B.qs[B.i];
-  view(`<div class="wrap"><div class="top"><span class="px" style="font-size:10px">LV${B.id} · Q${B.i + 1}/8</span>${hudHTML()}</div>
-    <div class="arena"><div class="fighter"><div class="sprite" id="me">${S.avatar}</div><div class="hearts">${"❤️".repeat(B.hearts)}${"🖤".repeat(3 - B.hearts)}</div><div class="nm">${esc(S.team)}</div></div>
-      <div class="px" style="font-size:12px;color:var(--yellow)">VS</div>
-      <div class="fighter"><div class="sprite" id="en">${l.enemy[0]}</div><div class="hpbar enemy"><div style="width:${B.ehp}%"></div></div><div class="nm">${l.enemy[1]}</div></div></div>
-    ${B.combo >= 2 ? `<p class="center px" style="font-size:11px;color:var(--yellow)">⚡ COMBO ×${B.combo}</p>` : ""}
-    <div class="panel"><h3 style="margin-top:0">${q.q}</h3>
-    ${q.o.map((o, k) => `<button class="opt" data-k="${k}" onclick="battlePick(${k})">${o}</button>`).join("")}
+function qStart(id) { startChTimer(id); B = { id, qs: Q[id].map((q) => ({ ...q, order: shuffle([0, 1, 2, 3]) })), i: 0, xp: 0, correct: 0, streak: 0, best: 0, rev: [] }; qShow(); }
+function qShow() {
+  const q = B.qs[B.i], n = B.qs.length; setTimeout(() => runChTimer(B ? B.id : 0), 0);
+  view(`<div class="wrap">${topBar()}
+    <div class="row" style="justify-content:space-between;margin:14px 0 6px"><span class="muted">Question ${B.i + 1} of ${n} · ${timerChip()}</span><span>${B.streak >= 2 ? `<span class="streak">🔥 ${B.streak} in a row</span>` : ""} <b style="color:var(--violet)">${B.xp} XP</b></span></div>
+    <div class="bar"><div style="width:${(B.i / n) * 100}%"></div></div>
+    <div class="card">${q.s ? `<div class="scene"><div class="face">${q.f}</div><div><div class="who">${q.n}</div><div class="txt">${q.s}</div></div></div><div class="ask">${q.q}</div>` : `<span class="chip" style="background:#EDE9FF;color:var(--violet);box-shadow:none">🧠 Concept check</span><div class="ask" style="font-size:20px;margin-top:12px">${q.q}</div>`}
+    ${q.order.map((k, pos) => `<button class="opt" data-k="${k}" onclick="qPick(${k})"><span class="k">${"ABCD"[pos]}</span><span>${q.o[k]}</span></button>`).join("")}
     <div id="fb"></div></div>
-    <div class="center"><button class="btn small ghost" id="hintb" onclick="useHint()" ${S.hints ? "" : "disabled"}>💡 USE HINT (${S.hints})</button></div></div>`);
+    <div class="center"><button class="btn ghost small" id="hintb" onclick="useHint()" ${S.hints ? "" : "disabled"}>💡 Use a hint (${S.hints} left)</button></div></div>`);
 }
 function useHint() {
-  if (!S.hints || B.locked) return; const q = B.qs[B.i]; if (q.o.length < 3) return toast("NO HINTS ON 2-OPTION QUESTIONS");
-  S.hints--; save(); const wrong = shuffle(q.o.map((_, k) => k).filter((k) => k !== q.a)).slice(0, q.o.length - 2);
-  wrong.forEach((k) => document.querySelector(`.opt[data-k="${k}"]`).classList.add("gone")); $("#hintb").disabled = true; SFX.click(); const h = document.querySelector(".hud"); if (h) h.outerHTML = hudHTML();
+  if (!S.hints || B.locked) return; S.hints--; save();
+  shuffle([1, 2, 3]).slice(0, 2).forEach((k) => document.querySelector(`.opt[data-k="${k}"]`).classList.add("gone"));
+  $("#hintb").disabled = true; $("#hintb").textContent = `💡 Hint used (${S.hints} left)`; SFX.tap();
 }
-function battlePick(k) {
-  if (B.locked) return; B.locked = true; const q = B.qs[B.i], ok = k === q.a;
-  document.querySelectorAll(".opt").forEach((b) => { const kk = +b.dataset.k; b.disabled = true; if (kk === q.a) b.classList.add("right"); else if (kk === k) b.classList.add("wrong"); });
-  if (ok) { B.correct++; B.combo++; B.ehp = Math.max(0, 100 - (B.correct / 8) * 100); $("#en").classList.add("hit"); document.querySelector(".hpbar.enemy>div").style.width = B.ehp + "%"; floatText(B.combo >= 3 ? `+10 ⚡×${B.combo}` : "+10 XP"); B.combo >= 3 ? beep([[660, .06], [880, .06], [1100, .06], [1320, .12]]) : SFX.good(); }
-  else { B.hearts--; B.combo = 0; $("#me").classList.add("shake"); floatText("-1 ❤️", "#FF4FA3"); SFX.bad(); document.querySelector(".hearts").innerHTML = "❤️".repeat(B.hearts) + "🖤".repeat(3 - B.hearts); }
-  B.rev.push(`<p>${ok ? "✅" : "❌"} ${q.q}<br><span class="muted">${q.o[q.a]}: ${q.w}</span></p>`);
-  const last = B.i + 1 >= B.qs.length || B.hearts <= 0;
-  $("#fb").innerHTML = `<div class="why">${ok ? "✅ HIT! " : "❌ OUCH! "}${q.w}</div><button class="btn block" style="margin-top:12px" onclick="battleNext()">${last ? (B.hearts <= 0 ? "💀 GAME OVER: SEE SCORE" : "🏁 FINISH") : "NEXT ▶"}</button>`;
+function qPick(k) {
+  if (B.locked) return; B.locked = true; const q = B.qs[B.i], ok = k === 0;
+  document.querySelectorAll(".opt").forEach((b) => { const kk = +b.dataset.k; b.disabled = true; if (kk === 0) b.classList.add("right"); else if (kk === k) b.classList.add("wrong"); });
+  let gain = 0;
+  if (ok) { B.correct++; B.streak++; B.best = Math.max(B.best, B.streak); gain = 10 + (B.streak >= 4 ? 4 : 0); B.xp += gain; B.streak >= 4 ? (SFX.streak(), pop(`+${gain} XP 🔥`)) : (SFX.good(), pop(`+${gain} XP`)); }
+  else { B.streak = 0; SFX.soft(); }
+  B.rev.push(`<p>${ok ? "✅" : "💭"} ${q.s ? q.s + " " : ""}<b>${q.q}</b><br><span class="muted">${q.o[0]}. ${q.w}</span></p>`);
+  const last = B.i + 1 >= B.qs.length;
+  $("#fb").innerHTML = `<div class="sheet ${ok ? "ok" : "no"}"><b>${ok ? (B.streak >= 4 ? `🔥 Brilliant: ${B.streak} in a row!` : "✅ Great call!") : "💭 Not this time. Here's why:"}</b><div style="margin-top:6px">${ok ? "" : `Best answer: <b>${q.o[0]}</b>. `}${q.w}</div></div>
+    <button class="btn block" style="margin-top:12px" onclick="qNext()">${last ? "Finish chapter 🏁" : "Next question →"}</button>`;
 }
-function battleNext() {
-  B.locked = false; B.i++;
-  if (B.hearts <= 0) { SFX.lose(); return battleEnd(true); }
-  if (B.i < B.qs.length) battleShow(); else battleEnd(false);
-}
-function battleEnd(dead) {
-  const base = B.correct * 10, bonus = dead ? 0 : Math.round((B.hearts / 3) * 20), xp = base + bonus, id = B.id;
-  S.data["rev" + id] = B.rev.join(""); B = null;
-  finish(id, xp, `${dead ? "💀 Out of hearts! " : ""}Hits: ${base / 10}/8 (+${base}) · Heart bonus +${bonus}`);
-}
+function qNext() { B.locked = false; B.i++; if (B.i < B.qs.length) qShow(); else { const id = B.id; S.data["rev" + id] = B.rev.join(""); const line = `${B.correct}/8 correct · best streak ${B.best} 🔥`, xp = B.xp; B = null; finish(id, xp, line); } }
 
-// ============================================================ DOJO (Ibarra & Scoular)
+// ============================================================ DOJO
 function dojo(id) {
-  const d = S.data.dojo || { step: 0, a: 0, b: 0 }; S.data.dojo = d; save();
-  const head = `<div class="top"><button class="btn ghost small" onclick="go('play')">◀ MAP</button>${hudHTML()}</div><h2 style="margin-top:12px">LV6: COACH'S DOJO 🥋</h2>`;
+  const d = S.data.dojo || { step: 0 }; S.data.dojo = d; save();
+  startChTimer(6); setTimeout(() => runChTimer(6), 0);
+  const head = `${topBar()}<div class="row" style="justify-content:flex-end;margin-top:10px">${timerChip()}</div><div class="hero" style="margin-top:8px"><div style="font-size:40px">🎯</div><h2 style="color:#fff">Chapter 6: Coach, Don't Tell</h2><p>Ibarra & Scoular (2019): the best leaders ask more than they tell.</p></div>`;
   if (d.step === 0) {
-    view(`<div class="wrap">${head}<div class="panel center"><div class="sprite" style="font-size:70px">🧘</div><p class="px" style="font-size:11px;color:var(--yellow)">"The leader of today asks, not tells."</p></div>
-      <div class="panel"><b>Ibarra & Scoular (2019): 4 styles of helping</b>
-      <div class="matrix"><div class="pink"><b>1 DIRECTIVE</b>More info put in, less energy pulled out</div><div class="green"><b>4 SITUATIONAL</b>More info in AND more energy out</div>
-      <div class="cyan" style="background:#8A8FB0"><b>2 LAISSEZ-FAIRE</b>Less info in, less energy out</div><div class="cyan"><b>3 NONDIRECTIVE</b>Less info in, more energy pulled out</div></div>
-      <p class="muted">Vertical axis: information, advice and expertise the coach PUTS IN. Horizontal axis: motivational energy the coach PULLS OUT of the person.</p></div>
-      <div class="panel"><b>Training 1: which style? (10 XP each)</b>
-      ${COACH.qs.map((q, i) => `<p style="margin-bottom:4px">${i + 1}. ${q.q}</p><select id="c${i}"><option value="">Choose…</option>${COACH.styles.map((s, k) => `<option value="${k}">${s}</option>`).join("")}</select>`).join("")}</div>
-      <div class="panel"><b>Training 2: match each coaching question to its GROW step (10 XP each)</b>
-      ${GROWQ.map((q, i) => `<p style="margin-bottom:4px">${q.q}</p><select id="g${i}"><option value="">Choose…</option>${GROW.map((s, k) => `<option value="${k}">${s}</option>`).join("")}</select>`).join("")}</div>
-      <button class="btn block" onclick="dojoTrain()">SUBMIT TRAINING ▶</button></div>`);
+    view(`<div class="wrap">${head}
+      <div class="card"><h3>Four ways to help someone</h3>
+      <div class="matrix"><div style="background:#FF6B81"><b>1 · DIRECTIVE</b>Telling, mentoring. More information put in.</div><div style="background:#22C1A6"><b>4 · SITUATIONAL</b>The sweet spot: blend telling and asking.</div>
+      <div style="background:#8B8FA8"><b>2 · LAISSEZ-FAIRE</b>Hands off. Little put in or drawn out.</div><div style="background:#7C5CFF"><b>3 · NONDIRECTIVE</b>Listening, questioning, withholding judgment.</div></div>
+      <p class="muted" style="margin:0">↑ information and advice the coach puts IN · → energy the coach draws OUT of the person</p></div>
+      <div class="card"><h3>Part 1 · Which style is this? <span class="muted">(10 XP each)</span></h3>
+      ${COACH.qs.map((q, i) => `<p style="margin:14px 0 6px">${i + 1}. ${q.s}</p><select id="c${i}"><option value="">Choose a style…</option>${shuffle(COACH.styles.map((s, k) => [s, k])).map(([s, k]) => `<option value="${k}">${s}</option>`).join("")}</select>`).join("")}</div>
+      <div class="card"><h3>Part 2 · Match each question to its GROW step <span class="muted">(10 XP each)</span></h3>
+      ${GROWQ.map((q, i) => `<p style="margin:14px 0 6px">${q}</p><select id="g${i}"><option value="">Choose a step…</option>${shuffle(GROW.map((s, k) => [s, k])).map(([s, k]) => `<option value="${k}">${s}</option>`).join("")}</select>`).join("")}</div>
+      <button class="btn block" onclick="dojoTrain()">Check my answers →</button></div>`);
   } else if (d.step === 1) {
-    view(`<div class="wrap">${head}<div class="panel"><p class="px" style="font-size:11px;color:var(--yellow)">TRAINING SCORE: ${d.a} / 100</p>${d.rev || ""}</div>
-      <div class="panel"><h2>⚔️ SPARRING: real coaching</h2>
-      <p><b>Round A:</b> Player 1 is the COACH, Player 2 brings a real challenge (e.g. an assignment, a part-time job issue, a goal). 4 minutes. The coach may ONLY ask questions, following GROW. No advice!</p>
-      <div class="prompt"><b>G</b>: What would you like to get out of this?</div><div class="prompt"><b>R</b>: What's happening now? What have you tried?</div><div class="prompt"><b>O</b>: What options do you have? What else?</div><div class="prompt"><b>W</b>: What will you do, by when?</div>
-      <div class="row" style="justify-content:space-between;margin-top:12px"><span>Timer</span><span id="t" class="timer">4:00</span><button class="btn small" onclick="dojoT()">START</button></div></div>
-      <div class="panel"><b>Coachee: rate your coach honestly ✔</b>${dojoChecks("a")}</div>
-      <button class="btn block" onclick="dojoStep(2)">SWAP ROLES ▶</button></div>`);
-  } else if (d.step === 2) {
-    view(`<div class="wrap">${head}<div class="panel"><h2>⚔️ SPARRING: Round B</h2><p>Swap! Player 2 is now the COACH and Player 1 brings a challenge. 4 minutes, questions only.</p>
-      <div class="row" style="justify-content:space-between"><span>Timer</span><span id="t" class="timer">4:00</span><button class="btn small" onclick="dojoT()">START</button></div></div>
-      <div class="panel"><b>Coachee: rate your coach honestly ✔</b>${dojoChecks("b")}</div>
-      <div class="panel"><b>Reflect together:</b> Did you feel the urge to give advice? Ibarra & Scoular found that most managers think they're good coaches, but those they work with often don't agree!</div>
-      <button class="btn block" onclick="dojoFinish()">COMPLETE THE DOJO 🏁</button></div>`);
+    view(`<div class="wrap">${head}<div class="card"><h3>Training score: ${d.a} / 100 XP</h3>${d.rev}</div>
+      <div class="card"><h3>Part 3 · Live coaching, round A <span class="muted">(up to 25 XP)</span></h3>
+      <p><b>Partner 1 coaches, Partner 2 brings a real challenge</b> (an assignment, a job, a goal). 4 minutes. Questions only: <b>no advice!</b></p>
+      <div class="prompt"><b>G</b> · What would you like to get out of this?</div><div class="prompt"><b>R</b> · What's happening now? What have you tried?</div><div class="prompt"><b>O</b> · What options do you have? What else?</div><div class="prompt"><b>W</b> · What will you do, and by when?</div>
+      <div class="row" style="justify-content:space-between;margin-top:14px"><span class="muted">Timer</span><span id="t" class="timer">4:00</span><button class="btn small teal" onclick="dojoT()">Start</button></div></div>
+      <div class="card"><h3>Partner 2: rate your coach honestly</h3>${dojoChecks("a")}</div>
+      <button class="btn block" onclick="dojoStep(2)">Swap roles →</button></div>`);
+  } else {
+    view(`<div class="wrap">${head}<div class="card"><h3>Part 3 · Live coaching, round B <span class="muted">(up to 25 XP)</span></h3><p><b>Swap:</b> Partner 2 coaches, Partner 1 brings a challenge. 4 minutes, questions only.</p>
+      <div class="row" style="justify-content:space-between"><span class="muted">Timer</span><span id="t" class="timer">4:00</span><button class="btn small teal" onclick="dojoT()">Start</button></div></div>
+      <div class="card"><h3>Partner 1: rate your coach honestly</h3>${dojoChecks("b")}</div>
+      <div class="card"><b>Reflect together:</b> was it hard NOT to give advice? Ibarra & Scoular report that many managers rate their own coaching much higher than the people they work with do.</div>
+      <button class="btn block" onclick="dojoFinish()">Complete the chapter 🏁</button></div>`);
   }
 }
-const CHECKS = ["Started by asking about the Goal", "Asked open questions (what, how) not yes/no", "Listened without interrupting", "Did NOT give the answer or advice", "Ended with a concrete next step (Will)"];
+const CHECKS = ["Started by asking about my Goal", "Asked open questions (what, how) rather than yes/no", "Listened without interrupting", "Did NOT give me the answer or advice", "Ended with a concrete next step (Will)"];
 function dojoChecks(p) { return CHECKS.map((c, i) => `<label class="check"><input type="checkbox" id="k${p}${i}"> ${c}</label>`).join(""); }
-function dojoT() { stopTimers(); countdown($("#t"), 240, () => { toast("⏰ TIME!"); SFX.bad(); }); }
+function dojoT() { stopTimers(); countdown($("#t"), 240, () => { toast("⏰ Time's up!"); SFX.soft(); }); }
 function dojoTrain() {
   let a = 0, rev = [];
-  for (let i = 0; i < COACH.qs.length; i++) { const v = $("#c" + i).value; if (v === "") return toast("ANSWER ALL QUESTIONS"); const ok = +v === COACH.qs[i].a; if (ok) a += 10; rev.push(`<p>${ok ? "✅" : "❌"} ${COACH.qs[i].q} <span class="muted">${COACH.styles[COACH.qs[i].a]}</span></p>`); }
-  for (let i = 0; i < GROWQ.length; i++) { const v = $("#g" + i).value; if (v === "") return toast("ANSWER ALL QUESTIONS"); const ok = +v === GROWQ[i].a; if (ok) a += 10; rev.push(`<p>${ok ? "✅" : "❌"} ${GROWQ[i].q} <span class="muted">${GROW[GROWQ[i].a]}</span></p>`); }
-  S.data.dojo = { step: 1, a, rev: rev.join("") }; save(); a >= 70 ? SFX.win() : SFX.good(); dojo(6);
+  for (let i = 0; i < COACH.qs.length; i++) { const v = $("#c" + i).value; if (v === "") return toast("Answer every question first"); const ok = +v === COACH.qs[i].a; if (ok) a += 10; rev.push(`<p>${ok ? "✅" : "💭"} ${COACH.qs[i].s}<br><span class="muted">${COACH.styles[COACH.qs[i].a]}</span></p>`); }
+  for (let i = 0; i < 4; i++) { const v = $("#g" + i).value; if (v === "") return toast("Answer every question first"); const ok = +v === i; if (ok) a += 10; rev.push(`<p>${ok ? "✅" : "💭"} ${GROWQ[i]}<br><span class="muted">${GROW[i]}</span></p>`); }
+  S.data.dojo = { step: 1, a, rev: rev.join("") }; save(); a >= 70 ? (SFX.win(), confetti(1500)) : SFX.good(); dojo(6);
 }
 function dojoStep(n) { S.data.dojo.ca = CHECKS.filter((_, i) => $("#ka" + i).checked).length; S.data.dojo.step = n; save(); dojo(6); }
-function dojoFinish() {
-  const d = S.data.dojo, cb = CHECKS.filter((_, i) => $("#kb" + i).checked).length, spar = (d.ca + cb) * 5;
-  S.data.rev6 = d.rev; finish(6, d.a + spar, `Training ${d.a}/100 · Sparring ${spar}/50 (coach A: ${d.ca}/5 ✔, coach B: ${cb}/5 ✔)`);
-}
+function dojoFinish() { const d = S.data.dojo, cb = CHECKS.filter((_, i) => $("#kb" + i).checked).length, live = (d.ca + cb) * 5; S.data.rev6 = d.rev; finish(6, d.a + live, `Training ${d.a}/100 · Live coaching ${live}/50`); }
 
-// ============================================================ FINAL BOSS
+// ============================================================ FINAL CHALLENGE
 let F = null;
 function bossIntro(id) {
-  view(`<div class="wrap"><div class="top"><button class="btn ghost small" onclick="go('play')">◀ MAP</button>${hudHTML()}</div>
-    <div class="panel center" style="border-color:var(--pink)"><p class="px blink" style="color:var(--pink);font-size:12px">⚠ WARNING ⚠</p><div class="sprite" style="font-size:96px">🐉</div><h1 style="color:var(--pink)">THE CRISIS</h1>
-    <p>You've just been promoted to lead "Nova", an 8-person hybrid team of mixed ages. This week, everything goes wrong.</p>
-    <p>6 decisions. The better your leadership, the more damage you deal (up to 25 XP each). Each decision has a 45-second clock: crises don't wait! ⏱</p></div>
-    <button class="btn block pinkb" onclick="bossStart()">⚔️ FACE THE CRISIS</button></div>`);
+  view(`<div class="wrap">${topBar()}<div class="hero" style="margin-top:14px;background:linear-gradient(135deg,#1E1B4B,#B8325A 70%,#FF6B81)"><div style="font-size:44px">⚡</div><h2 style="color:#fff">Final challenge: The Crisis</h2>
+    <p>It's Monday morning at Lumen. Over the next five days, everything you've learned today will be tested.</p></div>
+    <div class="card"><ul style="line-height:1.9;margin:0;padding-left:20px"><li>6 decisions · <b>45 seconds</b> each: crises don't wait</li><li>Best decision = <b>+25 XP</b>; partial credit for reasonable choices</li><li>Watch your team's <b>trust meter</b> rise or fall</li><li>⏱ Chapter clock: <b>${LIMIT[9]} minutes</b></li></ul></div>
+    <button class="btn block coral" onclick="bossStart()">Face the crisis →</button></div>`);
 }
-function bossStart() { F = { i: 0, hp: 150, xp: 0, rev: [], order: BOSS.map((b) => shuffle(b.o.map((_, k) => k))) }; beep([[110, .3, "sawtooth"], [98, .5, "sawtooth"]]); bossShow(); }
+function bossStart() { startChTimer(9); F = { i: 0, xp: 0, trust: 50, rev: [], order: BOSS.map(() => shuffle([0, 1, 2])) }; bossShow(); }
 function bossShow() {
-  const b = BOSS[F.i];
-  view(`<div class="wrap"><div class="top"><span class="px" style="font-size:10px">DECISION ${F.i + 1}/6</span><span id="t" class="timer"></span></div>
-    <div class="arena"><div class="fighter"><div class="sprite" id="me">${S.avatar}</div><div class="nm">${esc(S.team)}<br>⭐ ${F.xp} XP</div></div><div class="px" style="color:var(--yellow);font-size:12px">VS</div>
-    <div class="fighter"><div class="sprite" id="en" style="font-size:72px">🐉</div><div class="hpbar enemy"><div style="width:${(F.hp / 150) * 100}%"></div></div><div class="nm">THE CRISIS ${F.hp}/150</div></div></div>
-    <div class="panel"><p style="margin-top:0;font-size:17px">${b.s}</p>${F.order[F.i].map((k) => `<button class="opt" data-k="${k}" onclick="bossPick(${k})">${b.o[k][0]}</button>`).join("")}<div id="fb"></div></div></div>`);
+  const b = BOSS[F.i]; setTimeout(() => runChTimer(9), 0);
+  view(`<div class="wrap">${topBar()}<div class="row" style="justify-content:space-between;margin:14px 0 6px"><span class="muted">Decision ${F.i + 1} of 6 · ${timerChip()}</span><span id="t" class="timer"></span></div>
+    <div class="card"><div class="row" style="justify-content:space-between"><b>Team trust</b><b>${F.trust}%</b></div><div class="bar" style="margin-top:8px"><div style="width:${F.trust}%;background:linear-gradient(90deg,#FF6B81,#FFB547,#22C1A6)"></div></div></div>
+    <div class="card"><div class="scene"><div class="face">⚡</div><div><div class="who">Lumen · crisis week</div><div class="txt">${b.s}</div></div></div><div class="ask">${b.q}</div>
+    ${F.order[F.i].map((k, pos) => `<button class="opt" data-k="${k}" onclick="bossPick(${k})"><span class="k">${"ABC"[pos]}</span><span>${b.o[k][0]}</span></button>`).join("")}<div id="fb"></div></div></div>`);
   countdown($("#t"), 45, () => bossPick(-1));
 }
 function bossPick(k) {
-  if (F.locked) return; F.locked = true; stopTimers(); const b = BOSS[F.i];
-  const pts = k >= 0 ? b.o[k][1] : 0, best = b.o.findIndex((o) => o[1] === 25);
-  F.xp += pts; F.hp = Math.max(0, F.hp - pts);
-  document.querySelectorAll(".opt").forEach((x) => { const kk = +x.dataset.k; x.disabled = true; if (kk === best) x.classList.add("right"); else if (kk === k) x.classList.add("wrong"); });
-  if (pts >= 25) { $("#en").classList.add("hit"); floatText("CRITICAL HIT! +25"); SFX.win(); } else if (pts > 0) { $("#en").classList.add("hit"); floatText(`+${pts}`); SFX.good(); } else { $("#me").classList.add("shake"); floatText(k < 0 ? "TOO SLOW!" : "MISS!", "#FF4FA3"); SFX.bad(); }
-  document.querySelector(".hpbar.enemy>div").style.width = (F.hp / 150) * 100 + "%";
-  const why = k >= 0 ? b.o[k][2] : "Time ran out: indecision is a decision too.";
-  F.rev.push(`<p>${pts >= 25 ? "✅" : pts > 0 ? "🟡" : "❌"} ${b.s}<br><span class="muted">Best: ${b.o[best][0]}. ${b.o[best][2]}</span></p>`);
-  $("#fb").innerHTML = `<div class="why">${pts >= 25 ? "🔥 " : ""}${why}</div><button class="btn block" style="margin-top:12px" onclick="bossNext()">${F.i + 1 < BOSS.length ? "NEXT DECISION ▶" : "🏁 FINAL RESULT"}</button>`;
+  if (F.locked) return; F.locked = true; stopTimers(); const b = BOSS[F.i], pts = k >= 0 ? b.o[k][1] : 0;
+  F.xp += pts; F.trust = Math.max(0, Math.min(100, F.trust + (pts >= 25 ? 9 : pts >= 10 ? 2 : -8)));
+  document.querySelectorAll(".opt").forEach((x) => { const kk = +x.dataset.k; x.disabled = true; if (kk === 0) x.classList.add("right"); else if (kk === k) x.classList.add("wrong"); });
+  pts >= 25 ? (SFX.streak(), pop("+25 XP · trust ↑")) : pts > 0 ? (SFX.good(), pop(`+${pts} XP`)) : SFX.soft();
+  F.rev.push(`<p>${pts >= 25 ? "✅" : pts > 0 ? "🟡" : "💭"} ${b.s}<br><span class="muted">Best: ${b.o[0][0]}. ${b.o[0][2]}</span></p>`);
+  $("#fb").innerHTML = `<div class="sheet ${pts >= 25 ? "ok" : "no"}"><b>${k < 0 ? "⏱ Time ran out: indecision is a decision too." : pts >= 25 ? "✅ Strong leadership." : pts > 0 ? "🟡 Partly right." : "💭 Risky choice."}</b><div style="margin-top:6px">${k >= 0 ? b.o[k][2] : ""}${pts < 25 ? `<br><br>Best move: <b>${b.o[0][0]}</b>. ${b.o[0][2]}` : ""}</div></div>
+    <button class="btn block" style="margin-top:12px" onclick="bossNext()">${F.i + 1 < 6 ? "Next decision →" : "See how you led 🏁"}</button>`;
 }
 function bossNext() {
   F.locked = false; F.i++; if (F.i < BOSS.length) return bossShow();
   const xp = F.xp; S.data.rev9 = F.rev.join("");
-  const end = xp >= 140 ? "🏆 LEGENDARY: the Crisis is defeated and your team trusts you more than ever." : xp >= 100 ? "⚔️ VICTORY: the Crisis retreats. A few scars, but the team held together." : xp >= 60 ? "😮‍💨 SURVIVED: the platform is back, but trust took a hit." : "🐉 THE CRISIS WINS… this time. Review the answers and try leading differently.";
-  if (xp < 60) SFX.lose(); F = null; finish(9, xp, end);
+  const end = xp >= 140 ? "🏆 Exceptional: the crisis is over and your team trusts you more than ever." : xp >= 100 ? "💪 Strong leadership: a tough week, and the team held together." : xp >= 60 ? "🙂 You got through it. Review the best moves to grow even stronger." : "🌱 A hard week. Review the best moves: every leader learns from crises.";
+  const tr = F.trust; F = null; finish(9, xp, `${end}<br>Final team trust: <b>${tr}%</b>`);
 }
 
-// ============================================================ HQ (lecturer)
+// ============================================================ HQ
 function hostSetup() {
-  view(`<div class="wrap"><p class="px" style="font-size:11px;color:var(--cyan)">🎓 LECTURER HQ</p><h1>NEW GAME</h1>
-    <div class="panel"><label for="np">Number of pairs</label><select id="np">${[4, 5, 6, 7, 8, 9, 10].map((n) => `<option ${n === 7 ? "selected" : ""}>${n}</option>`).join("")}</select>
-    <p class="muted">Scores are saved on this device only. Project this screen for the class.</p><button class="btn block" onclick="hostCreate()">CREATE SCOREBOARD</button></div>
-    <p class="center"><a href="#play" style="color:var(--yellow)">◀ player app</a></p></div>`);
+  view(`<div class="wrap"><div class="hero" style="margin-top:10px"><div class="chip dark">Lecturer HQ</div><h1 style="margin-top:12px">Leadership Quest</h1><p>Create a scoreboard for today's class.</p></div>
+    <div class="card"><label for="np">Number of pairs</label><select id="np">${[4, 5, 6, 7, 8, 9, 10].map((n) => `<option ${n === 7 ? "selected" : ""}>${n}</option>`).join("")}</select>
+    <p class="muted">Scores are saved on this device only. Project this screen for the class.</p><button class="btn block" onclick="hostCreate()">Create scoreboard</button></div>
+    <p class="center"><a href="#play" style="color:var(--violet);font-weight:700">← Player app</a></p></div>`);
 }
 function hostCreate() { HOST = { pairs: Array.from({ length: +$("#np").value }, (_, i) => ({ name: `Pair ${i + 1}`, s: {} })), tab: "scores" }; saveHost(); hostBoard(); }
-const hTotal = (p) => LEVELS.reduce((a, l) => a + (+p.s[l.id] || 0), 0);
+const hTotal = (p) => CH.reduce((a, c) => a + (+p.s[c.id] || 0), 0);
 function hostBoard() {
   const t = HOST.tab || "scores";
-  view(`<div class="wrap wide"><div class="top"><span class="px" style="font-size:11px;color:var(--cyan)">🎓 LEADERSHIP QUEST · HQ</span><a href="#play" style="color:var(--yellow);font-size:13px">player app</a></div>
-    <div class="tabs">${[["scores", "✏️ SCORES"], ["board", "🕹️ HIGH SCORES"], ["podium", "🏆 PODIUM"], ["reset", "⚙️ RESET"]].map(([k, l]) => `<button class="pill ${t === k ? "on" : ""}" onclick="hostTab('${k}')">${l}</button>`).join("")}</div><div id="hb"></div></div>`);
+  view(`<div class="wrap wide"><div class="top"><span class="brand">LEADERSHIP QUEST · HQ</span><a href="#play" style="color:var(--violet);font-weight:700;font-size:14px">Player app</a></div>
+    <div class="tabs">${[["scores", "✏️ Scores"], ["board", "📊 Leaderboard"], ["podium", "🏆 Podium"], ["reset", "⚙️ Reset"]].map(([k, l]) => `<button class="pill ${t === k ? "on" : ""}" onclick="hostTab('${k}')">${l}</button>`).join("")}</div><div id="hb"></div></div>`);
   ({ scores: hScores, board: hBoard, podium: hPodium, reset: hReset })[t]();
 }
 function hostTab(t) { HOST.tab = t; saveHost(); hostBoard(); }
 function hScores() {
-  $("#hb").innerHTML = `<div class="panel"><label for="sc">Type a score code (e.g. <span class="kbd">3-2-80-KQ</span>) and press Enter</label>
-    <div class="row"><input id="sc" style="max-width:300px" placeholder="pair-level-xp-XX" onkeydown="if(event.key==='Enter')hostCode()"><button class="btn small" onclick="hostCode()">ADD</button><span class="muted" id="msg">${HOST._msg || ""}</span></div></div>
-    <div class="panel" style="overflow-x:auto"><table><tr><th>#</th><th style="text-align:left">TEAM</th>${LEVELS.map((l) => `<th title="${l.title}">LV${l.id}<br>/${l.max}</th>`).join("")}<th>XP</th></tr>
-    ${HOST.pairs.map((p, i) => `<tr><td>${i + 1}</td><td class="name"><input value="${esc(p.name)}" onchange="hostName(${i},this.value)"></td>${LEVELS.map((l) => `<td><input inputmode="numeric" value="${p.s[l.id] ?? ""}" onchange="hostSet(${i},${l.id},this.value)"></td>`).join("")}<td><b id="tot${i}">${hTotal(p)}</b></td></tr>`).join("")}</table>
-    <p class="muted">All levels are scored in the app. You can type or override any score (e.g. bonus XP for great answers during discussion).</p></div>`;
+  $("#hb").innerHTML = `<div class="card"><label for="sc">Type a score code (e.g. <span class="kbd">3-2-84-KQ</span>) and press Enter</label>
+    <div class="row"><input id="sc" style="max-width:300px" placeholder="pair-chapter-xp-XX" onkeydown="if(event.key==='Enter')hostCode()"><button class="btn small" onclick="hostCode()">Add</button><span class="muted" id="msg">${HOST._msg || ""}</span></div></div>
+    <div class="card" style="overflow-x:auto"><table><tr><th>#</th><th style="text-align:left">Team</th>${CH.map((c) => `<th title="${c.title}">Ch${c.id}<br>/${c.max}</th>`).join("")}<th>Total</th></tr>
+    ${HOST.pairs.map((p, i) => `<tr><td>${i + 1}</td><td class="name"><input value="${esc(p.name)}" onchange="hostName(${i},this.value)"></td>${CH.map((c) => `<td><input inputmode="numeric" value="${p.s[c.id] ?? ""}" onchange="hostSet(${i},${c.id},this.value)"></td>`).join("")}<td><b id="tot${i}">${hTotal(p)}</b></td></tr>`).join("")}</table>
+    <p class="muted">Every chapter is scored in the app. You can type or override any score, e.g. bonus XP for a great contribution.</p></div>`;
 }
 function hostName(i, v) { HOST.pairs[i].name = v.trim() || `Pair ${i + 1}`; saveHost(); }
-function hostSet(i, id, v) { const n = v === "" ? undefined : Math.max(0, Math.min(L(id).max, Math.round(+v || 0))); if (n === undefined) delete HOST.pairs[i].s[id]; else HOST.pairs[i].s[id] = n; saveHost(); const e = $("#tot" + i); if (e) e.textContent = hTotal(HOST.pairs[i]); }
+function hostSet(i, id, v) { const n = v === "" ? undefined : Math.max(0, Math.min(C(id).max, Math.round(+v || 0))); if (n === undefined) delete HOST.pairs[i].s[id]; else HOST.pairs[i].s[id] = n; saveHost(); const e = $("#tot" + i); if (e) e.textContent = hTotal(HOST.pairs[i]); }
 function hostCode() {
   const m = $("#sc").value.trim().toUpperCase().match(/^(\d+)-(\d+)-(\d+)-([A-Z]{2})$/);
-  if (!m) { $("#msg").textContent = "❌ Format: pair-level-xp-XX"; return; }
+  if (!m) { $("#msg").textContent = "❌ Format: pair-chapter-xp-XX"; return; }
   const [, p, r, s, c] = m, pi = +p - 1;
-  if (!HOST.pairs[pi] || !L(+r)) { $("#msg").textContent = "❌ Unknown pair or level"; return; }
-  if (checksum(+p, +r, +s) !== c) { $("#msg").textContent = "⚠️ Code doesn't verify"; return; }
-  hostSet(pi, +r, s); HOST._msg = `✅ ${HOST.pairs[pi].name}: LV${r} = ${s} XP`; hScores(); setTimeout(() => $("#sc") && $("#sc").focus(), 30);
+  if (!HOST.pairs[pi] || !C(+r)) { $("#msg").textContent = "❌ Unknown pair or chapter"; return; }
+  if (checksum(+p, +r, +s) !== c) { $("#msg").textContent = "⚠️ This code doesn't verify"; return; }
+  hostSet(pi, +r, s); HOST._msg = `✅ ${HOST.pairs[pi].name}: Chapter ${r} = ${s} XP`; hScores(); setTimeout(() => $("#sc") && $("#sc").focus(), 30);
 }
 const ranked = () => HOST.pairs.map((p) => ({ ...p, total: hTotal(p) })).sort((a, b) => b.total - a.total);
 function hBoard() {
-  $("#hb").innerHTML = `<h1 class="center" style="font-size:30px;color:var(--yellow);text-shadow:4px 4px 0 #FF4FA3">HIGH SCORES</h1>
-    <div>${ranked().map((p, k) => `<div class="hs-row" style="opacity:0;transform:translateX(-30px);transition:all .5s ${k * 0.12}s"><span>${k + 1}${["ST", "ND", "RD"][k] || "TH"}</span><span>${esc(p.name)}</span><span style="text-align:right">${String(p.total).padStart(4, "0")}</span></div>`).join("")}</div>
-    <p class="center px blink" style="font-size:11px;margin-top:20px">INSERT COIN TO CONTINUE</p>`;
-  requestAnimationFrame(() => setTimeout(() => document.querySelectorAll(".hs-row").forEach((r) => { r.style.opacity = 1; r.style.transform = "none"; }), 50));
+  const rk = ranked(), max = Math.max(1, ...rk.map((p) => p.total));
+  $("#hb").innerHTML = `<h1 class="center">Leaderboard</h1>${rk.map((p, k) => `<div class="lb"><div class="rk" style="${k < 3 ? `background:${["#FFB547", "#A7B4C9", "#E39B6B"][k]};color:#fff` : ""}">${k + 1}</div>
+    <div><div class="nm">${esc(p.name)}</div><div class="barw"><div data-w="${(p.total / max) * 100}"></div></div></div><div class="xp">${p.total} XP</div></div>`).join("")}`;
+  document.querySelectorAll(".lb").forEach((el, k) => setTimeout(() => { el.classList.add("show"); const b = el.querySelector(".barw div"); b.style.width = b.dataset.w + "%"; }, 100 + k * 120));
 }
 function hPodium() {
-  $("#hb").innerHTML = `<div class="center"><h1 style="font-size:28px">🏆 LEADERSHIP LEGENDS</h1><button class="btn" id="rv" onclick="reveal()">REVEAL 3RD PLACE</button></div>
-    <div class="podium"><div class="step cyan" id="p2" style="height:240px"></div><div class="step yellow" id="p1" style="height:320px"></div><div class="step pink" id="p3" style="height:180px"></div></div>`;
+  $("#hb").innerHTML = `<div class="center"><h1>🏆 Leaders of the Year</h1><button class="btn" id="rv" onclick="reveal()">Reveal 3rd place</button></div>
+    <div class="podium"><div class="step" id="p2" style="height:240px;background:linear-gradient(180deg,#4DA3FF,#3477C4)"></div><div class="step" id="p1" style="height:320px;background:linear-gradient(180deg,#7C5CFF,#4B3CC9)"></div><div class="step" id="p3" style="height:180px;background:linear-gradient(180deg,#22C1A6,#178C79)"></div></div>`;
   HOST._rv = 0;
 }
 function reveal() {
   const rk = ranked(), place = [3, 2, 1][HOST._rv]; if (!place) return; const p = rk[place - 1], el = $("#p" + place);
-  if (p) { el.innerHTML = `<div class="medal">${["🥇", "🥈", "🥉"][place - 1]}</div><div class="nm2">${esc(p.name)}</div><div class="pp">${p.total} XP</div>`; el.classList.add("show"); }
+  if (p) { el.innerHTML = `<div class="medal">${["🥇", "🥈", "🥉"][place - 1]}</div><div class="n2">${esc(p.name)}</div><div class="pp">${p.total} XP</div>`; el.classList.add("show"); }
   HOST._rv++; const b = $("#rv");
-  if (HOST._rv === 1) { b.textContent = "REVEAL 2ND PLACE"; SFX.good(); confetti(1000); } else if (HOST._rv === 2) { b.textContent = "REVEAL THE CHAMPIONS 🥁"; SFX.good(); confetti(1000); } else { b.textContent = "GAME CLEAR!"; b.disabled = true; SFX.win(); confetti(6000); }
+  if (HOST._rv === 1) { b.textContent = "Reveal 2nd place"; SFX.good(); confetti(1000); } else if (HOST._rv === 2) { b.textContent = "Reveal the winners 🥁"; SFX.good(); confetti(1000); } else { b.textContent = "Congratulations! 🎉"; b.disabled = true; SFX.win(); confetti(6000); }
 }
-function hReset() {
-  $("#hb").innerHTML = `<div class="panel"><h2>NEW GAME</h2><p>Clears all scores on this device.</p><button class="btn pinkb" onclick="this.classList.add('hide');this.nextElementSibling.classList.remove('hide')">CLEAR SCOREBOARD…</button>
-    <button class="btn pinkb hide" onclick="HOST=null;saveHost();hostSetup()">YES, CLEAR EVERYTHING</button></div>`;
-}
+function hReset() { $("#hb").innerHTML = `<div class="card"><h3>Start a new game</h3><p>Clears all scores on this device.</p><button class="btn coral" onclick="this.classList.add('hide');this.nextElementSibling.classList.remove('hide')">Clear scoreboard…</button><button class="btn coral hide" onclick="HOST=null;saveHost();hostSetup()">Yes, clear everything</button></div>`; }
 route();
 </script>
 </body>
