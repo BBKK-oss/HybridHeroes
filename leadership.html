@@ -3,103 +3,108 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#1E1B4B">
+<meta name="theme-color" content="#060914">
 <title>Leadership Quest: Your First Year as a Leader</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--indigo:#1E1B4B;--ink:#16142F;--violet:#7C5CFF;--violet2:#A78BFA;--teal:#22C1A6;--amber:#FFB547;--coral:#FF6B81;--blue:#4DA3FF;--muted:#6B6F8A;--bg:#F4F3FF;--card:#fff;--line:#E6E4F5}
+:root{--indigo:#EAF0FF;--ink:#DCE4FF;--violet:#00D4FF;--violet2:#7DE8FF;--teal:#3DF58A;--amber:#FFD23F;--coral:#FF3D7F;--blue:#A66BFF;--muted:#8C97B8;--bg:#0E1530;--card:#121A3A;--line:#26315C;--night:#060914}
 *{box-sizing:border-box}
-html,body{margin:0;font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);-webkit-tap-highlight-color:transparent}
-body{min-height:100vh;background:radial-gradient(1200px 600px at 10% -10%,#B9A7FF55,transparent),radial-gradient(900px 500px at 110% 10%,#7FE3D355,transparent),var(--bg)}
+html,body{margin:0;font-family:"Space Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);-webkit-tap-highlight-color:transparent}
+body{min-height:100vh;background:radial-gradient(900px 500px at 0% -10%,#00D4FF2E,transparent),radial-gradient(800px 500px at 110% 0%,#A66BFF33,transparent),radial-gradient(700px 500px at 50% 120%,#FF3D7F22,transparent),var(--night);background-attachment:fixed}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 75%);z-index:0}
+#app{position:relative;z-index:1}
 .wrap{max-width:720px;margin:0 auto;padding:18px 16px 100px}
 .wide{max-width:1200px}
-h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:.2em 0 .3em}
-h2{font-size:21px;font-weight:800;letter-spacing:-.01em;margin:.3em 0 .5em}
-h3{font-size:18px;font-weight:700;margin:.2em 0 .5em}
+h1{font-size:32px;font-weight:700;letter-spacing:-.03em;margin:.2em 0 .3em;color:#fff}
+h2{font-size:22px;font-weight:700;letter-spacing:-.02em;margin:.3em 0 .5em;color:#fff}
+h3{font-size:18px;font-weight:700;margin:.2em 0 .5em;color:#fff}
 p{line-height:1.55}
-.card{background:var(--card);border-radius:22px;padding:18px;margin:14px 0;box-shadow:0 10px 30px #1E1B4B12,0 1px 2px #1E1B4B10}
-.hero{background:linear-gradient(135deg,#1E1B4B,#4B3CC9 60%,#7C5CFF);color:#fff;border-radius:26px;padding:22px;box-shadow:0 18px 40px #4B3CC955}
-.hero p{color:#E4E0FF}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:14px 20px;font:inherit;font-weight:800;font-size:16px;cursor:pointer;background:var(--violet);color:#fff;margin:6px 6px 6px 0;box-shadow:0 8px 18px #7C5CFF44;transition:transform .12s,box-shadow .12s}
-.btn:hover{transform:translateY(-1px)}.btn:active{transform:scale(.97)}
+a{color:var(--violet)}
+.card{background:linear-gradient(180deg,#141D42ee,#0F1634ee);border:1px solid var(--line);border-radius:20px;padding:18px;margin:14px 0;box-shadow:0 20px 40px #0008;backdrop-filter:blur(10px)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#0B1230 0%,#1B1350 55%,#3A1670 100%);color:#fff;border-radius:24px;padding:22px;border:1px solid #ffffff1f;box-shadow:0 0 0 1px #00D4FF22,0 20px 50px #00D4FF22,inset 0 1px 0 #ffffff22}
+.hero:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,#00D4FF55,transparent 70%);pointer-events:none}
+.hero p{color:#C7D3FF}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:14px 20px;font:inherit;font-weight:700;font-size:16px;cursor:pointer;background:linear-gradient(135deg,#00D4FF,#7A5CFF);color:#060914;margin:6px 6px 6px 0;box-shadow:0 0 22px #00D4FF55;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 0 32px #00D4FF88}.btn:active{transform:scale(.97)}
 .btn.block{display:flex;width:100%}
-.btn.ghost{background:#fff;color:var(--indigo);box-shadow:0 2px 8px #1E1B4B14;border:1px solid var(--line)}
+.btn.ghost{background:#ffffff0d;color:#fff;box-shadow:none;border:1px solid var(--line)}
 .btn.small{padding:9px 14px;font-size:14px;border-radius:11px}
-.btn.teal{background:var(--teal);box-shadow:0 8px 18px #22C1A644}
-.btn.coral{background:var(--coral);box-shadow:0 8px 18px #FF6B8144}
+.btn.teal{background:linear-gradient(135deg,#3DF58A,#00D4FF);box-shadow:0 0 22px #3DF58A55}
+.btn.coral{background:linear-gradient(135deg,#FF3D7F,#FF8A3D);color:#fff;box-shadow:0 0 22px #FF3D7F55}
 .btn[disabled]{opacity:.4;cursor:not-allowed}
-input,select,textarea{font:inherit;font-size:16px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--ink);padding:12px 13px;width:100%;outline:none}
-input:focus,select:focus{border-color:var(--violet)}
-label{font-weight:700;font-size:14px;display:block;margin:14px 0 6px;color:var(--indigo)}
+input,select,textarea{font:inherit;font-size:16px;border-radius:12px;border:1.5px solid var(--line);background:#0A1028;color:#fff;padding:12px 13px;width:100%;outline:none}
+input::placeholder{color:#5D6890}
+input:focus,select:focus{border-color:var(--violet);box-shadow:0 0 0 3px #00D4FF33}
+label{font-weight:700;font-size:14px;display:block;margin:14px 0 6px;color:var(--violet2)}
 .top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.chip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;background:#fff;box-shadow:0 2px 8px #1E1B4B12}
-.chip.dark{background:#ffffff22;color:#fff;box-shadow:none}
-.brand{font-weight:800;font-size:14px;color:var(--violet);letter-spacing:.02em}
-.chapter{display:flex;align-items:center;gap:14px;padding:14px;border-radius:20px;margin:10px 0;cursor:pointer;border:0;width:100%;text-align:left;font:inherit;background:#fff;box-shadow:0 8px 24px #1E1B4B10;transition:transform .12s}
-.chapter:hover{transform:translateY(-2px)}
-.chapter .ico{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}
-.chapter .t{font-weight:800;font-size:16px}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;background:#ffffff0f;border:1px solid var(--line);color:#fff}
+.chip.dark{background:#ffffff1a;color:#fff;border-color:#ffffff2a}
+.brand{font-weight:700;font-size:14px;letter-spacing:.18em;background:linear-gradient(90deg,#00D4FF,#A66BFF,#FF3D7F);-webkit-background-clip:text;background-clip:text;color:transparent}
+.chapter{display:flex;align-items:center;gap:14px;padding:14px;border-radius:18px;margin:10px 0;cursor:pointer;border:1px solid var(--line);width:100%;text-align:left;font:inherit;color:var(--ink);background:linear-gradient(180deg,#131B3F,#0E1532);transition:transform .12s,border-color .12s,box-shadow .12s}
+.chapter:hover{transform:translateY(-2px);border-color:#00D4FF88;box-shadow:0 0 24px #00D4FF33}
+.chapter .ico{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}
+.chapter .t{font-weight:700;font-size:16px;color:#fff}
 .chapter .s{font-size:13px;color:var(--muted);margin-top:2px}
-.chapter .pts{margin-left:auto;font-weight:800;font-size:13px;white-space:nowrap;text-align:right;color:var(--muted)}
-.chapter.locked{opacity:.6}
-.chapter.done .pts{color:var(--teal)}
-.opt{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:16px;padding:14px;margin:10px 0;font:inherit;font-size:16px;cursor:pointer;transition:all .15s;line-height:1.45}
-.opt:hover{border-color:var(--violet2);transform:translateX(2px)}
-.opt .k{width:28px;height:28px;border-radius:9px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex:none;color:var(--violet)}
-.opt.right{border-color:var(--teal);background:#E6FAF6}.opt.right .k{background:var(--teal);color:#fff}
-.opt.wrong{border-color:var(--coral);background:#FFF0F2}.opt.wrong .k{background:var(--coral);color:#fff}
+.chapter .pts{margin-left:auto;font-weight:700;font-size:13px;white-space:nowrap;text-align:right;color:var(--muted)}
+.chapter.locked{opacity:.55}
+.chapter.done{border-color:#3DF58A66}.chapter.done .pts{color:var(--teal)}
+.opt{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;border:1.5px solid var(--line);background:#0B1230;color:var(--ink);border-radius:14px;padding:14px;margin:10px 0;font:inherit;font-size:16px;cursor:pointer;transition:all .15s;line-height:1.45}
+.opt:hover{border-color:var(--violet);box-shadow:0 0 18px #00D4FF33;transform:translateX(2px)}
+.opt .k{width:28px;height:28px;border-radius:8px;background:#00D4FF1f;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none;color:var(--violet)}
+.opt.right{border-color:var(--teal);background:#3DF58A14;box-shadow:0 0 18px #3DF58A33}.opt.right .k{background:var(--teal);color:#060914}
+.opt.wrong{border-color:var(--coral);background:#FF3D7F14}.opt.wrong .k{background:var(--coral);color:#fff}
 .opt.gone{opacity:.25;pointer-events:none}
 .scene{display:flex;gap:12px;align-items:flex-start}
-.face{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,#EDE9FF,#D9F5EF);display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}
+.face{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#00D4FF33,#A66BFF33);border:1px solid #ffffff1f;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}
 .scene .who{font-size:13px;font-weight:700;color:var(--violet)}
 .scene .txt{font-size:17px;line-height:1.5;margin-top:2px}
-.ask{font-weight:800;font-size:17px;margin:14px 0 4px;color:var(--indigo)}
-.sheet{border-radius:18px;padding:14px 16px;margin-top:12px;animation:rise .3s ease}
-.sheet.ok{background:#E6FAF6;border:1.5px solid #A7EBDD}.sheet.no{background:#FFF5E6;border:1.5px solid #FFDCA8}
+.ask{font-weight:700;font-size:17px;margin:14px 0 4px;color:#fff}
+.sheet{border-radius:16px;padding:14px 16px;margin-top:12px;animation:rise .3s ease}
+.sheet.ok{background:#3DF58A12;border:1.5px solid #3DF58A66}.sheet.no{background:#FFD23F10;border:1.5px solid #FFD23F66}
 @keyframes rise{from{transform:translateY(10px);opacity:0}to{transform:none;opacity:1}}
-.bar{height:10px;border-radius:99px;background:#E6E4F5;overflow:hidden}
-.bar>div{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--violet),var(--teal));transition:width .5s}
-.streak{display:inline-flex;align-items:center;gap:6px;font-weight:800;color:#E2582E}
-.pop{position:fixed;left:50%;top:40%;transform:translate(-50%,0);font-weight:800;font-size:26px;color:var(--violet);pointer-events:none;animation:pop 1s forwards;z-index:60;text-shadow:0 4px 16px #fff}
+.bar{height:10px;border-radius:99px;background:#ffffff12;overflow:hidden}
+.bar>div{height:100%;border-radius:99px;background:linear-gradient(90deg,#00D4FF,#A66BFF,#FF3D7F);box-shadow:0 0 12px #00D4FF88;transition:width .5s}
+.streak{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:#FF8A3D;text-shadow:0 0 12px #FF8A3D88}
+.pop{position:fixed;left:50%;top:40%;transform:translate(-50%,0);font-weight:700;font-size:28px;color:var(--teal);pointer-events:none;animation:pop 1s forwards;z-index:60;text-shadow:0 0 18px #3DF58A}
 @keyframes pop{0%{transform:translate(-50%,10px) scale(.8);opacity:0}20%{opacity:1;transform:translate(-50%,0) scale(1.1)}100%{transform:translate(-50%,-70px);opacity:0}}
-.big{font-size:56px;font-weight:800;letter-spacing:-.03em;line-height:1}
-.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:26px;font-weight:800;background:var(--indigo);color:#fff;border-radius:16px;padding:16px;text-align:center;margin:10px 0;letter-spacing:.06em}
+.big{font-size:58px;font-weight:700;letter-spacing:-.04em;line-height:1;background:linear-gradient(90deg,#fff,#7DE8FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:26px;font-weight:800;background:#060914;color:var(--violet);border:1px solid #00D4FF66;box-shadow:0 0 22px #00D4FF33,inset 0 0 18px #00D4FF22;border-radius:14px;padding:16px;text-align:center;margin:10px 0;letter-spacing:.08em;text-shadow:0 0 10px #00D4FF}
 .center{text-align:center}.muted{color:var(--muted);font-size:14px}
 .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.avatar{font-size:28px;border:2px solid var(--line);border-radius:16px;background:#fff;width:56px;height:56px;cursor:pointer;transition:all .15s}
-.avatar.on{border-color:var(--violet);background:#EDE9FF;transform:scale(1.06)}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--indigo);color:#fff;padding:12px 18px;border-radius:14px;font-weight:700;z-index:70;box-shadow:0 10px 30px #1E1B4B44;max-width:92vw;text-align:center}
+.avatar{font-size:28px;border:1.5px solid var(--line);border-radius:14px;background:#0B1230;width:56px;height:56px;cursor:pointer;transition:all .15s}
+.avatar.on{border-color:var(--violet);background:#00D4FF1f;box-shadow:0 0 18px #00D4FF55;transform:scale(1.06)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0B1230;border:1px solid #00D4FF66;color:#fff;padding:12px 18px;border-radius:14px;font-weight:700;z-index:70;box-shadow:0 0 30px #00D4FF44;max-width:92vw;text-align:center}
 .hide{display:none!important}
-.check{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;background:var(--bg);margin:8px 0;cursor:pointer;font-weight:600}
-.check input{width:22px;height:22px;flex:none;accent-color:var(--violet)}
-.timer{font-weight:800;font-size:18px;font-variant-numeric:tabular-nums}.timer.warn{color:var(--coral)}
+.check{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:#0B1230;border:1px solid var(--line);margin:8px 0;cursor:pointer;font-weight:600}
+.check input{width:22px;height:22px;flex:none;accent-color:var(--teal)}
+.timer{font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}.timer.warn{color:var(--coral)}
 .matrix{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
-.matrix div{border-radius:16px;padding:12px;font-size:14px;color:#fff}
+.matrix div{border-radius:14px;padding:12px;font-size:14px;color:#060914}
 .matrix b{display:block;font-size:13px;margin-bottom:4px;letter-spacing:.04em}
-.prompt{background:var(--bg);border-radius:12px;padding:10px 12px;margin:6px 0}
-.ring{width:120px;height:120px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:6px auto}
-.ring span{background:#fff;width:94px;height:94px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;font-weight:800;font-size:24px}
+.prompt{background:#0B1230;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:6px 0}
+.ring{width:124px;height:124px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:6px auto;box-shadow:0 0 28px #3DF58A44}
+.ring span{background:#0A1028;width:98px;height:98px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;font-weight:700;font-size:26px;color:#fff!important}
 .ring small{font-size:11px;color:var(--muted);font-weight:700}
 table{border-collapse:collapse;width:100%}
 th,td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--line);font-size:14px}
-th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 td input{padding:7px;text-align:center;font-size:15px;width:62px}
 td.name input{width:150px;text-align:left}
-.lb{display:grid;grid-template-columns:56px 1fr 110px;align-items:center;gap:14px;background:#fff;border-radius:18px;padding:14px 18px;margin:10px 0;box-shadow:0 8px 24px #1E1B4B10;opacity:0;transform:translateY(12px);transition:all .5s}
+.lb{display:grid;grid-template-columns:56px 1fr 110px;align-items:center;gap:14px;background:linear-gradient(90deg,#131B3F,#0E1532);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin:10px 0;opacity:0;transform:translateY(12px);transition:all .5s}
 .lb.show{opacity:1;transform:none}
-.lb .rk{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;background:var(--bg);color:var(--indigo)}
-.lb .nm{font-weight:800;font-size:20px}.lb .xp{font-weight:800;font-size:22px;text-align:right;color:var(--violet)}
-.lb .barw{height:8px;border-radius:9px;background:var(--bg);margin-top:8px;overflow:hidden}.lb .barw div{height:100%;background:linear-gradient(90deg,var(--violet),var(--teal));width:0;transition:width 1s .3s}
+.lb .rk{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;background:#ffffff12;color:#fff}
+.lb .nm{font-weight:700;font-size:20px;color:#fff}.lb .xp{font-weight:700;font-size:22px;text-align:right;color:var(--violet);text-shadow:0 0 12px #00D4FF88}
+.lb .barw{height:8px;border-radius:9px;background:#ffffff12;margin-top:8px;overflow:hidden}.lb .barw div{height:100%;background:linear-gradient(90deg,#00D4FF,#A66BFF,#FF3D7F);width:0;transition:width 1s .3s}
 .podium{display:flex;align-items:flex-end;justify-content:center;gap:16px;min-height:380px;margin-top:20px}
-.step{width:30%;max-width:250px;border-radius:24px 24px 0 0;display:flex;flex-direction:column;align-items:center;padding-top:18px;color:#fff;opacity:0;transform:translateY(40px);transition:all .8s}
+.step{width:30%;max-width:250px;border-radius:20px 20px 0 0;display:flex;flex-direction:column;align-items:center;padding-top:18px;color:#060914;opacity:0;transform:translateY(40px);transition:all .8s}
 .step.show{opacity:1;transform:none}
-.step .medal{font-size:54px}.step .n2{font-weight:800;font-size:22px;text-align:center;padding:6px 10px}.step .pp{font-weight:700;font-size:16px;opacity:.9}
+.step .medal{font-size:54px}.step .n2{font-weight:700;font-size:22px;text-align:center;padding:6px 10px}.step .pp{font-weight:700;font-size:16px;opacity:.85}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:40}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-.pill{border:1.5px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer;background:#fff;color:var(--indigo);font:inherit;font-weight:700;font-size:14px}
-.pill.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}
-.kbd{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--bg);padding:2px 6px;border-radius:6px}
+.pill{border:1.5px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer;background:#ffffff0a;color:#fff;font:inherit;font-weight:700;font-size:14px}
+.pill.on{background:linear-gradient(135deg,#00D4FF,#7A5CFF);color:#060914;border-color:transparent;box-shadow:0 0 18px #00D4FF55}
+.kbd{font-family:ui-monospace,Menlo,Consolas,monospace;background:#ffffff14;padding:2px 6px;border-radius:6px}
 .shake{animation:shake .35s}@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 </style>
 </head>
@@ -112,7 +117,7 @@ td.name input{width:150px;text-align:left}
 /* LEADERSHIP QUEST v2: Robbins, Coulter & Long (16th global edn) Ch.14, 16, 17; Mullins & Rees (13th edn) Ch.9; Ibarra & Scoular (2019). */
 const mem = {};
 const store = { get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return mem[k] !== undefined ? mem[k] : d; } }, set(k, v) { mem[k] = v; try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
-let S = store.get("lq2_pair", { team: "", pair: 0, avatar: "🦊", xp: {}, done: {}, unlocked: {}, hints: 3, sound: true, data: {} });
+let S = store.get("lq2_pair", { team: "", pair: 0, avatar: "🦊", xp: {}, done: {}, unlocked: {}, sound: true, data: {} });
 let HOST = store.get("lq2_host", null);
 const save = () => store.set("lq2_pair", S), saveHost = () => store.set("lq2_host", HOST);
 const $ = (s) => document.querySelector(s);
@@ -128,19 +133,19 @@ function countdown(el, secs, onEnd) { let left = secs; const draw = () => { if (
 let AC = null;
 function tone(seq) { if (!S.sound) return; try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); let t = AC.currentTime; seq.forEach(([f, d]) => { const o = AC.createOscillator(), g = AC.createGain(); o.type = "sine"; o.frequency.value = f; g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.12, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + d); o.connect(g); g.connect(AC.destination); o.start(t); o.stop(t + d); t += d * 0.75; }); } catch (e) {} }
 const SFX = { good: () => tone([[784, .12], [1175, .22]]), streak: () => tone([[784, .1], [988, .1], [1319, .25]]), soft: () => tone([[392, .2], [349, .25]]), win: () => tone([[523, .12], [659, .12], [784, .12], [1047, .4]]), tap: () => tone([[1200, .05]]) };
-function confetti(ms = 3000) { const c = $("#confetti"), x = c.getContext("2d"); c.width = innerWidth; c.height = innerHeight; const cols = ["#7C5CFF", "#22C1A6", "#FFB547", "#FF6B81", "#4DA3FF"]; const P = Array.from({ length: 160 }, () => ({ x: Math.random() * c.width, y: -20 - Math.random() * c.height * .5, r: 3 + Math.random() * 5, c: cols[Math.floor(Math.random() * 5)], vy: 2 + Math.random() * 3.5, vx: -1.5 + Math.random() * 3, a: Math.random() * 6 })); const end = Date.now() + ms; (function f() { x.clearRect(0, 0, c.width, c.height); P.forEach(p => { p.y += p.vy; p.x += p.vx; p.a += .08; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.beginPath(); x.roundRect ? x.roundRect(-p.r, -p.r / 2, p.r * 2, p.r, 2) : x.rect(-p.r, -p.r / 2, p.r * 2, p.r); x.fill(); x.restore(); }); if (Date.now() < end) requestAnimationFrame(f); else x.clearRect(0, 0, c.width, c.height); })(); }
+function confetti(ms = 3000) { const c = $("#confetti"), x = c.getContext("2d"); c.width = innerWidth; c.height = innerHeight; const cols = ["#00D4FF", "#3DF58A", "#FFD23F", "#FF3D7F", "#A66BFF"]; const P = Array.from({ length: 160 }, () => ({ x: Math.random() * c.width, y: -20 - Math.random() * c.height * .5, r: 3 + Math.random() * 5, c: cols[Math.floor(Math.random() * 5)], vy: 2 + Math.random() * 3.5, vx: -1.5 + Math.random() * 3, a: Math.random() * 6 })); const end = Date.now() + ms; (function f() { x.clearRect(0, 0, c.width, c.height); P.forEach(p => { p.y += p.vy; p.x += p.vx; p.a += .08; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.beginPath(); x.roundRect ? x.roundRect(-p.r, -p.r / 2, p.r * 2, p.r, 2) : x.rect(-p.r, -p.r / 2, p.r * 2, p.r); x.fill(); x.restore(); }); if (Date.now() < end) requestAnimationFrame(f); else x.clearRect(0, 0, c.width, c.height); })(); }
 
 // ============================================================ CHAPTERS
 const CH = [
-  { id: 1, key: "START", title: "Day One", sub: "Leading vs managing · trait theories", max: 100, ico: "☀️", col: "#FFB547", ref: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
-  { id: 2, key: "STYLE", title: "Finding Your Style", sub: "Behavioural theories", max: 100, ico: "🎨", col: "#4DA3FF", ref: "RCL Ch.16", type: "quiz" },
-  { id: 3, key: "READY", title: "Read the Room", sub: "Contingency theories · power", max: 100, ico: "🧭", col: "#22C1A6", ref: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
-  { id: 4, key: "VISION", title: "Inspire the Team", sub: "Transactional vs transformational · LMX", max: 100, ico: "🚀", col: "#7C5CFF", ref: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
-  { id: 5, key: "INTEGRITY", title: "The Right Thing", sub: "Authentic & ethical leadership · trust", max: 100, ico: "⚖️", col: "#FF6B81", ref: "RCL Ch.16", type: "quiz" },
-  { id: 6, key: "GROW", title: "Coach, Don't Tell", sub: "The leader as coach · live practice", max: 150, ico: "🎯", col: "#FFB547", ref: "Ibarra & Scoular (2019)", type: "dojo" },
-  { id: 7, key: "REMOTE", title: "Team Without Walls", sub: "Digital leadership · remote teams", max: 100, ico: "🌍", col: "#4DA3FF", ref: "RCL Ch.14 & 17", type: "quiz" },
-  { id: 8, key: "GENERATIONS", title: "Four Generations, One Team", sub: "Generational expectations", max: 100, ico: "👥", col: "#22C1A6", ref: "RCL Ch.14 & 16", type: "quiz" },
-  { id: 9, key: "CRISIS", title: "The Crisis", sub: "Final challenge · leading through uncertainty", max: 150, ico: "⚡", col: "#FF6B81", ref: "All readings", type: "boss" },
+  { id: 1, key: "START", title: "Day One", sub: "Leading vs managing · trait theories", max: 100, ico: "☀️", col: "#FFD23F", ref: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
+  { id: 2, key: "STYLE", title: "Finding Your Style", sub: "Behavioural theories", max: 100, ico: "🎨", col: "#A66BFF", ref: "RCL Ch.16", type: "quiz" },
+  { id: 3, key: "READY", title: "Read the Room", sub: "Contingency theories · power", max: 100, ico: "🧭", col: "#3DF58A", ref: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
+  { id: 4, key: "VISION", title: "Inspire the Team", sub: "Transactional vs transformational · LMX", max: 100, ico: "🚀", col: "#00D4FF", ref: "RCL Ch.16 · M&R Ch.9", type: "quiz" },
+  { id: 5, key: "INTEGRITY", title: "The Right Thing", sub: "Authentic & ethical leadership · trust", max: 100, ico: "⚖️", col: "#FF3D7F", ref: "RCL Ch.16", type: "quiz" },
+  { id: 6, key: "GROW", title: "Coach, Don't Tell", sub: "The leader as coach · live practice", max: 150, ico: "🎯", col: "#FFD23F", ref: "Ibarra & Scoular (2019)", type: "dojo" },
+  { id: 7, key: "REMOTE", title: "Team Without Walls", sub: "Digital leadership · remote teams", max: 100, ico: "🌍", col: "#A66BFF", ref: "RCL Ch.14 & 17", type: "quiz" },
+  { id: 8, key: "GENERATIONS", title: "Four Generations, One Team", sub: "Generational expectations", max: 100, ico: "👥", col: "#3DF58A", ref: "RCL Ch.14 & 16", type: "quiz" },
+  { id: 9, key: "CRISIS", title: "The Crisis", sub: "Final challenge · leading through uncertainty", max: 150, ico: "⚡", col: "#FF3D7F", ref: "All readings", type: "boss" },
 ];
 const TOTAL = CH.reduce((a, c) => a + c.max, 0);
 const C = (id) => CH.find((x) => x.id === id);
@@ -291,10 +296,10 @@ function toggleSound(el) { S.sound = !S.sound; save(); el.textContent = S.sound 
 
 function setup() {
   view(`<div class="wrap"><div class="hero" style="margin-top:10px">
-      <div class="chip dark">UG4001 · Introduction to Management</div>
+      <div class="chip dark">Leadership in Modern Organisations</div>
       <h1 style="font-size:36px;margin-top:14px">Leadership Quest</h1>
       <p style="font-size:17px;margin:0">You've just been promoted to <b>Team Lead at Lumen</b>, a fast-growing tech company. Can you lead your team through your first year?</p>
-      <p class="muted" style="color:#C9C2FF;margin-bottom:0">9 chapters · ${TOTAL} XP · play in pairs</p></div>
+      <p class="muted" style="color:#9FB0E0;margin-bottom:0">9 chapters · ${TOTAL} XP · play in pairs</p></div>
     <div class="card"><label>Choose your avatar</label><div class="row">${AVATARS.map((a) => `<button class="avatar ${S.avatar === a ? "on" : ""}" onclick="pickAv('${a}')">${a}</button>`).join("")}</div>
       <label for="team">Team name</label><input id="team" maxlength="24" placeholder="e.g. The Visionaries" value="${esc(S.team)}">
       <label for="pair">Pair number (from your lecturer)</label>
@@ -309,8 +314,8 @@ function home() {
   const xp = totalXP(), next = RANKS.find((r) => r[0] > xp);
   view(`<div class="wrap">${topBar(false)}
     <div class="hero" style="margin-top:14px"><div class="row" style="justify-content:space-between;align-items:center">
-      <div><div class="chip dark">${S.avatar} ${esc(S.team)}</div><h2 style="color:#fff;margin:12px 0 2px">${rank(xp)}</h2><div style="color:#C9C2FF;font-size:14px">${next ? `${next[0] - xp} XP to ${next[1]}` : "Top rank reached 🏆"}</div></div>
-      <div class="ring" style="background:conic-gradient(#22C1A6 ${(xp / TOTAL) * 360}deg,#ffffff33 0)"><span style="color:var(--indigo)">${xp}<small>of ${TOTAL} XP</small></span></div></div></div>
+      <div><div class="chip dark">${S.avatar} ${esc(S.team)}</div><h2 style="color:#fff;margin:12px 0 2px">${rank(xp)}</h2><div style="color:#9FB0E0;font-size:14px">${next ? `${next[0] - xp} XP to ${next[1]}` : "Top rank reached 🏆"}</div></div>
+      <div class="ring" style="background:conic-gradient(#3DF58A ${(xp / TOTAL) * 360}deg,#ffffff33 0)"><span style="color:var(--indigo)">${xp}<small>of ${TOTAL} XP</small></span></div></div></div>
     <h2 style="margin-top:22px">Your first year</h2>
     ${CH.map((c) => { const open = S.unlocked[c.id], done = S.done[c.id];
       return `<button class="chapter ${open ? "" : "locked"} ${done ? "done" : ""}" onclick="openCh(${c.id})"><div class="ico" style="background:${c.col}22">${done ? "✅" : open ? c.ico : "🔒"}</div>
@@ -345,7 +350,7 @@ function quizIntro(id) {
   const c = C(id);
   view(`<div class="wrap">${topBar()}<div class="hero" style="margin-top:14px"><div style="font-size:40px">${c.ico}</div><h2 style="color:#fff">Chapter ${id}: ${c.title}</h2><p>${c.sub} · ${c.ref}</p></div>
     <div class="card"><h3>How it works</h3><p style="margin:0">8 questions: mostly real situations, plus a few concept checks. Discuss each one with your partner, then choose.</p>
-    <ul style="line-height:1.8"><li>✅ Correct: <b>+10 XP</b></li><li>🔥 Streak bonus: <b>+4 XP</b> for every correct answer from your 4th in a row</li><li>💡 ${S.hints} hint${S.hints === 1 ? "" : "s"} left for the whole game (removes two wrong answers)</li><li>Wrong answers never stop you: you just learn why and keep going.</li><li>⏱ You have <b>${LIMIT[id]} minutes</b>. When time's up, the chapter ends with the XP you've earned.</li></ul></div>
+    <ul style="line-height:1.8"><li>✅ Correct: <b>+10 XP</b></li><li>🔥 Streak bonus: <b>+4 XP</b> for every correct answer from your 4th in a row</li><li>Wrong answers never stop you: you just learn why and keep going.</li><li>⏱ You have <b>${LIMIT[id]} minutes</b>. When time's up, the chapter ends with the XP you've earned.</li></ul></div>
     <button class="btn block" onclick="qStart(${id})">Begin chapter →</button></div>`);
 }
 function qStart(id) { startChTimer(id); B = { id, qs: Q[id].map((q) => ({ ...q, order: shuffle([0, 1, 2, 3]) })), i: 0, xp: 0, correct: 0, streak: 0, best: 0, rev: [] }; qShow(); }
@@ -354,15 +359,9 @@ function qShow() {
   view(`<div class="wrap">${topBar()}
     <div class="row" style="justify-content:space-between;margin:14px 0 6px"><span class="muted">Question ${B.i + 1} of ${n} · ${timerChip()}</span><span>${B.streak >= 2 ? `<span class="streak">🔥 ${B.streak} in a row</span>` : ""} <b style="color:var(--violet)">${B.xp} XP</b></span></div>
     <div class="bar"><div style="width:${(B.i / n) * 100}%"></div></div>
-    <div class="card">${q.s ? `<div class="scene"><div class="face">${q.f}</div><div><div class="who">${q.n}</div><div class="txt">${q.s}</div></div></div><div class="ask">${q.q}</div>` : `<span class="chip" style="background:#EDE9FF;color:var(--violet);box-shadow:none">🧠 Concept check</span><div class="ask" style="font-size:20px;margin-top:12px">${q.q}</div>`}
+    <div class="card">${q.s ? `<div class="scene"><div class="face">${q.f}</div><div><div class="who">${q.n}</div><div class="txt">${q.s}</div></div></div><div class="ask">${q.q}</div>` : `<span class="chip" style="background:#00D4FF1f;color:var(--violet);border-color:#00D4FF55">🧠 Concept check</span><div class="ask" style="font-size:20px;margin-top:12px">${q.q}</div>`}
     ${q.order.map((k, pos) => `<button class="opt" data-k="${k}" onclick="qPick(${k})"><span class="k">${"ABCD"[pos]}</span><span>${q.o[k]}</span></button>`).join("")}
-    <div id="fb"></div></div>
-    <div class="center"><button class="btn ghost small" id="hintb" onclick="useHint()" ${S.hints ? "" : "disabled"}>💡 Use a hint (${S.hints} left)</button></div></div>`);
-}
-function useHint() {
-  if (!S.hints || B.locked) return; S.hints--; save();
-  shuffle([1, 2, 3]).slice(0, 2).forEach((k) => document.querySelector(`.opt[data-k="${k}"]`).classList.add("gone"));
-  $("#hintb").disabled = true; $("#hintb").textContent = `💡 Hint used (${S.hints} left)`; SFX.tap();
+    <div id="fb"></div></div></div>`);
 }
 function qPick(k) {
   if (B.locked) return; B.locked = true; const q = B.qs[B.i], ok = k === 0;
@@ -385,8 +384,8 @@ function dojo(id) {
   if (d.step === 0) {
     view(`<div class="wrap">${head}
       <div class="card"><h3>Four ways to help someone</h3>
-      <div class="matrix"><div style="background:#FF6B81"><b>1 · DIRECTIVE</b>Telling, mentoring. More information put in.</div><div style="background:#22C1A6"><b>4 · SITUATIONAL</b>The sweet spot: blend telling and asking.</div>
-      <div style="background:#8B8FA8"><b>2 · LAISSEZ-FAIRE</b>Hands off. Little put in or drawn out.</div><div style="background:#7C5CFF"><b>3 · NONDIRECTIVE</b>Listening, questioning, withholding judgment.</div></div>
+      <div class="matrix"><div style="background:#FF3D7F"><b>1 · DIRECTIVE</b>Telling, mentoring. More information put in.</div><div style="background:#3DF58A"><b>4 · SITUATIONAL</b>The sweet spot: blend telling and asking.</div>
+      <div style="background:#8C97B8"><b>2 · LAISSEZ-FAIRE</b>Hands off. Little put in or drawn out.</div><div style="background:#A66BFF"><b>3 · NONDIRECTIVE</b>Listening, questioning, withholding judgment.</div></div>
       <p class="muted" style="margin:0">↑ information and advice the coach puts IN · → energy the coach draws OUT of the person</p></div>
       <div class="card"><h3>Part 1 · Which style is this? <span class="muted">(10 XP each)</span></h3>
       ${COACH.qs.map((q, i) => `<p style="margin:14px 0 6px">${i + 1}. ${q.s}</p><select id="c${i}"><option value="">Choose a style…</option>${shuffle(COACH.styles.map((s, k) => [s, k])).map(([s, k]) => `<option value="${k}">${s}</option>`).join("")}</select>`).join("")}</div>
@@ -424,7 +423,7 @@ function dojoFinish() { const d = S.data.dojo, cb = CHECKS.filter((_, i) => $("#
 // ============================================================ FINAL CHALLENGE
 let F = null;
 function bossIntro(id) {
-  view(`<div class="wrap">${topBar()}<div class="hero" style="margin-top:14px;background:linear-gradient(135deg,#1E1B4B,#B8325A 70%,#FF6B81)"><div style="font-size:44px">⚡</div><h2 style="color:#fff">Final challenge: The Crisis</h2>
+  view(`<div class="wrap">${topBar()}<div class="hero" style="margin-top:14px;background:linear-gradient(135deg,#0B1230,#5A0F3A 60%,#FF3D7F)"><div style="font-size:44px">⚡</div><h2 style="color:#fff">Final challenge: The Crisis</h2>
     <p>It's Monday morning at Lumen. Over the next five days, everything you've learned today will be tested.</p></div>
     <div class="card"><ul style="line-height:1.9;margin:0;padding-left:20px"><li>6 decisions · <b>45 seconds</b> each: crises don't wait</li><li>Best decision = <b>+25 XP</b>; partial credit for reasonable choices</li><li>Watch your team's <b>trust meter</b> rise or fall</li><li>⏱ Chapter clock: <b>${LIMIT[9]} minutes</b></li></ul></div>
     <button class="btn block coral" onclick="bossStart()">Face the crisis →</button></div>`);
@@ -433,7 +432,7 @@ function bossStart() { startChTimer(9); F = { i: 0, xp: 0, trust: 50, rev: [], o
 function bossShow() {
   const b = BOSS[F.i]; setTimeout(() => runChTimer(9), 0);
   view(`<div class="wrap">${topBar()}<div class="row" style="justify-content:space-between;margin:14px 0 6px"><span class="muted">Decision ${F.i + 1} of 6 · ${timerChip()}</span><span id="t" class="timer"></span></div>
-    <div class="card"><div class="row" style="justify-content:space-between"><b>Team trust</b><b>${F.trust}%</b></div><div class="bar" style="margin-top:8px"><div style="width:${F.trust}%;background:linear-gradient(90deg,#FF6B81,#FFB547,#22C1A6)"></div></div></div>
+    <div class="card"><div class="row" style="justify-content:space-between"><b>Team trust</b><b>${F.trust}%</b></div><div class="bar" style="margin-top:8px"><div style="width:${F.trust}%;background:linear-gradient(90deg,#FF3D7F,#FFD23F,#3DF58A)"></div></div></div>
     <div class="card"><div class="scene"><div class="face">⚡</div><div><div class="who">Lumen · crisis week</div><div class="txt">${b.s}</div></div></div><div class="ask">${b.q}</div>
     ${F.order[F.i].map((k, pos) => `<button class="opt" data-k="${k}" onclick="bossPick(${k})"><span class="k">${"ABC"[pos]}</span><span>${b.o[k][0]}</span></button>`).join("")}<div id="fb"></div></div></div>`);
   countdown($("#t"), 45, () => bossPick(-1));
@@ -490,13 +489,13 @@ function hostCode() {
 const ranked = () => HOST.pairs.map((p) => ({ ...p, total: hTotal(p) })).sort((a, b) => b.total - a.total);
 function hBoard() {
   const rk = ranked(), max = Math.max(1, ...rk.map((p) => p.total));
-  $("#hb").innerHTML = `<h1 class="center">Leaderboard</h1>${rk.map((p, k) => `<div class="lb"><div class="rk" style="${k < 3 ? `background:${["#FFB547", "#A7B4C9", "#E39B6B"][k]};color:#fff` : ""}">${k + 1}</div>
+  $("#hb").innerHTML = `<h1 class="center">Leaderboard</h1>${rk.map((p, k) => `<div class="lb"><div class="rk" style="${k < 3 ? `background:${["#FFD23F", "#C9D3F0", "#FF8A3D"][k]};color:#060914` : ""}">${k + 1}</div>
     <div><div class="nm">${esc(p.name)}</div><div class="barw"><div data-w="${(p.total / max) * 100}"></div></div></div><div class="xp">${p.total} XP</div></div>`).join("")}`;
   document.querySelectorAll(".lb").forEach((el, k) => setTimeout(() => { el.classList.add("show"); const b = el.querySelector(".barw div"); b.style.width = b.dataset.w + "%"; }, 100 + k * 120));
 }
 function hPodium() {
   $("#hb").innerHTML = `<div class="center"><h1>🏆 Leaders of the Year</h1><button class="btn" id="rv" onclick="reveal()">Reveal 3rd place</button></div>
-    <div class="podium"><div class="step" id="p2" style="height:240px;background:linear-gradient(180deg,#4DA3FF,#3477C4)"></div><div class="step" id="p1" style="height:320px;background:linear-gradient(180deg,#7C5CFF,#4B3CC9)"></div><div class="step" id="p3" style="height:180px;background:linear-gradient(180deg,#22C1A6,#178C79)"></div></div>`;
+    <div class="podium"><div class="step" id="p2" style="height:240px;background:linear-gradient(180deg,#A66BFF,#5B2FD0)"></div><div class="step" id="p1" style="height:320px;background:linear-gradient(180deg,#00D4FF,#0077B8)"></div><div class="step" id="p3" style="height:180px;background:linear-gradient(180deg,#FF3D7F,#B3124D)"></div></div>`;
   HOST._rv = 0;
 }
 function reveal() {
