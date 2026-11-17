@@ -1,0 +1,399 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#183229">
+<title>Engagement Essay Lab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--indigo:#F1F5F4;--ink:#E6EEEB;--violet:#34D399;--violet2:#A7F3D0;--teal:#6EE7B7;--amber:#D7DEE0;--coral:#F87171;--blue:#C0C8CC;--muted:#9FB3AD;--bg:#1E3B33;--card:#234539;--line:#3F6B5D;--night:#183229}
+*{box-sizing:border-box}
+html,body{margin:0;font-family:"Space Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);-webkit-tap-highlight-color:transparent}
+body{min-height:100vh;background:radial-gradient(900px 500px at 0% -10%,#34D3992E,transparent),radial-gradient(800px 500px at 110% 0%,#C0C8CC33,transparent),radial-gradient(700px 500px at 50% 120%,#C0C8CC22,transparent),var(--night);background-attachment:fixed}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 75%);z-index:0}
+#app{position:relative;z-index:1}
+.wrap{max-width:720px;margin:0 auto;padding:18px 16px 100px}
+.wide{max-width:1200px}
+h1{font-size:32px;font-weight:700;letter-spacing:-.03em;margin:.2em 0 .3em;color:#fff}
+h2{font-size:22px;font-weight:700;letter-spacing:-.02em;margin:.3em 0 .5em;color:#fff}
+h3{font-size:18px;font-weight:700;margin:.2em 0 .5em;color:#fff}
+p{line-height:1.55}
+a{color:var(--violet)}
+.card{background:linear-gradient(180deg,#26493Fee,#1F3C34ee);border:1px solid var(--line);border-radius:20px;padding:18px;margin:14px 0;box-shadow:0 20px 40px #0008;backdrop-filter:blur(10px)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#21423A 0%,#2A5A49 55%,#357A62 100%);color:#fff;border-radius:24px;padding:22px;border:1px solid #ffffff1f;box-shadow:0 0 0 1px #34D39922,0 20px 50px #34D39922,inset 0 1px 0 #ffffff22}
+.hero:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,#34D39955,transparent 70%);pointer-events:none}
+.hero p{color:#E3EBE8}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:14px 20px;font:inherit;font-weight:700;font-size:16px;cursor:pointer;background:linear-gradient(135deg,#34D399,#C0C8CC);color:#183229;margin:6px 6px 6px 0;box-shadow:0 0 22px #34D39955;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 0 32px #34D39988}.btn:active{transform:scale(.97)}
+.btn.block{display:flex;width:100%}
+.btn.ghost{background:#ffffff0d;color:#fff;box-shadow:none;border:1px solid var(--line)}
+.btn.small{padding:9px 14px;font-size:14px;border-radius:11px}
+.btn.teal{background:linear-gradient(135deg,#6EE7B7,#34D399);box-shadow:0 0 22px #6EE7B755}
+.btn.coral{background:linear-gradient(135deg,#F87171,#DC2626);color:#fff;box-shadow:0 0 22px #F8717155}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+input,select,textarea{font:inherit;font-size:16px;border-radius:12px;border:1.5px solid var(--line);background:#1B372F;color:#fff;padding:12px 13px;width:100%;outline:none}
+input::placeholder{color:#7F9C93}
+input:focus,select:focus{border-color:var(--violet);box-shadow:0 0 0 3px #34D39933}
+label{font-weight:700;font-size:14px;display:block;margin:14px 0 6px;color:var(--violet2)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;background:#ffffff0f;border:1px solid var(--line);color:#fff}
+.chip.dark{background:#ffffff1a;color:#fff;border-color:#ffffff2a}
+.brand{font-weight:700;font-size:14px;letter-spacing:.18em;background:linear-gradient(90deg,#1F7A5A,#34D399,#C0C8CC);-webkit-background-clip:text;background-clip:text;color:transparent}
+.chapter{display:flex;align-items:center;gap:14px;padding:14px;border-radius:18px;margin:10px 0;cursor:pointer;border:1px solid var(--line);width:100%;text-align:left;font:inherit;color:var(--ink);background:linear-gradient(180deg,#24473D,#1E3B33);transition:transform .12s,border-color .12s,box-shadow .12s}
+.chapter:hover{transform:translateY(-2px);border-color:#34D39988;box-shadow:0 0 24px #34D39933}
+.chapter .ico{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}
+.chapter .t{font-weight:700;font-size:16px;color:#fff}
+.chapter .s{font-size:13px;color:var(--muted);margin-top:2px}
+.chapter .pts{margin-left:auto;font-weight:700;font-size:13px;white-space:nowrap;text-align:right;color:var(--muted)}
+.chapter.locked{opacity:.55}
+.chapter.done{border-color:#6EE7B766}.chapter.done .pts{color:var(--teal)}
+.opt{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;border:1.5px solid var(--line);background:#21423A;color:var(--ink);border-radius:14px;padding:14px;margin:10px 0;font:inherit;font-size:16px;cursor:pointer;transition:all .15s;line-height:1.45}
+.opt:hover{border-color:var(--violet);box-shadow:0 0 18px #34D39933;transform:translateX(2px)}
+.opt .k{width:28px;height:28px;border-radius:8px;background:#34D3991f;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none;color:var(--violet)}
+.opt.right{border-color:var(--teal);background:#6EE7B714;box-shadow:0 0 18px #6EE7B733}.opt.right .k{background:var(--teal);color:#183229}
+.opt.wrong{border-color:var(--coral);background:#F8717114}.opt.wrong .k{background:var(--coral);color:#fff}
+.opt.gone{opacity:.25;pointer-events:none}
+.scene{display:flex;gap:12px;align-items:flex-start}
+.face{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#34D39933,#C0C8CC33);border:1px solid #ffffff1f;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}
+.scene .who{font-size:13px;font-weight:700;color:var(--violet)}
+.scene .txt{font-size:17px;line-height:1.5;margin-top:2px}
+.ask{font-weight:700;font-size:17px;margin:14px 0 4px;color:#fff}
+.sheet{border-radius:16px;padding:14px 16px;margin-top:12px;animation:rise .3s ease}
+.sheet.ok{background:#6EE7B712;border:1.5px solid #6EE7B766}.sheet.no{background:#D7DEE010;border:1.5px solid #D7DEE066}
+@keyframes rise{from{transform:translateY(10px);opacity:0}to{transform:none;opacity:1}}
+.bar{height:10px;border-radius:99px;background:#ffffff12;overflow:hidden}
+.bar>div{height:100%;border-radius:99px;background:linear-gradient(90deg,#1F7A5A,#34D399,#C0C8CC);box-shadow:0 0 12px #34D39988;transition:width .5s}
+.streak{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:#A3E635;text-shadow:0 0 12px #A3E63588}
+.pop{position:fixed;left:50%;top:40%;transform:translate(-50%,0);font-weight:700;font-size:28px;color:var(--teal);pointer-events:none;animation:pop 1s forwards;z-index:60;text-shadow:0 0 18px #6EE7B7}
+@keyframes pop{0%{transform:translate(-50%,10px) scale(.8);opacity:0}20%{opacity:1;transform:translate(-50%,0) scale(1.1)}100%{transform:translate(-50%,-70px);opacity:0}}
+.big{font-size:58px;font-weight:700;letter-spacing:-.04em;line-height:1;background:linear-gradient(90deg,#fff,#A7F3D0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:26px;font-weight:800;background:#183229;color:var(--violet);border:1px solid #34D39966;box-shadow:0 0 22px #34D39933,inset 0 0 18px #34D39922;border-radius:14px;padding:16px;text-align:center;margin:10px 0;letter-spacing:.08em;text-shadow:0 0 10px #34D399}
+.center{text-align:center}.muted{color:var(--muted);font-size:14px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.avatar{font-size:28px;border:1.5px solid var(--line);border-radius:14px;background:#21423A;width:56px;height:56px;cursor:pointer;transition:all .15s}
+.avatar.on{border-color:var(--violet);background:#34D3991f;box-shadow:0 0 18px #34D39955;transform:scale(1.06)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#21423A;border:1px solid #34D39966;color:#fff;padding:12px 18px;border-radius:14px;font-weight:700;z-index:70;box-shadow:0 0 30px #34D39944;max-width:92vw;text-align:center}
+.hide{display:none!important}
+.check{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:#21423A;border:1px solid var(--line);margin:8px 0;cursor:pointer;font-weight:600}
+.check input{width:22px;height:22px;flex:none;accent-color:var(--teal)}
+.timer{font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}.timer.warn{color:var(--coral)}
+.matrix{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.matrix div{border-radius:14px;padding:12px;font-size:14px;color:#183229}
+.matrix b{display:block;font-size:13px;margin-bottom:4px;letter-spacing:.04em}
+.prompt{background:#21423A;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:6px 0}
+.ring{width:124px;height:124px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:6px auto;box-shadow:0 0 28px #6EE7B744}
+.ring span{background:#1B372F;width:98px;height:98px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;font-weight:700;font-size:26px;color:#fff!important}
+.ring small{font-size:11px;color:var(--muted);font-weight:700}
+table{border-collapse:collapse;width:100%}
+th,td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--line);font-size:14px}
+th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+td input{padding:7px;text-align:center;font-size:15px;width:62px}
+td.name input{width:150px;text-align:left}
+.lb{display:grid;grid-template-columns:56px 1fr 110px;align-items:center;gap:14px;background:linear-gradient(90deg,#24473D,#1E3B33);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin:10px 0;opacity:0;transform:translateY(12px);transition:all .5s}
+.lb.show{opacity:1;transform:none}
+.lb .rk{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;background:#ffffff12;color:#fff}
+.lb .nm{font-weight:700;font-size:20px;color:#fff}.lb .xp{font-weight:700;font-size:22px;text-align:right;color:var(--violet);text-shadow:0 0 12px #34D39988}
+.lb .barw{height:8px;border-radius:9px;background:#ffffff12;margin-top:8px;overflow:hidden}.lb .barw div{height:100%;background:linear-gradient(90deg,#1F7A5A,#34D399,#C0C8CC);width:0;transition:width 1s .3s}
+.podium{display:flex;align-items:flex-end;justify-content:center;gap:16px;min-height:380px;margin-top:20px}
+.step{width:30%;max-width:250px;border-radius:20px 20px 0 0;display:flex;flex-direction:column;align-items:center;padding-top:18px;color:#183229;opacity:0;transform:translateY(40px);transition:all .8s}
+.step.show{opacity:1;transform:none}
+.step .medal{font-size:54px}.step .n2{font-weight:700;font-size:22px;text-align:center;padding:6px 10px}.step .pp{font-weight:700;font-size:16px;opacity:.85}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:40}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.pill{border:1.5px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer;background:#ffffff0a;color:#fff;font:inherit;font-weight:700;font-size:14px}
+.pill.on{background:linear-gradient(135deg,#34D399,#C0C8CC);color:#183229;border-color:transparent;box-shadow:0 0 18px #34D39955}
+.kbd{font-family:ui-monospace,Menlo,Consolas,monospace;background:#ffffff14;padding:2px 6px;border-radius:6px}
+.shake{animation:shake .35s}@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.dealtable th,.dealtable td{font-size:13px;padding:8px 5px}.dealtable td.best{color:#6EE7B7;font-weight:700;text-shadow:0 0 10px #6EE7B788}
+.brief{border-radius:16px;padding:16px;margin:14px 0;border:1px solid #34D39955;background:linear-gradient(135deg,#34D39914,#C0C8CC14);line-height:1.55}
+.vs{font-size:26px;font-weight:700;text-align:center;margin:6px 0;background:linear-gradient(90deg,#34D399,#C0C8CC);-webkit-background-clip:text;background-clip:text;color:transparent}
+</style>
+</head><body>
+<div id="app"></div><div id="toast" class="toast hide"></div><canvas id="confetti"></canvas>
+<script>
+/* ENGAGEMENT ESSAY LAB: individual practice essay with automatic, rule-based marking.
+   Readings: Robbins, Coulter & Long (2025) Ch.13, 14, 16; Mullins & Rees (2023) Ch.7. Case: Lighthouse Hotels (fictional). */
+const mem = {};
+const store = { get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return mem[k] !== undefined ? mem[k] : d; } }, set(k, v) { mem[k] = v; try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
+const KEY = "ee1_essay";
+let E = store.get(KEY, { name: "", started: 0, a: "", b: "", done: false, res: null });
+const save = () => store.set(KEY, E);
+const $ = (s) => document.querySelector(s);
+const esc = (t) => String(t).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+function toast(m, ms = 2600) { const t = $("#toast"); t.textContent = m; t.classList.remove("hide"); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.add("hide"), ms); }
+function view(h) { clearInterval(window._tick); $("#app").innerHTML = h; window.scrollTo(0, 0); }
+const LIMIT = 30 * 60;
+const fmt = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+const words = (t) => (t.trim().match(/[A-Za-zÀ-ÿ0-9%€£'’-]+/g) || []).length;
+function checksum(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } const A = "ABCDEFGHJKLMNPQRSTUVWXYZ"; return A[h % 24] + A[Math.floor(h / 24) % 24]; }
+const markCode = (m, w) => `E-${m}-${w}-${checksum(`EE1|${m}|${w}|ESSAY`)}`;
+function confetti(ms = 2500) { const c = $("#confetti"), x = c.getContext("2d"); c.width = innerWidth; c.height = innerHeight; const cols = ["#34D399", "#6EE7B7", "#D7DEE0", "#F87171", "#C0C8CC"]; const P = Array.from({ length: 140 }, () => ({ x: Math.random() * c.width, y: -20 - Math.random() * c.height * .5, r: 3 + Math.random() * 5, c: cols[Math.floor(Math.random() * 5)], vy: 2 + Math.random() * 3.5, vx: -1.5 + Math.random() * 3, a: Math.random() * 6 })); const end = Date.now() + ms; (function f() { x.clearRect(0, 0, c.width, c.height); P.forEach(p => { p.y += p.vy; p.x += p.vx; p.a += .08; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.r, -p.r / 2, p.r * 2, p.r); x.restore(); }); if (Date.now() < end) requestAnimationFrame(f); else x.clearRect(0, 0, c.width, c.height); })(); }
+
+// ============================================================ THE CASE
+const CASE = `
+<p>Lighthouse Hotels runs six coastal hotels in Ireland and Scotland. In 2024 a private equity firm bought the group and appointed a new General Manager, <b>Tom Reilly</b>, to "professionalise" it.</p>
+<h3>What changed in the last 12 months</h3>
+<ul style="line-height:1.7;padding-left:20px">
+<li>Reception, housekeeping and restaurant staff moved from fixed rotas to <b>zero-hours contracts</b>, with shifts announced weekly through an app.</li>
+<li>Tom introduced a <b>points league</b>: guest review scores become points, and each month the top three employees get a €150 voucher.</li>
+<li>Head Chef <b>Martina</b> (15 years with the group) lost control of her menus to a central <b>"standard menu"</b> designed in head office.</li>
+<li>Front-desk staff are rated by <b>"mystery guests"</b> and receive their scores by email, with no conversation.</li>
+<li>Housekeepers now clean <b>16 rooms per shift instead of 12</b>; the standard was set without consulting them.</li></ul>
+<h3>Three voices from the staff survey</h3>
+<div class="prompt"><b>Aoife, receptionist (2 years):</b> "I loved this job. Now I don't know my hours from one week to the next, and the voucher always goes to the same two people on the busiest desk."</div>
+<div class="prompt"><b>Martina, Head Chef (15 years):</b> "I used to create. Now I just follow a laminated sheet. Why would I stay late anymore?"</div>
+<div class="prompt"><b>Kasia, housekeeper (6 months):</b> "Nobody asked us about 16 rooms. My supervisor never says thank you, only tells us what we missed."</div>
+<h3>Key figures</h3>
+<table><tr><th style="text-align:left">Indicator</th><th>2023</th><th>2025</th></tr>
+<tr><td style="text-align:left">Engaged employees</td><td>61%</td><td>34%</td></tr>
+<tr><td style="text-align:left">Sick days per employee per year</td><td>4</td><td>9</td></tr>
+<tr><td style="text-align:left">Staff leaving within 6 months</td><td>12%</td><td>38%</td></tr>
+<tr><td style="text-align:left">Average guest review (out of 5)</td><td>4.6</td><td>4.1</td></tr></table>
+<p style="margin-top:14px">Tom's response to the board: <i>"Staff are paid market rates and we have a reward scheme. Engagement is a personal attitude problem."</i></p>`;
+const TASK_A = `<b>Task A (70%)</b>: Critically analyse why motivation and engagement at Lighthouse Hotels have collapsed. Draw on theories of individual behaviour, motivation and leadership, and use the three employees' experiences as evidence. Evaluate whether Tom's claim that engagement is "a personal attitude problem" is supported.`;
+const TASK_B = `<b>Task B (30%)</b>: Recommend a realistic 12-month plan to rebuild motivation and engagement. Justify each action with theory and say how its success should be measured.`;
+
+// ============================================================ MARKING MODEL
+// fam: ib = individual behaviour (RCL Ch.13), ct = content theories, pt = process theories / job design, ld = leadership (RCL Ch.16)
+const R = (s) => new RegExp(s, "i");
+const CONCEPTS = [
+  { id: "maslow", label: "Maslow's hierarchy of needs", fam: "ct", pts: 3, re: R("maslow|hierarchy of needs|safety needs?|esteem needs?|self-actuali[sz]ation|physiological needs?|social needs?|belonging"), sub: R("safety|security|esteem|belong|social need|physiological|self-actuali"), tip: "Zero-hours contracts threaten safety needs, which makes higher needs (esteem, self-actualisation) hard to reach." },
+  { id: "herzberg", label: "Herzberg's two-factor theory", fam: "ct", pts: 3, re: R("herzberg|two[- ]factor|hygiene|motivators?\\b|motivating factors?"), sub2: [R("hygiene"), R("motivators?\\b|motivating factors?")], tip: "Pay and the voucher are hygiene factors; recognition, responsibility and the work itself (Martina's creativity) are the missing motivators." },
+  { id: "mcclelland", label: "McClelland's needs theory", fam: "ct", pts: 2, re: R("mcclelland|need for achievement|nach\\b|need for affiliation|need for power|three[- ]needs"), tip: "Martina shows a high need for achievement that the standard menu now blocks." },
+  { id: "xy", label: "Theory X / Theory Y", fam: "ct", pts: 1.5, re: R("theory x|theory y|mcgregor"), tip: "Constant monitoring and imposed targets reflect Theory X assumptions about staff." },
+  { id: "erg", label: "Alderfer's ERG theory", fam: "ct", pts: 1.5, re: R("alderfer|\\berg\\b|existence,? relatedness|frustration[- ]regression"), tip: "Blocked growth needs can lead staff to focus on existence needs such as hours and pay (frustration-regression)." },
+  { id: "intext", label: "Intrinsic vs extrinsic motivation", fam: "ct", pts: 1.5, re: R("intrinsic|extrinsic"), tip: "The voucher is an extrinsic reward; Martina's loss of creativity removes intrinsic motivation." },
+  { id: "expectancy", label: "Expectancy theory (Vroom)", fam: "pt", pts: 3, re: R("expectancy|vroom|instrumentality|valence"), sub2: [R("expectancy"), R("instrumentality"), R("valence")], tip: "Most staff can't win the league (low expectancy), the link to reward is weak (instrumentality) and a voucher matters less than secure hours (valence)." },
+  { id: "equity", label: "Equity theory / organisational justice", fam: "pt", pts: 3, re: R("equity|adams|inequit|referent|distributive justice|procedural justice|organi[sz]ational justice|fairness|unfair"), sub: R("referent|distributive|procedural|input|outcome|ratio|adams"), tip: "Aoife compares herself with the same winners on the busiest desk: low distributive and procedural justice." },
+  { id: "goal", label: "Goal-setting theory", fam: "pt", pts: 3, re: R("goal[- ]setting|locke|smart goals?|goal acceptance|goal commitment|specific (and|&) (difficult|challenging) goals?|difficult goals?"), sub: R("accept|commit|particip|specific|difficult|feedback|smart"), tip: "The 16-room target was imposed: without participation, goal acceptance and commitment collapse." },
+  { id: "jcm", label: "Job characteristics model", fam: "pt", pts: 3, re: R("job characteristics|hackman|oldham|\\bjcm\\b|skill variety|task identity|task significance|autonomy|job enrichment|job design|job redesign"), sub2: [R("skill variety|variety"), R("task identity"), R("task significance|significance"), R("autonomy"), R("feedback")], tip: "The standard menu strips Martina's autonomy, skill variety and task identity; feedback by email is impersonal." },
+  { id: "reinf", label: "Reinforcement theory", fam: "pt", pts: 1.5, re: R("reinforcement|reinforc|punish|skinner|operant"), tip: "Supervisors only point out mistakes: punishment without positive reinforcement." },
+  { id: "efficacy", label: "Self-efficacy", fam: "pt", pts: 1.5, re: R("self[- ]efficacy"), tip: "Unrealistic targets lower staff's belief that they can succeed." },
+  { id: "attitudes", label: "Job attitudes: satisfaction, engagement, commitment", fam: "ib", pts: 3, re: R("job satisfaction|employee engagement|engagement|organi[sz]ational commitment|commitment|job involvement|attitudes?"), sub: R("satisfaction|commitment|involvement|engagement"), tip: "Satisfaction, commitment and engagement are job attitudes; the figures show their classic outcomes: absence, turnover and lower service quality." },
+  { id: "attrib", label: "Attribution theory / fundamental attribution error", fam: "ib", pts: 3, re: R("attribution|fundamental attribution error|self[- ]serving bias|internal (factors?|causes?)|external (factors?|causes?)|situational (factors?|causes?)"), tip: "Tom blames staff's 'attitude' (internal) and ignores situational causes: the fundamental attribution error." },
+  { id: "personality", label: "Personality / individual differences", fam: "ib", pts: 1.5, re: R("personality|big five|conscientious|neuroticism|locus of control|individual differences|emotional intelligence"), tip: "Personality affects reactions to change but can't explain a group-wide collapse." },
+  { id: "perception", label: "Perception", fam: "ib", pts: 1.5, re: R("perception|perceive|perceived"), tip: "Staff perceive the league as unfair, and perception drives behaviour more than reality." },
+  { id: "behav", label: "Absenteeism, turnover and withdrawal", fam: "ib", pts: 1.5, re: R("absenteeism|absence|turnover|withdrawal|quit|counterproductive|citizenship|\\bocb\\b"), tip: "Sick days rising from 4 to 9 and 38% early leavers are withdrawal behaviours." },
+  { id: "frustr", label: "Frustration-induced behaviour", fam: "ib", pts: 1.5, re: R("frustration|withdrawal behaviou?r|aggression|apathy|regression|fixation"), tip: "Blocked goals produce frustration: withdrawal and apathy ('why would I stay late?')." },
+  { id: "psych", label: "Psychological contract", fam: "ib", pts: 1.5, re: R("psychological contract"), tip: "Moving long-serving staff to zero-hours contracts breaks the psychological contract." },
+  { id: "ohio", label: "Behavioural leadership: task vs people", fam: "ld", pts: 3, re: R("initiating structure|consideration|production[- ]oriented|employee[- ]oriented|task[- ]oriented|people[- ]oriented|relationship[- ]oriented|autocratic|authoritarian|managerial grid|ohio|michigan|democratic|laissez"), tip: "Tom and the supervisors are production-oriented: high initiating structure, low consideration." },
+  { id: "transf", label: "Transactional vs transformational leadership", fam: "ld", pts: 3, re: R("transactional|transformational|charismatic|visionary|vision|individuali[sz]ed consideration|inspirational"), tip: "Tom relies on transactional exchange (points for vouchers) with no vision or individualised consideration." },
+  { id: "trust", label: "Trust", fam: "ld", pts: 1.5, re: R("\\btrust"), tip: "Imposed change without explanation damages trust, especially consistency and openness." },
+  { id: "contingency", label: "Contingency / situational leadership", fam: "ld", pts: 1.5, re: R("path[- ]goal|situational leadership|hersey|blanchard|fiedler|contingency|readiness|lmx|leader[- ]member exchange|in-?group"), tip: "A one-size-fits-all approach ignores the different needs of an experienced chef and a new housekeeper." },
+  { id: "servant", label: "Coaching / servant / ethical leadership", fam: "ld", pts: 1.5, re: R("coach|servant leader|ethical leader|authentic leader|empower"), tip: "Coaching and empowering leadership would rebuild engagement." },
+];
+const FAM = { ib: "Individual behaviour (Ch. 13)", ct: "Content theories (Ch. 14 / M&R Ch. 7)", pt: "Process theories and job design (Ch. 14 / M&R Ch. 7)", ld: "Leadership (Ch. 16)" };
+const ANCHORS = [
+  ["Aoife", R("aoife|receptionist|front[- ]desk|reception")], ["Martina", R("martina|head chef|\\bchef|menu|laminated|creat")], ["Kasia", R("kasia|housekeep|16 rooms|sixteen|12 rooms|rooms per shift")],
+  ["Tom", R("\\btom\\b|reilly|general manager|private equity|the board|new owners?")], ["League", R("league|voucher|points|€150|top three")], ["Contracts", R("zero[- ]hours?|rota|shifts?|hours")],
+  ["Mystery guests", R("mystery guest|by email|e-?mail")], ["Figures", R("61 ?%|34 ?%|38 ?%|12 ?%|\\b4\\.1\\b|\\b4\\.6\\b|sick days?|from 4 to 9|nine|doubled|more than doubled")],
+];
+const ACTIONS = [
+  { id: "security", label: "Job security / predictable hours", re: R("guarantee|minimum hours|contracted hours|fixed hours|stable hours|secure|security|predictab|rota|in advance|permanent contracts?|zero[- ]hours") },
+  { id: "reward", label: "Fair, team-based reward and recognition", re: R("team[- ]based|team bonus|team rewards?|recogni|praise|thank|celebrat|fair|transparen|reward") },
+  { id: "jobdesign", label: "Job redesign, autonomy and enrichment", re: R("autonomy|enrich|redesign|job design|discretion|creativ|own menus?|menu|variety|empower|job rotation") },
+  { id: "voice", label: "Participation and employee voice", re: R("consult|involv|particip|voice|forum|co-?design|co-?create|agree|negotiat|listen|suggestion|works council|representative") },
+  { id: "leader", label: "Leadership development and feedback", re: R("leadership development|train(ing)? (for )?(the )?(supervisors?|managers?)|coach|supervisors?|one[- ]to[- ]ones?|1[:-]1|face[- ]to[- ]face|feedback|transformational|consideration|mentor") },
+  { id: "career", label: "Development and career paths", re: R("career|progression|promot|development plans?|learning|upskill|personal development|training programmes?") },
+];
+const MEASURE = R("measur|kpi|track|monitor|pulse survey|engagement survey|survey|absence|sick days?|turnover|retention|baseline|review scores?|target of|reduce .* to|increase .* to|benchmark|metric");
+const SEQUENCE = R("month|phase|quarter|first|then|next|immediately|short[- ]term|medium[- ]term|long[- ]term|priorit|timeline|week|by (the )?end of|stage");
+const REALISM = R("cost|budget|trade[- ]?off|risk|private equity|investor|the board|afford|return on investment|\\broi\\b|resist|realistic|feasib|pilot");
+const EVAL = R("however|although|whereas|on the other hand|nevertheless|nonetheless|in contrast|limitation|limited|weakness|criticis|critique|oversimplif|not always|depends|it could be argued|arguabl|questionab|on balance|to some extent|evidence|empirical|research suggests|while |despite|rather than|fails? to|does not explain|cannot explain|partly|only partly");
+const CRITIQUE = [
+  [R("herzberg|two[- ]factor|hygiene"), R("criticis|critique|limitation|method|critical incident|self[- ]serving|not always|oversimplif|individual differences|weak|questionab|however|although")],
+  [R("maslow|hierarchy"), R("criticis|critique|limitation|evidence|empirical|rigid|culture|not always|order|oversimplif|weak|questionab|however|although")],
+  [R("expectancy|vroom"), R("complex|rational|assumes|limitation|criticis|difficult to measure|however|although")],
+  [R("equity|adams"), R("subjective|perception|limitation|criticis|individual|however|although")],
+  [R("transformational|charisma"), R("limitation|criticis|risk|dark side|dependence|however|although|not enough")],
+];
+const TOMQ = R("\\btom|claim|attitude problem|personal attitude|his view|his argument|ceo|general manager");
+const TOMNEG = R("not supported|unsupported|disagree|reject|flawed|wrong|incorrect|misplaced|mistaken|ignores?|overlooks?|situational|organi[sz]ational (causes?|factors?|changes?)|external|attribution|not (simply|just|only|merely|a personal|an attitude|individual)|rather than|evidence (shows|suggests)|coincid|management practice|system");
+const WEIGH = R("most important|most significant|main cause|primary|root cause|key driver|outweigh|biggest|central|crucial|above all|the core");
+
+function sentences(t) { return t.replace(/\s+/g, " ").split(/(?<=[.!?;])\s+(?=[A-Z0-9"“(])/).map((s) => s.trim()).filter((s) => s.length > 2); }
+function grade(a, b) {
+  const all = `${a}\n${b}`, sa = sentences(a), sb = sentences(b), sAll = sentences(all);
+  const wa = words(a), wb = words(b);
+  const found = [], applied = [];
+  let know = 0, app = 0;
+  // knowledge
+  CONCEPTS.forEach((c) => {
+    if (!c.re.test(all)) return;
+    let p = c.pts;
+    if (c.sub && c.sub.test(all)) p += 1;
+    if (c.sub2) { const n = c.sub2.filter((r) => r.test(all)).length; if (n >= 2) p += 1; if (n >= 3) p += 0.5; }
+    found.push(c.id); know += p;
+    // applied: concept and a case anchor in the same or the next sentence
+    const ok = sAll.some((s, i) => c.re.test(s) && ANCHORS.some(([, r]) => r.test(s) || (sAll[i + 1] && r.test(sAll[i + 1])) || (sAll[i - 1] && r.test(sAll[i - 1]))));
+    if (ok) { applied.push(c.id); app += c.pts >= 3 ? 3 : 1.5; }
+  });
+  const fams = new Set(found.map((id) => CONCEPTS.find((c) => c.id === id).fam));
+  know += Math.max(0, fams.size - 1) * 1.5;
+  const anchorsUsed = ANCHORS.filter(([, r]) => r.test(all)).map(([n]) => n);
+  app += Math.min(6, anchorsUsed.length * 0.9);
+  if (ANCHORS[7][1].test(all)) app += 2;
+  // critical evaluation (mainly Task A)
+  let ev = 0;
+  const evS = sa.filter((s) => EVAL.test(s)).length; ev += Math.min(8, evS * 1.25);
+  const crit = CRITIQUE.filter(([t, c]) => sa.some((s, i) => t.test(s) && (c.test(s) || (sa[i + 1] && c.test(sa[i + 1]))))).length; ev += Math.min(6, crit * 3);
+  const tom = sa.some((s, i) => TOMQ.test(s) && (TOMNEG.test(s) || (sa[i + 1] && TOMNEG.test(sa[i + 1])))); if (tom) ev += 4;
+  if (found.includes("attrib") && tom) ev += 1.5;
+  if (sa.some((s) => WEIGH.test(s))) ev += 1.5;
+  // recommendations (Task B)
+  let rec = 0; const acts = [], justified = [];
+  const theoryRe = new RegExp(CONCEPTS.map((c) => c.re.source).join("|"), "i");
+  ACTIONS.forEach((x) => {
+    const hits = sb.map((s, i) => [s, i]).filter(([s]) => x.re.test(s));
+    if (!hits.length) return; acts.push(x.id); rec += 2.5;
+    if (hits.some(([s, i]) => theoryRe.test(s) || (sb[i + 1] && theoryRe.test(sb[i + 1])) || (sb[i - 1] && theoryRe.test(sb[i - 1])))) { justified.push(x.id); rec += 1.5; }
+  });
+  const meas = MEASURE.test(b), seq = SEQUENCE.test(b), real = REALISM.test(b);
+  if (meas) rec += 3.5; if (seq) rec += 2; if (real) rec += 1.5;
+  // quality and length controls
+  const fa = Math.max(0.3, Math.min(1, wa / 320)), fb = Math.max(0.3, Math.min(1, wb / 140));
+  const avgLen = (wa + wb) / Math.max(1, sAll.length);
+  const density = found.length / Math.max(1, wa + wb);
+  let quality = 1, qnote = "";
+  if (wa + wb >= 15 && (avgLen < 7 || density > 0.06)) { quality = avgLen < 5 || density > 0.15 ? 0.4 : 0.75; qnote = "Much of the answer reads like a list of terms. Explain each theory in full sentences and link it to the case."; }
+  const uniq = new Set(sAll.map((s) => s.toLowerCase())); if (sAll.length > 4 && uniq.size / sAll.length < 0.8) { quality = Math.min(quality, 0.7); qnote = "Some sentences are repeated. Each point should add something new."; }
+  const sc = {
+    know: Math.round(Math.min(25, know) * Math.min(1, (fa + fb) / 2 + 0.15) * quality),
+    app: Math.round(Math.min(25, app) * fa * quality),
+    ev: Math.round(Math.min(20, ev) * fa * quality),
+    rec: Math.round(Math.min(30, rec) * fb * quality),
+  };
+  if (!b.trim()) sc.rec = 0;
+  const raw = Math.min(100, sc.know + sc.app + sc.ev + sc.rec);
+  // UK-style calibration: a descriptive floor that grows with length, then a concave curve so excellent work lands around 80-85
+  let total = Math.min(92, Math.round(20 * Math.min(1, (wa + wb) / 300) * quality + 65 * Math.sqrt(raw / 100)));
+  if (!tom) total = Math.min(total, 68); // Task A explicitly asks for an evaluation of Tom's claim: without it, no First
+  return { sc, raw, total, found, applied, fams: [...fams], anchorsUsed, acts, justified, meas, seq, real, tom, crit, evS, wa, wb, qnote };
+}
+const BANDS = [[70, "First", "1st", "#6EE7B7"], [60, "Upper Second", "2:1", "#34D399"], [50, "Lower Second", "2:2", "#C0C8CC"], [40, "Third / Pass", "3rd", "#D7DEE0"], [0, "Fail", "F", "#F87171"]];
+const band = (m) => BANDS.find(([min]) => m >= min);
+const level = (p) => p >= 0.8 ? "Excellent" : p >= 0.6 ? "Good" : p >= 0.4 ? "Developing" : p >= 0.15 ? "Limited" : "Missing";
+function feedback(r) {
+  const C = (id) => CONCEPTS.find((c) => c.id === id);
+  const pct = { know: r.sc.know / 25, app: r.sc.app / 25, ev: r.sc.ev / 20, rec: r.sc.rec / 30 };
+  const names = { know: "knowledge of theory", app: "application to the case", ev: "critical evaluation", rec: "recommendations" };
+  const order = Object.keys(pct).sort((x, y) => pct[y] - pct[x]);
+  const strengths = [], gaps = [];
+  const sDesc = {
+    know: () => `Good range of theory: you used ${r.found.slice(0, 4).map((id) => C(id).label).join(", ")}${r.found.length > 4 ? " and more" : ""}.`,
+    app: () => `You linked theory to the case well, using evidence about ${r.anchorsUsed.slice(0, 4).join(", ")}.`,
+    ev: () => r.tom ? "You challenged Tom's claim instead of accepting it, which is exactly what 'critically analyse' asks for." : "You used evaluative language and weighed up the theories.",
+    rec: () => `Your plan covers ${r.acts.length} areas of action${r.meas ? " and says how success will be measured" : ""}.`,
+  };
+  order.slice(0, 2).forEach((k) => { if (pct[k] >= 0.45) strengths.push(sDesc[k]()); });
+  if (!strengths.length) strengths.push(r.wa + r.wb > 150 ? "You engaged with the case and described its problems." : "You made a start. Use the full 30 minutes next time.");
+  // gaps: most valuable missing items first
+  const prio = ["herzberg", "expectancy", "equity", "attrib", "goal", "jcm", "ohio", "transf", "attitudes", "maslow"];
+  prio.filter((id) => !r.found.includes(id)).slice(0, 2).forEach((id) => gaps.push(`<b>${C(id).label}</b> is missing. ${C(id).tip}`));
+  if (gaps.length < 2) prio.filter((id) => r.found.includes(id) && !r.applied.includes(id)).slice(0, 2 - gaps.length).forEach((id) => gaps.push(`You mention <b>${C(id).label}</b> but don't apply it to the case. ${C(id).tip}`));
+  if (!r.tom) gaps.push("You don't clearly evaluate Tom's claim that engagement is 'a personal attitude problem'. Task A asks you to judge whether it is supported.");
+  else if (r.crit === 0) gaps.push("Add critical evaluation of the theories themselves (e.g. criticisms of Herzberg's method or Maslow's hierarchy), not only of the managers.");
+  if (r.wb < 60) gaps.push("Task B (30% of the mark) is too short. Give a 12-month plan with several actions.");
+  else if (r.justified.length < Math.max(2, r.acts.length - 1)) gaps.push("Justify each recommendation with a named theory (e.g. 'team-based recognition addresses the equity problem Aoife describes').");
+  if (r.wb >= 60 && !r.meas) gaps.push("Say how success will be measured: e.g. the engagement score, sick days, six-month turnover and guest reviews against the 2023 baseline.");
+  if (r.qnote) gaps.unshift(r.qnote);
+  const next = r.total >= 70 ? "To push higher: prioritise your recommendations and weigh their costs and trade-offs for the new owners." : r.total >= 60 ? "To reach a First: add sharper critical evaluation, e.g. limits of the theories you use and which cause matters most, and justify every recommendation with theory." : r.total >= 50 ? "To reach a 2:1: compare the three employees through process theories (expectancy, equity, goal-setting), not just describe their problems." : r.total >= 40 ? "To reach a 2:2: name and explain at least one content theory and one process theory, and apply each to a specific employee." : "To pass: write in full paragraphs, explain at least two motivation theories, and use evidence from the case.";
+  return { strengths: strengths.slice(0, 2), gaps: gaps.slice(0, 3), next };
+}
+
+// ============================================================ SCREENS
+function start() {
+  if (E.done && E.res) return results();
+  if (E.started) return write();
+  view(`<div class="wrap"><div class="top"><span class="brand">ENGAGEMENT ESSAY LAB</span><span class="chip">🧠 Individual</span></div>
+    <div class="hero" style="margin-top:14px"><div style="font-size:42px">✍️</div><h1>The Lighthouse Hotels Turnaround</h1>
+    <p>A practice exam essay on motivation and engagement. You have <b>30 minutes</b>. When you submit, the app marks your essay against the exam criteria and gives you feedback straight away.</p></div>
+    <div class="card"><h3>How it works</h3><ul style="line-height:1.8;margin:0;padding-left:20px">
+      <li>Read the case, then answer <b>Task A (70%)</b> and <b>Task B (30%)</b>.</li>
+      <li>The timer starts when you click Start and keeps running if you reload the page.</li>
+      <li>Copy and paste are switched off: this is exam practice. Your work is saved on this device as you type.</li>
+      <li>At 0:00 your essay is submitted automatically.</li>
+      <li>You'll get a mark out of 100, your grade band, strengths, gaps and a next step.</li></ul></div>
+    <div class="card"><label for="nm">Your name or student number</label><input id="nm" maxlength="60" value="${esc(E.name)}" placeholder="e.g. Alex M. or 2412345">
+    <button class="btn block" style="margin-top:16px" onclick="begin()">Start the 30-minute essay ⏱</button></div>
+    <p class="center muted">Marking is automatic and gives an indicative practice mark. Your lecturer's marking decides real grades.</p></div>`);
+}
+function begin() { const n = $("#nm").value.trim(); if (!n) return toast("Please enter your name or student number"); E.name = n; E.started = Date.now(); save(); write(); }
+const left = () => Math.max(0, Math.round(LIMIT - (Date.now() - E.started) / 1000));
+function write() {
+  view(`<div class="wrap wide" style="max-width:1100px"><div class="top"><span class="brand">ENGAGEMENT ESSAY LAB</span><span class="chip" id="clk" style="font-size:16px">⏱ ${fmt(left())}</span></div>
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:16px" id="grid">
+      <div><div class="card" style="max-height:78vh;overflow:auto"><h2>The case</h2>${CASE}</div></div>
+      <div><div class="card"><p style="margin-top:0">${TASK_A}</p><textarea id="ta" rows="16" placeholder="Write your analysis here in full paragraphs…">${esc(E.a)}</textarea><div class="muted" id="wa"></div></div>
+      <div class="card"><p style="margin-top:0">${TASK_B}</p><textarea id="tb" rows="9" placeholder="Write your 12-month plan here…">${esc(E.b)}</textarea><div class="muted" id="wb"></div></div>
+      <button class="btn block teal" onclick="confirmSubmit()">Submit my essay for marking ✅</button>
+      <p class="muted center">Guide: about 350-500 words for Task A and 150-250 for Task B.</p></div></div></div>`);
+  if (innerWidth < 800) $("#grid").style.gridTemplateColumns = "1fr";
+  ["ta", "tb"].forEach((id) => {
+    const el = $("#" + id);
+    el.style.cssText = "width:100%;font:inherit;font-size:16px;line-height:1.6;border-radius:12px;border:1.5px solid var(--line);background:#1B372F;color:#fff;padding:12px;resize:vertical";
+    el.addEventListener("input", () => { E[id === "ta" ? "a" : "b"] = el.value; save(); counts(); });
+    ["paste", "drop"].forEach((ev) => el.addEventListener(ev, (e) => { e.preventDefault(); toast("Paste is switched off in exam mode: type your own answer ✍️"); }));
+  });
+  counts();
+  let warned5 = false, warned1 = false;
+  const tick = () => {
+    const l = left(); const c = $("#clk"); if (c) { c.textContent = "⏱ " + fmt(l); c.style.color = l <= 300 ? "var(--coral)" : ""; }
+    if (l <= 300 && !warned5) { warned5 = true; toast("⏰ 5 minutes left: make sure Task B has your plan!", 4000); }
+    if (l <= 60 && !warned1) { warned1 = true; toast("⏰ 1 minute left!", 3000); }
+    if (l <= 0) { clearInterval(window._tick); toast("Time's up: your essay has been submitted", 3500); submit(); }
+  };
+  tick(); window._tick = setInterval(tick, 1000);
+}
+function counts() { const a = words($("#ta").value), b = words($("#tb").value); $("#wa").textContent = `${a} words`; $("#wb").textContent = `${b} words`; }
+function confirmSubmit() {
+  if (words(E.a) + words(E.b) < 30) return toast("Write a bit more before submitting");
+  if (!confirm("Submit your essay now? You can't edit it afterwards.")) return;
+  submit();
+}
+function submit() { clearInterval(window._tick); E.a = ($("#ta") || {}).value ?? E.a; E.b = ($("#tb") || {}).value ?? E.b; const r = grade(E.a, E.b); r.b = !!E.b.trim(); E.res = { r, f: feedback(r), at: Date.now() }; E.done = true; save(); if (r.total >= 60) confetti(); results(); }
+function results() {
+  const { r, f } = E.res, [, bname, bshort, bcol] = band(r.total);
+  const bar = (lab, v, max) => `<div style="margin:12px 0"><div class="row" style="justify-content:space-between"><b>${lab} <span class="muted">(${max}%)</span></b><b>${level(v / max)}</b></div><div class="bar" style="margin-top:6px"><div style="width:${Math.max(4, (v / max) * 100)}%"></div></div></div>`;
+  const chips = CONCEPTS.filter((c) => r.found.includes(c.id)).map((c) => `<span class="chip" style="margin:3px;${r.applied.includes(c.id) ? "border-color:#6EE7B788" : ""}">${r.applied.includes(c.id) ? "✅" : "▫️"} ${c.label}</span>`).join("");
+  view(`<div class="wrap"><div class="top"><span class="brand">ENGAGEMENT ESSAY LAB</span><span class="chip">${esc(E.name)}</span></div>
+    <div class="hero center" style="margin-top:14px"><div class="muted" style="color:#C9D6D2">Your practice mark</div><div class="big">${r.total}<span style="font-size:24px">/100</span></div>
+      <div style="display:inline-block;margin-top:10px;padding:6px 16px;border-radius:999px;font-weight:700;background:${bcol};color:#183229">${bshort} · ${bname}</div>
+      <p style="margin-bottom:0">${r.wa} words in Task A · ${r.wb} words in Task B</p></div>
+    <div class="card"><h3>How you did on each criterion</h3>${bar("Knowledge of theory", r.sc.know, 25)}${bar("Application to the case", r.sc.app, 25)}${bar("Critical evaluation", r.sc.ev, 20)}${bar("Recommendations", r.sc.rec, 30)}</div>
+    <div class="sheet ok"><b>✅ What you did well</b><ul style="margin:8px 0 0;padding-left:20px;line-height:1.6">${f.strengths.map((x) => `<li>${x}</li>`).join("")}</ul></div>
+    <div class="sheet no"><b>🔧 What would raise your mark</b><ul style="margin:8px 0 0;padding-left:20px;line-height:1.6">${f.gaps.map((x) => `<li>${x}</li>`).join("")}</ul></div>
+    <div class="card"><h3>🎯 Your next step</h3><p style="margin:0">${f.next}</p></div>
+    <div class="card"><h3>Theories found in your essay</h3><p class="muted" style="margin-top:0">✅ = applied to the case · ▫️ = mentioned but not applied</p>${chips || '<p class="muted">No named theories were found. Name the theory you are using.</p>'}</div>
+    <div class="card"><h3>Score code</h3><p class="muted" style="margin-top:0">Show this to your lecturer.</p><div class="code">${markCode(r.total, r.wa + r.wb)}</div>
+      <button class="btn block ghost" onclick="download()">⬇️ Download my essay + feedback (Word)</button>
+      <button class="btn block ghost" onclick="toggleModel()">📖 Show the model answer</button><div id="model" class="hide" style="margin-top:10px">${modelHTML()}</div></div>
+    <p class="center muted">Indicative practice mark from automatic marking. Your lecturer's marking decides real grades.</p></div>`);
+}
+function toggleModel() { $("#model").classList.toggle("hide"); }
+function modelHTML() {
+  const L = (t, items) => `<h3 style="margin-top:16px">${t}</h3><ul style="line-height:1.65;padding-left:20px;margin:0">${items.map((i) => `<li>${i}</li>`).join("")}</ul>`;
+  return L("Task A · Individual behaviour", ["Job satisfaction, commitment and engagement are <b>job attitudes</b>. The figures show their classic outcomes: absence up from 4 to 9 days, 38% early leavers and lower guest reviews.", "Tom shows the <b>fundamental attribution error</b>: he blames internal causes (attitude) and ignores situational ones (contracts, job design, management)."])
+    + L("Task A · Content theories", ["<b>Maslow</b>: zero-hours contracts threaten safety needs.", "<b>Herzberg</b>: insecurity and impersonal supervision are hygiene problems; recognition, responsibility and the work itself (Martina's creativity) were motivators, and they have been removed.", "<b>McClelland</b>: Martina's need for achievement is blocked.", "Evaluate: Maslow's hierarchy has weak empirical support, and Herzberg's method is criticised."])
+    + L("Task A · Process theories and job design", ["<b>Expectancy</b>: low expectancy (the league favours the busiest desks), weak instrumentality and low valence (a voucher vs secure hours).", "<b>Equity</b>: Aoife sees the same winners, so distributive and procedural justice are low.", "<b>Goal-setting</b>: the imposed 16-room target lacks participation, so acceptance and commitment are low.", "<b>Job characteristics model</b>: the standard menu removes Martina's autonomy, skill variety and task identity; email feedback is impersonal."])
+    + L("Task A · Leadership and Tom's claim", ["Tom is <b>transactional</b> and production-oriented: high initiating structure, low consideration, and no vision.", "Supervisors give only corrective feedback, and trust (consistency, openness) has fallen.", "<b>Conclusion</b>: the claim is not supported. The collapse coincides with management changes, so the causes are organisational. Personality shapes individual reactions but can't explain a group-wide decline."])
+    + L("Task B · A strong 12-month plan", ["Months 1-3: guaranteed minimum hours and rotas published in advance (hygiene factors, safety needs).", "Replace the league with team-based, transparent recognition and regular face-to-face praise (equity, reinforcement).", "Give Martina back menu autonomy within a group framework; agree workload standards with housekeepers (JCM, goal-setting participation).", "Develop supervisors in consideration and coaching (behavioural and transformational leadership); add staff forums and pulse surveys.", "Measure engagement, sick days, six-month turnover and guest reviews against the 2023 baseline; acknowledge the costs for the new owners."]);
+}
+function download() {
+  const { r, f } = E.res, [, bname, bshort] = band(r.total);
+  const p = (t) => `<p>${esc(t).replace(/\n/g, "<br>")}</p>`;
+  const html = `<html><head><meta charset="utf-8"><title>Essay</title></head><body style="font-family:Calibri,Arial;font-size:11pt">
+    <h1>Lighthouse Hotels Turnaround: practice essay</h1><p><b>Student:</b> ${esc(E.name)}<br><b>Submitted:</b> ${new Date(E.res.at).toLocaleString()}<br><b>Practice mark:</b> ${r.total}/100 (${bshort}, ${bname})<br><b>Score code:</b> ${markCode(r.total, r.wa + r.wb)}</p>
+    <h2>Task A</h2>${p(E.a)}<h2>Task B</h2>${p(E.b)}
+    <h2>Feedback</h2><p>Knowledge of theory: ${level(r.sc.know / 25)} · Application to the case: ${level(r.sc.app / 25)} · Critical evaluation: ${level(r.sc.ev / 20)} · Recommendations: ${level(r.sc.rec / 30)}</p>
+    <p><b>Strengths</b></p><ul>${f.strengths.map((x) => `<li>${x}</li>`).join("")}</ul><p><b>To improve</b></p><ul>${f.gaps.map((x) => `<li>${x}</li>`).join("")}</ul><p><b>Next step:</b> ${f.next}</p></body></html>`;
+  const blob = new Blob(["﻿" + html], { type: "application/msword" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = `Essay_${E.name.replace(/[^\w-]+/g, "_")}.doc`; document.body.appendChild(a); a.click(); a.remove();
+}
+// ============================================================ LECTURER: verify codes (#check) and reset (#reset)
+function check() {
+  view(`<div class="wrap"><div class="hero" style="margin-top:14px"><h1>Check essay codes</h1><p>Type a student's score code to confirm it's genuine.</p></div>
+    <div class="card"><input id="cc" placeholder="E-67-512-KQ"><button class="btn block" style="margin-top:12px" onclick="verify()">Check</button><p id="cm" style="font-weight:700"></p></div></div>`);
+}
+function verify() { const m = $("#cc").value.trim().toUpperCase().match(/^E-(\d+)-(\d+)-([A-Z]{2})$/); const out = $("#cm"); if (!m) { out.textContent = "⚠️ That doesn't look like an essay code"; return; } if (checksum(`EE1|${+m[1]}|${+m[2]}|ESSAY`) !== m[3]) { out.textContent = "❌ Not a valid code"; return; } const [, bn, bs] = band(+m[1]); out.textContent = `✅ Valid: ${m[1]}/100 (${bs}, ${bn}) · ${m[2]} words`; }
+function route() { const h = location.hash.replace("#", ""); if (h === "check") return check(); if (h === "reset") { if (confirm("Clear the essay saved on this device?")) { localStorage.removeItem(KEY); E = { name: "", started: 0, a: "", b: "", done: false, res: null }; } location.hash = ""; return start(); } start(); }
+window.addEventListener("hashchange", route);
+route();
+</script>
+
+</body></html>

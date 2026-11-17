@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#183229">
+<title>Engage Quest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--indigo:#F1F5F4;--ink:#E6EEEB;--violet:#34D399;--violet2:#A7F3D0;--teal:#6EE7B7;--amber:#D7DEE0;--coral:#F87171;--blue:#C0C8CC;--muted:#9FB3AD;--bg:#1E3B33;--card:#234539;--line:#3F6B5D;--night:#183229}
+*{box-sizing:border-box}
+html,body{margin:0;font-family:"Space Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);-webkit-tap-highlight-color:transparent}
+body{min-height:100vh;background:radial-gradient(900px 500px at 0% -10%,#34D3992E,transparent),radial-gradient(800px 500px at 110% 0%,#C0C8CC33,transparent),radial-gradient(700px 500px at 50% 120%,#C0C8CC22,transparent),var(--night);background-attachment:fixed}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 75%);z-index:0}
+#app{position:relative;z-index:1}
+.wrap{max-width:720px;margin:0 auto;padding:18px 16px 100px}
+.wide{max-width:1200px}
+h1{font-size:32px;font-weight:700;letter-spacing:-.03em;margin:.2em 0 .3em;color:#fff}
+h2{font-size:22px;font-weight:700;letter-spacing:-.02em;margin:.3em 0 .5em;color:#fff}
+h3{font-size:18px;font-weight:700;margin:.2em 0 .5em;color:#fff}
+p{line-height:1.55}
+a{color:var(--violet)}
+.card{background:linear-gradient(180deg,#26493Fee,#1F3C34ee);border:1px solid var(--line);border-radius:20px;padding:18px;margin:14px 0;box-shadow:0 20px 40px #0008;backdrop-filter:blur(10px)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#21423A 0%,#2A5A49 55%,#357A62 100%);color:#fff;border-radius:24px;padding:22px;border:1px solid #ffffff1f;box-shadow:0 0 0 1px #34D39922,0 20px 50px #34D39922,inset 0 1px 0 #ffffff22}
+.hero:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,#34D39955,transparent 70%);pointer-events:none}
+.hero p{color:#E3EBE8}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:14px 20px;font:inherit;font-weight:700;font-size:16px;cursor:pointer;background:linear-gradient(135deg,#34D399,#C0C8CC);color:#183229;margin:6px 6px 6px 0;box-shadow:0 0 22px #34D39955;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 0 32px #34D39988}.btn:active{transform:scale(.97)}
+.btn.block{display:flex;width:100%}
+.btn.ghost{background:#ffffff0d;color:#fff;box-shadow:none;border:1px solid var(--line)}
+.btn.small{padding:9px 14px;font-size:14px;border-radius:11px}
+.btn.teal{background:linear-gradient(135deg,#6EE7B7,#34D399);box-shadow:0 0 22px #6EE7B755}
+.btn.coral{background:linear-gradient(135deg,#F87171,#DC2626);color:#fff;box-shadow:0 0 22px #F8717155}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+input,select,textarea{font:inherit;font-size:16px;border-radius:12px;border:1.5px solid var(--line);background:#1B372F;color:#fff;padding:12px 13px;width:100%;outline:none}
+input::placeholder{color:#7F9C93}
+input:focus,select:focus{border-color:var(--violet);box-shadow:0 0 0 3px #34D39933}
+label{font-weight:700;font-size:14px;display:block;margin:14px 0 6px;color:var(--violet2)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;background:#ffffff0f;border:1px solid var(--line);color:#fff}
+.chip.dark{background:#ffffff1a;color:#fff;border-color:#ffffff2a}
+.brand{font-weight:700;font-size:14px;letter-spacing:.18em;background:linear-gradient(90deg,#1F7A5A,#34D399,#C0C8CC);-webkit-background-clip:text;background-clip:text;color:transparent}
+.chapter{display:flex;align-items:center;gap:14px;padding:14px;border-radius:18px;margin:10px 0;cursor:pointer;border:1px solid var(--line);width:100%;text-align:left;font:inherit;color:var(--ink);background:linear-gradient(180deg,#24473D,#1E3B33);transition:transform .12s,border-color .12s,box-shadow .12s}
+.chapter:hover{transform:translateY(-2px);border-color:#34D39988;box-shadow:0 0 24px #34D39933}
+.chapter .ico{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}
+.chapter .t{font-weight:700;font-size:16px;color:#fff}
+.chapter .s{font-size:13px;color:var(--muted);margin-top:2px}
+.chapter .pts{margin-left:auto;font-weight:700;font-size:13px;white-space:nowrap;text-align:right;color:var(--muted)}
+.chapter.locked{opacity:.55}
+.chapter.done{border-color:#6EE7B766}.chapter.done .pts{color:var(--teal)}
+.opt{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;border:1.5px solid var(--line);background:#21423A;color:var(--ink);border-radius:14px;padding:14px;margin:10px 0;font:inherit;font-size:16px;cursor:pointer;transition:all .15s;line-height:1.45}
+.opt:hover{border-color:var(--violet);box-shadow:0 0 18px #34D39933;transform:translateX(2px)}
+.opt .k{width:28px;height:28px;border-radius:8px;background:#34D3991f;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none;color:var(--violet)}
+.opt.right{border-color:var(--teal);background:#6EE7B714;box-shadow:0 0 18px #6EE7B733}.opt.right .k{background:var(--teal);color:#183229}
+.opt.wrong{border-color:var(--coral);background:#F8717114}.opt.wrong .k{background:var(--coral);color:#fff}
+.opt.gone{opacity:.25;pointer-events:none}
+.scene{display:flex;gap:12px;align-items:flex-start}
+.face{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#34D39933,#C0C8CC33);border:1px solid #ffffff1f;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}
+.scene .who{font-size:13px;font-weight:700;color:var(--violet)}
+.scene .txt{font-size:17px;line-height:1.5;margin-top:2px}
+.ask{font-weight:700;font-size:17px;margin:14px 0 4px;color:#fff}
+.sheet{border-radius:16px;padding:14px 16px;margin-top:12px;animation:rise .3s ease}
+.sheet.ok{background:#6EE7B712;border:1.5px solid #6EE7B766}.sheet.no{background:#D7DEE010;border:1.5px solid #D7DEE066}
+@keyframes rise{from{transform:translateY(10px);opacity:0}to{transform:none;opacity:1}}
+.bar{height:10px;border-radius:99px;background:#ffffff12;overflow:hidden}
+.bar>div{height:100%;border-radius:99px;background:linear-gradient(90deg,#1F7A5A,#34D399,#C0C8CC);box-shadow:0 0 12px #34D39988;transition:width .5s}
+.streak{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:#A3E635;text-shadow:0 0 12px #A3E63588}
+.pop{position:fixed;left:50%;top:40%;transform:translate(-50%,0);font-weight:700;font-size:28px;color:var(--teal);pointer-events:none;animation:pop 1s forwards;z-index:60;text-shadow:0 0 18px #6EE7B7}
+@keyframes pop{0%{transform:translate(-50%,10px) scale(.8);opacity:0}20%{opacity:1;transform:translate(-50%,0) scale(1.1)}100%{transform:translate(-50%,-70px);opacity:0}}
+.big{font-size:58px;font-weight:700;letter-spacing:-.04em;line-height:1;background:linear-gradient(90deg,#fff,#A7F3D0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:26px;font-weight:800;background:#183229;color:var(--violet);border:1px solid #34D39966;box-shadow:0 0 22px #34D39933,inset 0 0 18px #34D39922;border-radius:14px;padding:16px;text-align:center;margin:10px 0;letter-spacing:.08em;text-shadow:0 0 10px #34D399}
+.center{text-align:center}.muted{color:var(--muted);font-size:14px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.avatar{font-size:28px;border:1.5px solid var(--line);border-radius:14px;background:#21423A;width:56px;height:56px;cursor:pointer;transition:all .15s}
+.avatar.on{border-color:var(--violet);background:#34D3991f;box-shadow:0 0 18px #34D39955;transform:scale(1.06)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#21423A;border:1px solid #34D39966;color:#fff;padding:12px 18px;border-radius:14px;font-weight:700;z-index:70;box-shadow:0 0 30px #34D39944;max-width:92vw;text-align:center}
+.hide{display:none!important}
+.check{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:#21423A;border:1px solid var(--line);margin:8px 0;cursor:pointer;font-weight:600}
+.check input{width:22px;height:22px;flex:none;accent-color:var(--teal)}
+.timer{font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}.timer.warn{color:var(--coral)}
+.matrix{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.matrix div{border-radius:14px;padding:12px;font-size:14px;color:#183229}
+.matrix b{display:block;font-size:13px;margin-bottom:4px;letter-spacing:.04em}
+.prompt{background:#21423A;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:6px 0}
+.ring{width:124px;height:124px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:6px auto;box-shadow:0 0 28px #6EE7B744}
+.ring span{background:#1B372F;width:98px;height:98px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;font-weight:700;font-size:26px;color:#fff!important}
+.ring small{font-size:11px;color:var(--muted);font-weight:700}
+table{border-collapse:collapse;width:100%}
+th,td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--line);font-size:14px}
+th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+td input{padding:7px;text-align:center;font-size:15px;width:62px}
+td.name input{width:150px;text-align:left}
+.lb{display:grid;grid-template-columns:56px 1fr 110px;align-items:center;gap:14px;background:linear-gradient(90deg,#24473D,#1E3B33);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin:10px 0;opacity:0;transform:translateY(12px);transition:all .5s}
+.lb.show{opacity:1;transform:none}
+.lb .rk{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;background:#ffffff12;color:#fff}
+.lb .nm{font-weight:700;font-size:20px;color:#fff}.lb .xp{font-weight:700;font-size:22px;text-align:right;color:var(--violet);text-shadow:0 0 12px #34D39988}
+.lb .barw{height:8px;border-radius:9px;background:#ffffff12;margin-top:8px;overflow:hidden}.lb .barw div{height:100%;background:linear-gradient(90deg,#1F7A5A,#34D399,#C0C8CC);width:0;transition:width 1s .3s}
+.podium{display:flex;align-items:flex-end;justify-content:center;gap:16px;min-height:380px;margin-top:20px}
+.step{width:30%;max-width:250px;border-radius:20px 20px 0 0;display:flex;flex-direction:column;align-items:center;padding-top:18px;color:#183229;opacity:0;transform:translateY(40px);transition:all .8s}
+.step.show{opacity:1;transform:none}
+.step .medal{font-size:54px}.step .n2{font-weight:700;font-size:22px;text-align:center;padding:6px 10px}.step .pp{font-weight:700;font-size:16px;opacity:.85}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:40}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.pill{border:1.5px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer;background:#ffffff0a;color:#fff;font:inherit;font-weight:700;font-size:14px}
+.pill.on{background:linear-gradient(135deg,#34D399,#C0C8CC);color:#183229;border-color:transparent;box-shadow:0 0 18px #34D39955}
+.kbd{font-family:ui-monospace,Menlo,Consolas,monospace;background:#ffffff14;padding:2px 6px;border-radius:6px}
+.shake{animation:shake .35s}@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.dealtable th,.dealtable td{font-size:13px;padding:8px 5px}.dealtable td.best{color:#6EE7B7;font-weight:700;text-shadow:0 0 10px #6EE7B788}
+.brief{border-radius:16px;padding:16px;margin:14px 0;border:1px solid #34D39955;background:linear-gradient(135deg,#34D39914,#C0C8CC14);line-height:1.55}
+.vs{font-size:26px;font-weight:700;text-align:center;margin:6px 0;background:linear-gradient(90deg,#34D399,#C0C8CC);-webkit-background-clip:text;background-clip:text;color:transparent}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div id="app"></div>
+<div id="toast" class="toast hide"></div>
+<script>
+"use strict";
+/* ENGAGE QUEST: Robbins, Coulter & Long (2025) Ch.13, 14, 16; Mullins & Rees (2023) Ch.7. Fictional company: Pulse. */
+const mem = {};
+const store = { get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return mem[k] !== undefined ? mem[k] : d; } }, set(k, v) { mem[k] = v; try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
+let S = store.get("eq2_pair", { team: "", pair: 0, avatar: "🐉", xp: {}, done: {}, unlocked: {}, sound: true, data: {} });
+let HOST = store.get("eq2_host", null);
+const save = () => store.set("eq2_pair", S), saveHost = () => store.set("eq2_host", HOST);
+const $ = (s) => document.querySelector(s);
+const esc = (t) => String(t).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+function toast(m, ms = 2200) { const t = $("#toast"); t.textContent = m; t.classList.remove("hide"); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.add("hide"), ms); }
+let timers = []; function stopTimers() { timers.forEach(clearInterval); timers = []; }
+function view(h) { stopTimers(); $("#app").innerHTML = h; window.scrollTo(0, 0); }
+function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function checksum(p, r, s) { const str = `EQ2|${p}|${r}|${s}|PULSE`; let h = 2166136261; for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } const A = "ABCDEFGHJKLMNPQRSTUVWXYZ"; return A[h % 24] + A[Math.floor(h / 24) % 24]; }
+const makeCode = (r, s) => `${S.pair}-${r}-${s}-${checksum(S.pair, r, s)}`;
+function pop(t, col) { const d = document.createElement("div"); d.className = "pop"; d.textContent = t; if (col) d.style.color = col; document.body.appendChild(d); setTimeout(() => d.remove(), 1000); }
+function countdown(el, secs, onEnd) { let left = secs; const draw = () => { if (!el) return; el.textContent = `${Math.floor(left / 60)}:${String(left % 60).padStart(2, "0")}`; el.classList.toggle("warn", left <= 10); }; draw(); const id = setInterval(() => { left--; if (left <= 0) { left = 0; draw(); clearInterval(id); onEnd && onEnd(); } else draw(); }, 1000); timers.push(id); }
+let AC = null;
+function tone(seq) { if (!S.sound) return; try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); let t = AC.currentTime; seq.forEach(([f, d]) => { const o = AC.createOscillator(), g = AC.createGain(); o.type = "sine"; o.frequency.value = f; g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.12, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + d); o.connect(g); g.connect(AC.destination); o.start(t); o.stop(t + d); t += d * 0.75; }); } catch (e) {} }
+const SFX = { good: () => tone([[784, .12], [1175, .22]]), streak: () => tone([[784, .1], [988, .1], [1319, .25]]), soft: () => tone([[392, .2], [349, .25]]), win: () => tone([[523, .12], [659, .12], [784, .12], [1047, .4]]), tap: () => tone([[1200, .05]]) };
+function confetti(ms = 3000) { const c = $("#confetti"), x = c.getContext("2d"); c.width = innerWidth; c.height = innerHeight; const cols = ["#34D399", "#6EE7B7", "#D7DEE0", "#F87171", "#C0C8CC"]; const P = Array.from({ length: 160 }, () => ({ x: Math.random() * c.width, y: -20 - Math.random() * c.height * .5, r: 3 + Math.random() * 5, c: cols[Math.floor(Math.random() * 5)], vy: 2 + Math.random() * 3.5, vx: -1.5 + Math.random() * 3, a: Math.random() * 6 })); const end = Date.now() + ms; (function f() { x.clearRect(0, 0, c.width, c.height); P.forEach(p => { p.y += p.vy; p.x += p.vx; p.a += .08; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.beginPath(); x.roundRect ? x.roundRect(-p.r, -p.r / 2, p.r * 2, p.r, 2) : x.rect(-p.r, -p.r / 2, p.r * 2, p.r); x.fill(); x.restore(); }); if (Date.now() < end) requestAnimationFrame(f); else x.clearRect(0, 0, c.width, c.height); })(); }
+
+// ============================================================ CHAPTERS
+const SECTIONS = { A: "Section A · Individual behaviour", B: "Section B · Motivation & job design", C: "Section C · Rewards, well-being & leadership" };
+const CH = [
+  { id: 1, sec: "A", key: "ATTITUDE", title: "Read the People", sub: "Attitudes, satisfaction, engagement · OB outcomes", max: 100, ico: "🔍", col: "#34D399", ref: "RCL Ch.13", type: "quiz" },
+  { id: 2, sec: "A", key: "PERCEPTION", title: "Inside Their Heads", sub: "Personality, perception, attribution, learning", max: 100, ico: "🧠", col: "#C0C8CC", ref: "RCL Ch.13", type: "quiz" },
+  { id: 3, sec: "B", key: "NEEDS", title: "What Drives Them", sub: "Content theories: Maslow, Herzberg, McClelland, ERG", max: 100, ico: "🔋", col: "#6EE7B7", ref: "RCL Ch.14 · M&R Ch.7", type: "quiz" },
+  { id: 4, sec: "B", key: "EQUITY", title: "Fair Play", sub: "Contemporary theories: expectancy, equity, goals", max: 100, ico: "⚖️", col: "#D7DEE0", ref: "RCL Ch.14 · M&R Ch.7", type: "quiz" },
+  { id: 5, sec: "B", key: "ENRICH", title: "Design the Job", sub: "Job design for today's workforce", max: 100, ico: "🛠️", col: "#A7F3D0", ref: "RCL Ch.14", type: "quiz" },
+  { id: 6, sec: "C", key: "THRIVE", title: "Thrive at Work", sub: "Feedback, rewards beyond pay, well-being", max: 100, ico: "🌱", col: "#6EE7B7", ref: "RCL Ch.13, 14 · M&R Ch.7", type: "quiz" },
+  { id: 7, sec: "C", key: "INSPIRE", title: "Lead to Engage", sub: "Leadership theories that drive engagement", max: 100, ico: "🌟", col: "#34D399", ref: "RCL Ch.16", type: "quiz" },
+  { id: 8, sec: "C", key: "SIMULATE", title: "The Engagement Simulator", sub: "Run Pulse for a year · budget, events, results", max: 150, ico: "📈", col: "#6EE7B7", ref: "All readings", type: "sim" },
+  { id: 9, sec: "C", key: "DEAL", title: "The Pay Talks", sub: "Pair vs pair negotiation", max: 150, ico: "🤝", col: "#C0C8CC", ref: "All readings", type: "duel" },
+  { id: 10, sec: "C", key: "LIGHTNING", title: "Lightning Round", sub: "Bonus if time allows · 10 rapid-fire questions", max: 100, ico: "⚡", col: "#D7DEE0", ref: "All readings", type: "blitz" },
+];
+const TOTAL = CH.reduce((a, c) => a + c.max, 0);
+const C = (id) => CH.find((x) => x.id === id);
+const RANKS = [[0, "New Head of People"], [150, "People Partner"], [300, "Culture Builder"], [450, "Engagement Expert"], [600, "Talent Champion"], [750, "Chief People Officer"], [900, "Workplace Legend"]];
+const rank = (xp) => RANKS.filter((r) => xp >= r[0]).pop()[1];
+const totalXP = () => Object.values(S.xp).reduce((a, b) => a + b, 0);
+
+/* Each question: f = face, n = who, s = situation ("" = concept check), q = question, o = options (FIRST = correct; shuffled at runtime), w = why */
+const Q = {
+1: [
+  { f: "🧑‍🔧", n: "Leo, support team", s: "Leo often covers colleagues' shifts and trains new starters, although none of this is in his job description.", q: "What is Leo's behaviour called?", o: ["Organisational citizenship behaviour", "Job involvement in his own tasks", "Workplace misbehaviour", "Employee productivity"], w: "OCB is discretionary behaviour beyond formal job requirements that helps the organisation." },
+  { f: "😒", n: "Survey comment", s: "\"I think my job is pointless.\" The same employee says she feels irritated every morning and has started arriving late.", q: "Which three parts of an attitude does this show?", o: ["Cognitive, affective and behavioural", "Perceptual, emotional and rational", "Conscious, unconscious and learned", "Personal, social and organisational"], w: "Attitudes have a cognitive part (belief), an affective part (feeling) and a behavioural part (intention to act)." },
+  { f: "💙", n: "Exit-interview data", s: "Staff who turned down offers from rivals say: \"I identify with Pulse and want to stay here.\"", q: "Which job attitude is this mainly?", o: ["Organisational commitment", "Job involvement", "Cognitive dissonance", "High self-monitoring"], w: "Organisational commitment is identifying with the organisation and wanting to remain a member." },
+  { f: "😬", n: "Sam, product designer", s: "Sam believes strongly in work-life balance but works every weekend. He feels uneasy and starts telling himself weekends \"don't matter much\".", q: "What is happening?", o: ["He is reducing cognitive dissonance", "He has an external locus of control", "He is showing the halo effect", "He is showing citizenship behaviour"], w: "Cognitive dissonance is the discomfort of inconsistent attitudes and behaviour; people often change the attitude to reduce it." },
+  { f: "", n: "", s: "", q: "Employee engagement is best described as…", o: ["Being connected to, satisfied with and enthusiastic about one's job", "Being paid well above the market rate for the same kind of role in the sector", "Having worked for the same organisation for many years", "Attending every company social event and team meeting"], w: "Engagement combines connection, satisfaction and enthusiasm. Pay and tenure don't define it." },
+  { f: "💼", n: "Pulse's CFO", s: "\"Engagement fell from 52% to 38%. So what? People still turn up.\"", q: "What's your best evidence-based reply?", o: ["Engaged staff tend to perform better and are less likely to quit", "Engagement only really matters for the senior leadership team at Pulse", "Engagement has no link with performance or turnover", "Engaged staff always ask for much higher salaries"], w: "Research links high engagement with better performance, customer outcomes and lower turnover." },
+  { f: "", n: "", s: "", q: "Which of these is an example of workplace misbehaviour?", o: ["Spreading rumours to undermine a colleague", "Refusing to do overtime that isn't in the contract", "Asking a manager for feedback after a presentation", "Taking every single annual leave day in the year"], w: "Workplace misbehaviour is intentional behaviour that harms the organisation or people in it." },
+  { f: "📊", n: "People analytics", s: "Satisfaction in the sales team rose sharply this year, but individual sales hardly changed.", q: "What does research suggest about satisfaction and productivity?", o: ["There is a link, but it is modest for individuals", "Satisfied workers are always far more productive", "There is no relationship between the two at all", "Only productivity affects satisfaction, never the reverse"], w: "The link exists but is modest at the individual level; organisations with more satisfied staff tend to be more effective overall." },
+],
+2: [
+  { f: "📅", n: "Ana, project lead", s: "Ana is organised, dependable and has never missed a deadline in three years.", q: "Which Big Five dimension describes her best?", o: ["Conscientiousness", "Agreeableness towards others", "Openness to experience", "Emotional stability"], w: "Conscientiousness (responsible, dependable, organised) is the Big Five dimension most consistently linked with job performance." },
+  { f: "🎲", n: "Ben, analyst", s: "\"Promotions here are about luck and who you know. Working harder won't change anything.\"", q: "Ben shows…", o: ["An external locus of control", "An internal locus of control", "A high level of self-monitoring", "A proactive personality"], w: "People with an external locus of control believe outside forces control what happens to them." },
+  { f: "", n: "", s: "", q: "Emotional intelligence (EI) is…", o: ["The ability to notice and manage emotional cues and information", "A measure of general intelligence and how quickly people reason", "One of the 16 personality types in the Myers-Briggs indicator", "The habit of keeping all emotions completely hidden at work"], w: "EI covers self-awareness, self-management, self-motivation, empathy and social skills." },
+  { f: "✨", n: "Appraisal panel", s: "Chloe gave one brilliant presentation, and her manager now rates her highly on every criterion, including punctuality.", q: "Which perception shortcut is this?", o: ["The halo effect", "Stereotyping", "Assumed similarity", "Selective perception"], w: "The halo effect: forming a general impression from a single characteristic." },
+  { f: "📉", n: "Team manager", s: "When the team hits its target she credits her leadership. When it misses, she blames \"the market\".", q: "This is…", o: ["Self-serving bias", "The fundamental attribution error", "The halo effect", "Assumed similarity"], w: "Self-serving bias: crediting our own success to internal factors and blaming failure on external factors." },
+  { f: "🚆", n: "Monday 9:20", s: "Dev arrives late, but so does the whole team: there was a train strike.", q: "High consensus suggests the cause is…", o: ["External: something in the situation", "Internal: Dev's own lack of effort", "A stable personality trait of Dev's", "Dev's low commitment to the team"], w: "Attribution theory: if everyone behaves the same way (high consensus), we tend to attribute the behaviour to external causes." },
+  { f: "🎧", n: "New starter, Mia", s: "Her manager praises her every time her call-handling time gets a little closer to the target.", q: "Which learning technique is the manager using?", o: ["Shaping through successive reinforcement", "Social learning by watching a role model", "Extinction by ignoring the behaviour", "Punishment to stop unwanted behaviour"], w: "Shaping reinforces each successive step that moves an individual closer to the desired behaviour." },
+  { f: "", n: "", s: "", q: "Social learning theory says that people learn…", o: ["By observing others as well as through direct experience", "Only from the rewards and the punishments they personally receive", "Only through formal training courses and education", "By instinct, without needing any experience at all"], w: "Social learning: people learn through observation and direct experience. Role models matter." },
+],
+3: [
+  { f: "💷", n: "HR dashboard", s: "After a 6% pay rise, complaints about pay stopped, but motivation scores didn't move.", q: "Herzberg would call pay…", o: ["A hygiene factor", "A motivator", "A growth need", "A valence"], w: "Hygiene factors remove dissatisfaction but don't create motivation." },
+  { f: "🙋", n: "Priya, developer", s: "\"I want challenging work, recognition when I do well, and the chance to grow.\"", q: "In Herzberg's theory, these are…", o: ["Motivators that create satisfaction", "Hygiene factors that stop dissatisfaction", "Lower-order needs in Maslow's model", "Extrinsic rewards controlled by HR"], w: "Achievement, recognition, responsibility and growth are Herzberg's motivators." },
+  { f: "📝", n: "Contract staff", s: "Staff on rolling 3-month contracts constantly worry whether they'll be renewed.", q: "Which of Maslow's needs is most threatened?", o: ["Safety", "Esteem", "Social", "Self-actualisation"], w: "Safety needs include security and protection, including job security." },
+  { f: "🧐", n: "Operations manager", s: "\"People here avoid work if they can. I need to watch them closely and control everything.\"", q: "Which assumptions is this manager making?", o: ["Theory X", "Theory Y", "Two-factor theory", "Need for affiliation"], w: "McGregor's Theory X assumes people dislike work and must be controlled; Theory Y assumes they can self-direct." },
+  { f: "🎯", n: "Tom, sales", s: "Tom loves moderately difficult goals, fast feedback and personal responsibility for results.", q: "Tom shows a high…", o: ["Need for achievement", "Need for affiliation", "Need for power", "Need for security"], w: "McClelland: high achievers prefer moderate challenge, feedback and personal responsibility." },
+  { f: "", n: "", s: "", q: "Alderfer's ERG theory (Mullins & Rees) groups needs into…", o: ["Existence, relatedness and growth", "Esteem, rewards and goals", "Effort, results and gains", "Equity, respect and growth"], w: "ERG condenses Maslow's five levels into three, and allows more than one need to operate at a time." },
+  { f: "", n: "", s: "", q: "A key criticism of Maslow's hierarchy is that…", o: ["Research gives little support for a fixed order of needs", "It denies that people have any needs at all", "It focuses only on pay and the physical working conditions", "It was designed for senior managers only"], w: "The theory is intuitive, but evidence for a strict, universal order of needs is weak." },
+  { f: "🚪", n: "Kai, refused promotion twice", s: "Kai has stopped speaking up in meetings and keeps to himself.", q: "Which frustration-induced behaviour is this (Mullins & Rees)?", o: ["Withdrawal", "Aggression", "Fixation", "Regression"], w: "Mullins & Rees list aggression, regression, fixation and withdrawal as reactions to frustration." },
+],
+4: [
+  { f: "📞", n: "Sales reps", s: "\"Even if we work much harder, there's no way we can hit these new targets.\"", q: "Which link in expectancy theory is weak?", o: ["Effort to performance (expectancy)", "Performance to reward (instrumentality)", "Reward to personal goal (valence)", "Inputs to outcomes (equity ratio)"], w: "Expectancy is the belief that effort will lead to performance." },
+  { f: "🎁", n: "Bonus scheme", s: "Top performers are rewarded with vouchers for a shop most staff never use.", q: "Which part of expectancy theory is the problem?", o: ["Low valence", "Low expectancy", "Low instrumentality", "Low self-efficacy"], w: "Valence is how much the person values the reward." },
+  { f: "😤", n: "Mia, 3 years at Pulse", s: "Mia discovers that a new hire earns more for exactly the same job.", q: "What is Mia comparing?", o: ["Her outcome/input ratio with a referent's", "Her personal goals with the team's goals", "Her needs with her personal values", "Her effort with her own expectations"], w: "Equity theory: people compare their outcome/input ratio with that of relevant others (referents)." },
+  { f: "🚪", n: "Pay review", s: "Pay rises were decided in a closed meeting, and no one explained the criteria.", q: "Which kind of fairness is lowest?", o: ["Procedural justice", "Distributive justice", "Interactional valence", "Job involvement"], w: "Procedural justice is the perceived fairness of the process used to decide rewards." },
+  { f: "🗣️", n: "Team manager", s: "\"This quarter, just do your best.\"", q: "How would goal-setting theory improve this?", o: ["Set specific, challenging goals with feedback", "Keep goals vague so no one feels pressure", "Set easy goals so that everyone succeeds", "Drop goals and focus only on rewards"], w: "Specific, difficult goals that are accepted, with feedback, lead to higher performance than 'do your best'." },
+  { f: "", n: "", s: "", q: "In goal-setting theory, participation in setting goals mainly increases…", o: ["Acceptance of and commitment to the goal", "The size of the financial reward offered", "The number of goals an employee has", "The speed at which feedback arrives"], w: "Participation increases goal acceptance, even for difficult goals." },
+  { f: "💻", n: "Lena, finance", s: "Lena doubts she can learn the new analytics tool, so she avoids trying it.", q: "Lena has…", o: ["Low self-efficacy", "A low need for power", "High equity sensitivity", "A hygiene factor problem"], w: "Self-efficacy is a person's belief that they can perform a task." },
+  { f: "", n: "", s: "", q: "Reinforcement theory says that behaviour is mainly a function of…", o: ["Its consequences", "Inner needs and drives", "Personal goals and plans", "Fair comparisons with others"], w: "Reinforcers that immediately follow a behaviour increase the chance it's repeated." },
+],
+5: [
+  { f: "🎫", n: "Support agents", s: "Agents answer the same type of password-reset ticket all day, every day.", q: "Which job characteristic is lowest?", o: ["Skill variety", "Task significance", "Task identity (a whole job)", "Feedback from the job"], w: "Skill variety: how far a job needs a range of different skills and activities." },
+  { f: "", n: "", s: "", q: "Adding more tasks of a similar kind to a job is called…", o: ["Job enlargement", "Job enrichment", "Job sharing", "Job crafting"], w: "Enlargement adds scope (horizontal); enrichment adds depth (planning and evaluating)." },
+  { f: "🛠️", n: "Customer care", s: "Agents get the authority to plan their own work and approve refunds themselves.", q: "This is…", o: ["Job enrichment: more depth", "Job enlargement: more scope", "A compressed workweek", "Open-book management"], w: "Job enrichment adds responsibility for planning and evaluating, increasing job depth." },
+  { f: "💌", n: "App developers", s: "The team reads a message from a user whose health improved thanks to a feature they built.", q: "Which job characteristic is this boosting?", o: ["Task significance", "Task identity", "Skill variety", "Autonomy"], w: "Task significance: the job's impact on other people's lives or work." },
+  { f: "💡", n: "Noor, support agent", s: "On her own initiative, Noor redesigns how her team handles refund requests, and her manager backs the change.", q: "Which approach to job design does this reflect?", o: ["The proactive perspective", "The relational perspective", "Job enlargement", "Job sharing"], w: "In the proactive perspective, employees take the initiative to change how their work is done." },
+  { f: "👨‍👧", n: "Omar, parent", s: "Omar asks to work four 10-hour days instead of five 8-hour days.", q: "Which flexible arrangement is this?", o: ["Compressed workweek", "Flextime", "Job sharing", "Telecommuting from home"], w: "A compressed workweek: longer days, fewer days per week." },
+  { f: "", n: "", s: "", q: "In the job characteristics model, autonomy leads to…", o: ["Experienced responsibility for outcomes", "Knowledge of the actual results achieved", "Experienced meaningfulness of the work", "Higher pay and better fringe benefits"], w: "Variety, identity and significance create meaningfulness; autonomy creates responsibility; feedback creates knowledge of results." },
+  { f: "📄", n: "Seasonal hires", s: "Pulse takes on temporary contract workers for its busy January season.", q: "What is most likely to motivate them?", o: ["The chance of a permanent job and training", "The same share options as permanent staff", "A strict system that monitors their activity", "A promise of a long-term career path"], w: "Contingent workers are often motivated by the chance to become permanent and by training that improves their employability." },
+],
+6: [
+  { f: "📊", n: "Pulse's CEO", s: "Pulse shares its financial results with all staff and explains how each team's work affects them.", q: "Which approach is this?", o: ["Open-book management", "Pay-for-performance", "Job sharing", "Telecommuting"], w: "Open-book management involves employees by showing them the financial statements." },
+  { f: "🙌", n: "Customer care", s: "Managers send personal thank-you notes, and colleagues post shout-outs on a 'kudos wall' for great work.", q: "Which reward approach is this?", o: ["An employee recognition programme", "A pay-for-performance programme", "Open-book management", "A job sharing arrangement"], w: "Recognition programmes give personal attention, approval and appreciation for a job well done, at little cost." },
+  { f: "💹", n: "Sales team", s: "Part of every salesperson's pay is a commission linked directly to their measured sales results.", q: "This is an example of…", o: ["Pay-for-performance", "Open-book management", "Job enrichment", "A hygiene-only reward"], w: "Pay-for-performance programmes pay people on the basis of a performance measure." },
+  { f: "📆", n: "Old appraisal system", s: "Staff hear how they're doing only once a year, in their annual review.", q: "Which theory suggests this feedback comes too late?", o: ["Reinforcement: consequences work best when immediate", "Maslow: feedback only meets physiological needs", "McClelland: only power-driven people want feedback", "Theory X: staff don't benefit from any feedback"], w: "Reinforcement theory: a reinforcer that immediately follows a behaviour makes it more likely to be repeated." },
+  { f: "", n: "", s: "", q: "In goal-setting theory, why does feedback improve performance?", o: ["It shows the gap between what's been done and the aim", "It raises the amount of the bonus that people can earn", "It removes the need to set specific and difficult goals", "It replaces the need for people to accept their goals"], w: "Feedback identifies discrepancies between what has been done and what people want to achieve, which guides behaviour." },
+  { f: "", n: "", s: "", q: "Mullins & Rees group people's needs and expectations at work into…", o: ["Economic rewards, intrinsic satisfaction, social relationships", "Pay, promotion prospects and pension schemes for every member of staff", "Hygiene factors, motivators and the valence of each reward", "Physical, emotional and financial safety at work and at home"], w: "Mullins & Rees: people work for economic rewards, for intrinsic satisfaction and for social relationships." },
+  { f: "😠", n: "Sara, overloaded", s: "Sara's workload has doubled and her requests for help were ignored. She has started snapping at colleagues.", q: "Which frustration-induced behaviour is this (Mullins & Rees)?", o: ["Aggression", "Withdrawal", "Fixation", "Regression"], w: "Aggression is one reaction to frustration. Removing the barrier (here, workload) protects well-being." },
+  { f: "🌱", n: "Jon, team lead", s: "After a tough reorganisation, Jon bounces back quickly, adapts and helps others cope.", q: "Which personal characteristic is Jon showing?", o: ["Resilience", "Self-monitoring", "Machiavellianism", "An external locus of control"], w: "Resilience is the ability to overcome challenges and cope with stress and change." },
+],
+7: [
+  { f: "📋", n: "Sales manager", s: "She sets clear roles, tasks and deadlines, but rarely asks how people are feeling.", q: "In the Ohio State terms, she is…", o: ["High initiating structure, low consideration", "High consideration, low initiating structure", "Low on both initiating structure and consideration", "High on both initiating structure and consideration"], w: "Initiating structure = task focus; consideration = trust, respect and concern for followers." },
+  { f: "🏆", n: "Data team", s: "Your data team is experienced, highly skilled and keen to take ownership.", q: "Which situational leadership style fits?", o: ["Delegating", "Telling", "Selling", "Participating"], w: "Hersey and Blanchard: able and willing followers (R4) suit delegating." },
+  { f: "🚀", n: "New CEO", s: "She paints an exciting picture of Pulse's future and takes time to develop each person individually.", q: "This is mainly…", o: ["Transformational leadership", "Transactional leadership", "Laissez-faire leadership", "Autocratic leadership"], w: "Transformational leaders inspire with vision and show individualised consideration." },
+  { f: "💰", n: "Regional manager", s: "\"Hit your numbers and you get the bonus. Miss them and you don't. Simple.\"", q: "This is mainly…", o: ["Transactional leadership", "Transformational leadership", "Servant leadership", "Charismatic leadership"], w: "Transactional leaders exchange rewards for performance." },
+  { f: "👥", n: "Survey comment", s: "\"Our manager has a small inner circle who always get the best projects.\"", q: "Which theory explains this?", o: ["Leader-member exchange (in-groups)", "Fiedler's contingency model of leadership", "Path-goal theory", "The Managerial Grid"], w: "LMX: leaders create in-groups and out-groups, with real effects on engagement." },
+  { f: "", n: "", s: "", q: "Path-goal theory is built on…", o: ["Expectancy theory", "Adams' equity theory", "Maslow's hierarchy of needs", "Herzberg's two-factor theory"], w: "Leaders clear the path from effort to goals and rewards: expectancy theory applied to leadership." },
+  { f: "", n: "", s: "", q: "Which dimension of trust is seen as the most critical?", o: ["Integrity", "Loyalty to the team", "Openness with staff", "Competence at the job"], w: "Integrity (honesty and truthfulness) is seen as the most critical dimension of trust." },
+  { f: "🌟", n: "Team lead Rosa", s: "People follow Rosa's lead because they admire her and want to be like her.", q: "Which source of power is this?", o: ["Referent power", "Coercive power", "Legitimate power", "Reward power"], w: "Referent power comes from people identifying with you." },
+],
+};
+const BLITZ = [
+  { q: "Which is a hygiene factor?", o: ["Salary", "Recognition", "Achievement", "Growth"], w: "Herzberg: salary is a hygiene factor." },
+  { q: "Expectancy theory was developed by…", o: ["Vroom", "Adams", "Locke", "Herzberg"], w: "Victor Vroom." },
+  { q: "Equity theory was developed by…", o: ["Adams", "Vroom", "Maslow", "McClelland"], w: "J. Stacey Adams." },
+  { q: "Goal-setting theory is linked to…", o: ["Locke", "Alderfer", "Fiedler", "Blake"], w: "Edwin Locke." },
+  { q: "The job characteristics model is by…", o: ["Hackman & Oldham", "Blake & Mouton", "Hersey & Blanchard", "Porter & Lawler"], w: "Hackman and Oldham." },
+  { q: "The top level of Maslow's hierarchy is…", o: ["Self-actualisation", "Esteem and status needs", "Social", "Safety"], w: "Self-actualisation." },
+  { q: "Blaming people rather than the situation is…", o: ["The fundamental attribution error", "The self-serving bias in judgement", "The halo effect", "Stereotyping"], w: "We underestimate external causes and overestimate internal ones when judging others." },
+  { q: "The Big Five trait for calm and secure is…", o: ["Emotional stability", "Extraversion", "Agreeableness", "Openness"], w: "Emotional stability." },
+  { q: "Unable and unwilling followers (R1) need…", o: ["Telling", "Delegating", "Participating", "Selling"], w: "Hersey and Blanchard: R1 suits telling." },
+  { q: "Exchanging rewards for performance is…", o: ["Transactional leadership", "Transformational leadership", "Servant leadership", "Authentic leadership"], w: "Transactional leadership." },
+];
+
+// ============================================================ CHAPTER TIMERS (minutes of play per chapter)
+const LIMIT = { 1: 4, 2: 4, 3: 4, 4: 4, 5: 4, 6: 4, 7: 4, 8: 15, 9: 14, 10: 5 };
+const fmt = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+function startChTimer(id) { if (!S.data["t" + id]) { S.data["t" + id] = Date.now(); save(); } runChTimer(id); }
+function chLeft(id) { return Math.max(0, Math.round(LIMIT[id] * 60 - (Date.now() - S.data["t" + id]) / 1000)); }
+function runChTimer(id) {
+  clearInterval(window._cht); let warned = false;
+  const tick = () => {
+    if (S.done[id]) return clearInterval(window._cht);
+    const left = chLeft(id), el = $("#cht");
+    if (el) { el.textContent = "⏱ " + fmt(left); el.style.color = left <= 60 ? "var(--coral)" : ""; }
+    if (left <= 60 && left > 0 && !warned) { warned = true; toast("⏰ 1 minute left in this chapter!"); }
+    if (left <= 0) { clearInterval(window._cht); timeUp(id); }
+  };
+  tick(); window._cht = setInterval(tick, 1000);
+}
+function timeUp(id) {
+  if (C(id).type === "quiz" && B && B.id === id) { const xp = B.xp, line = `⏰ Time's up! ${B.correct} correct before the bell · best streak ${B.best} 🔥`; S.data["rev" + id] = B.rev.join(""); B = null; finish(id, xp, line); }
+  else toast("⏰ Time's up! Finish this chapter now.", 4000);
+}
+const timerChip = () => `<span class="chip" id="cht" style="font-variant-numeric:tabular-nums">⏱</span>`;
+
+// ============================================================ ROUTER + SCREENS
+function route() { const h = location.hash.replace("#", ""); if (h === "host") return HOST ? hostBoard() : hostSetup(); if (!S.team || !S.pair) return setup(); home(); }
+window.addEventListener("hashchange", route);
+function go(h) { if (location.hash === "#" + h) route(); else location.hash = h; }
+const topBar = (back = true) => `<div class="top">${back ? `<button class="btn ghost small" onclick="go('play')">← Chapters</button>` : `<span class="brand">ENGAGE QUEST</span>`}
+  <div class="row"><span class="chip">👥 Pair ${S.pair}</span><span class="chip">⭐ ${totalXP()} XP</span><span class="chip" style="cursor:pointer" onclick="toggleSound(this)">${S.sound ? "🔊" : "🔇"}</span></div></div>`;
+function toggleSound(el) { S.sound = !S.sound; save(); el.textContent = S.sound ? "🔊" : "🔇"; }
+
+function setup() {
+  view(`<div class="wrap"><div class="hero" style="margin-top:10px">
+      <div class="chip dark">Motivation &amp; Employee Engagement</div>
+      <h1 style="font-size:36px;margin-top:14px">Engage Quest</h1>
+      <p style="font-size:17px;margin:0">You're the new <b>Head of People at Pulse</b>, a fast-growing fitness-app company. Engagement has crashed to 38%. Can you turn it around in one year?</p>
+      <p class="muted" style="color:#C9D6D2;margin-bottom:0">${CH.length} chapters · ${TOTAL} XP · play in pairs</p></div>
+    <div class="card"><label for="team">Team name</label><input id="team" maxlength="24" placeholder="e.g. The Motivators" value="${esc(S.team)}">
+      <label for="pair">Pair number (from your lecturer)</label>
+      <select id="pair">${Array.from({ length: 10 }, (_, i) => `<option value="${i + 1}" ${S.pair == i + 1 ? "selected" : ""}>Pair ${i + 1}</option>`).join("")}</select>
+      <button class="btn block" style="margin-top:18px" onclick="saveSetup()">Start the quest →</button></div>
+    <p class="center muted">Lecturer? <a href="#host" style="color:var(--violet);font-weight:700">Open the HQ scoreboard</a></p></div>`);
+}
+function saveSetup() { const t = $("#team").value.trim(); if (!t) return toast("Give your pair a team name 🙂"); S.team = t; S.pair = +$("#pair").value; save(); SFX.win(); go("play"); }
+
+function home() {
+  const xp = totalXP(), next = RANKS.find((r) => r[0] > xp);
+  view(`<div class="wrap">${topBar(false)}
+    <div class="hero" style="margin-top:14px"><div class="row" style="justify-content:space-between;align-items:center">
+      <div><div class="chip dark">👥 ${esc(S.team)}</div><h2 style="color:#fff;margin:12px 0 2px">${rank(xp)}</h2><div style="color:#C9D6D2;font-size:14px">${next ? `${next[0] - xp} XP to ${next[1]}` : "Top rank reached 🏆"}</div></div>
+      <div class="ring" style="background:conic-gradient(#6EE7B7 ${(xp / TOTAL) * 360}deg,#ffffff33 0)"><span style="color:var(--indigo)">${xp}<small>of ${TOTAL} XP</small></span></div></div></div>
+    ${CH.map((c, i) => { const open = S.unlocked[c.id], done = S.done[c.id];
+      return `${i === 0 || CH[i - 1].sec !== c.sec ? `<h3 style="margin:22px 0 4px;color:var(--violet2)">${SECTIONS[c.sec]}</h3>` : ""}<button class="chapter ${open ? "" : "locked"} ${done ? "done" : ""}" onclick="openCh(${c.id})"><div class="ico" style="background:${c.col}22">${done ? "✅" : open ? c.ico : "🔒"}</div>
+      <div><div class="t">${c.id}. ${c.title}</div><div class="s">${c.sub}</div></div><div class="pts">${done ? `${S.xp[c.id]}/` : ""}${c.max} XP</div></button>`; }).join("")}
+    <p class="center muted">Each chapter unlocks with the code word on your lecturer's slide · <a href="#" onclick="setup();return false" style="color:var(--muted)">edit team</a></p></div>`);
+}
+function openCh(id) {
+  const c = C(id); SFX.tap();
+  if (S.done[id]) return result(id);
+  if (!S.unlocked[id]) {
+    view(`<div class="wrap">${topBar()}<div class="card" style="margin-top:20px"><div class="ico" style="font-size:40px">${c.ico}</div><h2>Chapter ${id}: ${c.title}</h2><p class="muted">Enter the code word shown on the slide.</p>
+      <input id="code" autocomplete="off" autocapitalize="characters" placeholder="CODE WORD" onkeydown="if(event.key==='Enter')tryUnlock(${id})"><button class="btn block" style="margin-top:12px" onclick="tryUnlock(${id})">Unlock chapter</button></div></div>`);
+    setTimeout(() => $("#code") && $("#code").focus(), 50); return;
+  }
+  ({ quiz: quizIntro, sim, blitz, duel })[c.type](id);
+}
+function tryUnlock(id) { const i = $("#code"); if (i.value.trim().toUpperCase() === C(id).key) { S.unlocked[id] = true; save(); SFX.win(); toast("Chapter unlocked 🔓"); openCh(id); } else { i.classList.add("shake"); setTimeout(() => i.classList.remove("shake"), 400); toast("Not quite: check the slide"); } }
+function finish(id, xp, line) { clearInterval(window._cht); S.xp[id] = xp; S.done[id] = true; S.data["line" + id] = line || ""; save(); if (xp >= C(id).max * 0.7) { SFX.win(); confetti(2500); } result(id); }
+function result(id) {
+  const c = C(id), xp = S.xp[id], pct = xp / c.max;
+  view(`<div class="wrap">${topBar()}<div class="hero center" style="margin-top:14px"><div style="font-size:44px">${c.ico}</div>
+    <h2 style="color:#fff">${pct >= .85 ? "Outstanding!" : pct >= .6 ? "Chapter complete: well done!" : "Chapter complete: keep going!"}</h2>
+    <div class="big">${xp}<span style="font-size:22px;opacity:.8"> / ${c.max} XP</span></div>${S.data["line" + id] ? `<p>${S.data["line" + id]}</p>` : ""}</div>
+    <div class="card center"><div class="muted">Your score code: show it to your lecturer</div><div class="code">${makeCode(id, xp)}</div></div>
+    ${S.data["rev" + id] ? `<div class="card"><h3>Review</h3>${S.data["rev" + id]}</div>` : ""}
+    <button class="btn block" onclick="go('play')">Back to chapters</button></div>`);
+}
+
+// ============================================================ QUIZ (no game over; streak bonus)
+let B = null;
+function quizIntro(id) {
+  const c = C(id);
+  view(`<div class="wrap">${topBar()}<div class="hero" style="margin-top:14px"><div style="font-size:40px">${c.ico}</div><h2 style="color:#fff">Chapter ${id}: ${c.title}</h2><p>${c.sub} · ${c.ref}</p></div>
+    <div class="card"><h3>How it works</h3><p style="margin:0">8 questions: mostly real situations, plus a few concept checks. Discuss each one quickly with your partner, then choose.</p>
+    <ul style="line-height:1.8"><li>✅ Correct: <b>+10 XP</b></li><li>🔥 Streak bonus: <b>+4 XP</b> for every correct answer from your 4th in a row</li><li>Wrong answers never stop you: you just learn why and keep going.</li><li>⏱ You have <b>${LIMIT[id]} minutes</b>. When time's up, the chapter ends with the XP you've earned.</li></ul></div>
+    <button class="btn block" onclick="qStart(${id})">Begin chapter →</button></div>`);
+}
+function qStart(id) { startChTimer(id); B = { id, qs: Q[id].map((q) => ({ ...q, order: shuffle([0, 1, 2, 3]) })), i: 0, xp: 0, correct: 0, streak: 0, best: 0, rev: [] }; qShow(); }
+function qShow() {
+  const q = B.qs[B.i], n = B.qs.length; setTimeout(() => runChTimer(B ? B.id : 0), 0);
+  view(`<div class="wrap">${topBar()}
+    <div class="row" style="justify-content:space-between;margin:14px 0 6px"><span class="muted">Question ${B.i + 1} of ${n} · ${timerChip()}</span><span>${B.streak >= 2 ? `<span class="streak">🔥 ${B.streak} in a row</span>` : ""} <b style="color:var(--violet)">${B.xp} XP</b></span></div>
+    <div class="bar"><div style="width:${(B.i / n) * 100}%"></div></div>
+    <div class="card">${q.s ? `<div class="scene"><div class="face">${q.f}</div><div><div class="who">${q.n}</div><div class="txt">${q.s}</div></div></div><div class="ask">${q.q}</div>` : `<span class="chip" style="background:#34D3991f;color:var(--violet);border-color:#34D39955">🧠 Concept check</span><div class="ask" style="font-size:20px;margin-top:12px">${q.q}</div>`}
+    ${q.order.map((k, pos) => `<button class="opt" data-k="${k}" onclick="qPick(${k})"><span class="k">${"ABCD"[pos]}</span><span>${q.o[k]}</span></button>`).join("")}
+    <div id="fb"></div></div></div>`);
+}
+function qPick(k) {
+  if (B.locked) return; B.locked = true; const q = B.qs[B.i], ok = k === 0;
+  document.querySelectorAll(".opt").forEach((b) => { const kk = +b.dataset.k; b.disabled = true; if (kk === 0) b.classList.add("right"); else if (kk === k) b.classList.add("wrong"); });
+  let gain = 0;
+  if (ok) { B.correct++; B.streak++; B.best = Math.max(B.best, B.streak); gain = 10 + (B.streak >= 4 ? 4 : 0); B.xp += gain; B.streak >= 4 ? (SFX.streak(), pop(`+${gain} XP 🔥`)) : (SFX.good(), pop(`+${gain} XP`)); }
+  else { B.streak = 0; SFX.soft(); }
+  B.rev.push(`<p>${ok ? "✅" : "💭"} ${q.s ? q.s + " " : ""}<b>${q.q}</b><br><span class="muted">${q.o[0]}. ${q.w}</span></p>`);
+  const last = B.i + 1 >= B.qs.length;
+  $("#fb").innerHTML = `<div class="sheet ${ok ? "ok" : "no"}"><b>${ok ? (B.streak >= 4 ? `🔥 Brilliant: ${B.streak} in a row!` : "✅ Great call!") : "💭 Not this time. Here's why:"}</b><div style="margin-top:6px">${ok ? "" : `Best answer: <b>${q.o[0]}</b>. `}${q.w}</div></div>
+    <button class="btn block" style="margin-top:12px" onclick="qNext()">${last ? "Finish chapter 🏁" : "Next question →"}</button>`;
+}
+function qNext() { B.locked = false; B.i++; if (B.i < B.qs.length) qShow(); else { const id = B.id; S.data["rev" + id] = B.rev.join(""); const line = `${B.correct}/8 correct · best streak ${B.best} 🔥`, xp = B.xp; B = null; finish(id, xp, line); } }
+
+// ============================================================ CHAPTER 7: THE ENGAGEMENT SIMULATOR
+const SIM = {
+  start: { E: 38, T: 31, P: 58 },
+  budget: 8,
+  cards: [
+    { id: "recog", ico: "🏅", name: "Recognition programme", d: "Peer and manager praise, monthly shout-outs", cost: 2, E: 5, T: -2, P: 2, th: "Herzberg motivator · positive reinforcement" },
+    { id: "goals", ico: "🎯", name: "SMART goals set with each team", d: "Teams agree specific, challenging goals", cost: 1, E: 2, T: 0, P: 4, th: "Goal-setting theory: participation builds acceptance" },
+    { id: "pay", ico: "💷", name: "5% pay rise for everyone", d: "Across-the-board increase", cost: 6, E: 2, T: -3, P: 0, th: "Hygiene factor: reduces dissatisfaction but doesn't motivate" },
+    { id: "topbonus", ico: "🏆", name: "Top-10% individual bonus", d: "Big cash prize for the best performers", cost: 3, E: -4, T: 2, P: 3, th: "Expectancy trap: most can't win (low expectancy) and it feels unfair (equity)" },
+    { id: "enrich", ico: "🧩", name: "Job enrichment & rotation", d: "More variety, ownership and decision-making", cost: 3, E: 5, T: -3, P: 3, th: "Job characteristics model: variety, identity, autonomy" },
+    { id: "flex", ico: "🏡", name: "Flexible & hybrid working", d: "Flextime and remote days", cost: 2, E: 4, T: -3, P: 1, th: "Flexible work arrangements · work-life balance" },
+    { id: "paybands", ico: "📐", name: "Fix pay gaps & publish pay bands", d: "Same job, same pay range, open criteria", cost: 4, E: 4, T: -4, P: 1, th: "Equity theory: distributive and procedural justice" },
+    { id: "coach", ico: "🧭", name: "Leadership coaching for managers", d: "Managers learn coaching and consideration", cost: 3, E: 4, T: -2, P: 3, th: "Transformational leadership · consideration" },
+    { id: "oneone", ico: "💬", name: "Regular feedback check-ins", d: "Short 1:1 feedback for every employee, every month", cost: 1, E: 3, T: -1, P: 1, th: "Timely feedback (goal-setting, JCM, reinforcement) and consideration · no out-group (LMX)" },
+    { id: "wellbeing", ico: "🌿", name: "Workload review & well-being support", d: "Realistic workloads, time off to recover, support for stress", cost: 2, E: 4, T: -3, P: 1, th: "Removes the cause of frustration (M&R) and supports job satisfaction and work-life balance" },
+    { id: "monitor", ico: "👁️", name: "Productivity tracking software", d: "Track keystrokes and activity", cost: 2, E: -6, T: 3, P: 2, th: "Theory X assumptions: destroys autonomy and trust" },
+    { id: "perks", ico: "🍕", name: "Pizza Fridays & games room", d: "Fun perks in the office", cost: 2, E: 1, T: 0, P: 0, th: "Nice, but a superficial hygiene factor: no lasting effect" },
+    { id: "career", ico: "🪜", name: "Career paths & training", d: "Clear progression and learning budget", cost: 3, E: 3, T: -3, P: 2, th: "Growth needs (Maslow, ERG) · Herzberg motivators" },
+  ],
+  events: [
+    { t: "Quarter 1 · The survey shock", s: "Engagement is just 38%. The two most common survey comments: \"Nobody notices good work\" and \"I don't know what I'm aiming for\".", best: ["recog", "goals"], worst: ["monitor"] },
+    { t: "Quarter 2 · Burnout in Customer Support", s: "Support agents handle the same tickets all day; two resign every week. \"I'm a robot,\" says one. Many are parents juggling school runs.", best: ["enrich", "flex", "wellbeing"], worst: ["monitor", "topbonus"] },
+    { t: "Quarter 3 · The pay comparison", s: "Staff discover that new hires earn more than experienced colleagues in the same role. A rival is recruiting your best people.", best: ["paybands", "career"], worst: ["topbonus", "perks"] },
+    { t: "Quarter 4 · The new Sales manager", s: "Greg, the new Sales manager, shouts at underperformers and only talks to his three favourites. Sales morale is collapsing.", best: ["coach", "oneone"], worst: ["monitor", "topbonus"] },
+  ],
+};
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+function simStep(st, picks, qi, used) {
+  const ev = SIM.events[qi], d = { E: -5, T: 2, P: -2 }, lines = [];
+  if (!picks.length) { d.E -= 2; lines.push("😶 You did nothing this quarter: engagement drifts down."); }
+  picks.forEach((id) => {
+    const c = SIM.cards.find((x) => x.id === id), rep = used[id] ? 0.5 : 1, pos = (v) => (v > 0 ? v * rep : v);
+    let e = pos(c.E), t = c.T < 0 ? c.T * rep : c.T, p = pos(c.P), tag = "";
+    if (ev.best.includes(id)) { e += 3; t -= 1; p += 2; tag = " <b style='color:#6EE7B7'>✨ Perfect fit for this quarter's problem</b>"; }
+    if (ev.worst.includes(id)) { e -= 3; t += 1; tag = " <b style='color:#F87171'>⚠️ Made this quarter's problem worse</b>"; }
+    if (rep < 1 && c.E > 0) tag += " <span class='muted'>(repeated: smaller effect)</span>";
+    d.E += e; d.T += t; d.P += p;
+    lines.push(`${c.ico} <b>${c.name}</b>: ${c.th}.${tag}`);
+  });
+  const ns = { E: clamp(Math.round(st.E + d.E), 0, 100), T: clamp(Math.round(st.T + d.T), 5, 60), P: clamp(Math.round(st.P + d.P), 0, 100) };
+  return { ns, lines };
+}
+const simXP = (s) => Math.round(150 * (clamp((s.E - 38) / 50, 0, 1) * 0.5 + clamp((31 - s.T) / 21, 0, 1) * 0.3 + clamp((s.P - 58) / 30, 0, 1) * 0.2));
+function sim(id) {
+  startChTimer(8); setTimeout(() => runChTimer(8), 0);
+  const d = S.data.sim || { q: 0, st: { ...SIM.start }, used: {}, hist: [], picks: [], phase: "plan" }; S.data.sim = d; save();
+  const ev = SIM.events[d.q], spent = d.picks.reduce((a, id) => a + SIM.cards.find((c) => c.id === id).cost, 0);
+  const meter = (lab, v, unit, good, max) => `<div style="flex:1;min-width:150px"><div class="muted">${lab}</div><div style="font-size:28px;font-weight:700;color:${good ? "#6EE7B7" : "#F87171"}">${v}${unit}</div><div class="bar" style="margin-top:4px"><div style="width:${(v / max) * 100}%"></div></div></div>`;
+  const metrics = `<div class="card"><div class="row" style="gap:16px">${meter("Engagement", d.st.E, "%", d.st.E >= 50, 100)}${meter("Staff turnover", d.st.T, "%", d.st.T <= 20, 60)}${meter("Performance", d.st.P, "", d.st.P >= 65, 100)}</div></div>`;
+  const head = `${topBar()}<div class="row" style="justify-content:flex-end;margin-top:10px">${timerChip()}</div>
+    <div class="hero" style="margin-top:8px;background:linear-gradient(135deg,#21423A,#245C4C 55%,#2F7A64)"><div style="font-size:40px">📈</div><h2 style="color:#fff">The Engagement Simulator</h2>
+    <p>You're Pulse's Head of People for a year. Each quarter: read the problem, spend your budget of <b>${SIM.budget} credits</b>, and watch the results.</p></div>`;
+  if (d.phase === "plan") {
+    view(`<div class="wrap">${head}${metrics}
+      <div class="brief"><b>${ev.t}</b><br>${ev.s}</div>
+      <div class="row" style="justify-content:space-between"><h3 style="margin:0">Choose your actions</h3><span class="chip" style="font-size:15px">💰 ${SIM.budget - spent} of ${SIM.budget} credits left</span></div>
+      ${SIM.cards.map((c) => { const on = d.picks.includes(c.id), afford = on || spent + c.cost <= SIM.budget;
+        return `<button class="chapter ${on ? "done" : ""}" style="${afford ? "" : "opacity:.4"}" onclick="simPick('${c.id}')"><div class="ico" style="background:#ffffff10">${on ? "✅" : c.ico}</div><div><div class="t">${c.name}</div><div class="s">${c.d}${d.used[c.id] ? " · used before" : ""}</div></div><div class="pts">💰 ${c.cost}</div></button>`; }).join("")}
+      <button class="btn block teal" style="margin-top:12px" onclick="simRun()">Run ${ev.t.split(" ·")[0]} →</button></div>`);
+  } else {
+    const h = d.hist[d.hist.length - 1], dlt = (k, inv) => { const v = h.after[k] - h.before[k]; const good = inv ? v < 0 : v > 0; return `<b style="color:${v === 0 ? "#9FB3AD" : good ? "#6EE7B7" : "#F87171"}">${v > 0 ? "+" : ""}${v}</b>`; };
+    view(`<div class="wrap">${head}${metrics}
+      <div class="card"><h3>${SIM.events[d.q].t}: results</h3><p>Engagement ${dlt("E")} · Turnover ${dlt("T", true)} · Performance ${dlt("P")}</p>
+      ${h.lines.map((l) => `<p style="margin:8px 0">${l}</p>`).join("")}</div>
+      <button class="btn block" onclick="simNext()">${d.q < 3 ? "Next quarter →" : "See your year-end results 🏁"}</button></div>`);
+  }
+}
+function simPick(id) {
+  const d = S.data.sim, c = SIM.cards.find((x) => x.id === id), spent = d.picks.reduce((a, k) => a + SIM.cards.find((x) => x.id === k).cost, 0);
+  if (d.picks.includes(id)) d.picks = d.picks.filter((k) => k !== id);
+  else if (spent + c.cost > SIM.budget) return toast("Not enough credits: remove an action first");
+  else d.picks.push(id);
+  save(); SFX.tap(); sim(8);
+}
+function simRun() {
+  const d = S.data.sim, before = { ...d.st }, { ns, lines } = simStep(d.st, d.picks, d.q, d.used);
+  d.picks.forEach((id) => (d.used[id] = true)); d.hist.push({ before, after: ns, lines, picks: d.picks.slice() }); d.st = ns; d.picks = []; d.phase = "result"; save();
+  ns.E > before.E ? SFX.good() : SFX.soft(); sim(8);
+}
+function simNext() {
+  const d = S.data.sim;
+  if (d.q < 3) { d.q++; d.phase = "plan"; save(); return sim(8); }
+  const xp = simXP(d.st);
+  S.data.rev8 = `<p><b>Year-end:</b> engagement ${SIM.start.E}% → ${d.st.E}% · turnover ${SIM.start.T}% → ${d.st.T}% · performance ${SIM.start.P} → ${d.st.P}</p>
+    <p>✨ <b>Best fits:</b> Q1 recognition + SMART goals (Herzberg, reinforcement, goal-setting) · Q2 job enrichment, flexible work + well-being support (JCM, frustration, work-life balance) · Q3 fix pay gaps + career paths (equity, growth needs) · Q4 leadership coaching + feedback check-ins (consideration, transformational leadership, LMX).</p>
+    <p>⚠️ <b>Traps:</b> tracking software (Theory X), top-10% bonuses (expectancy and equity), pizza and perks (superficial hygiene), and big pay rises (hygiene: expensive, little motivation).</p>`;
+  finish(8, xp, `Engagement <b>${d.st.E}%</b> · Turnover <b>${d.st.T}%</b> · Performance <b>${d.st.P}</b>`);
+}
+
+// ============================================================ CHAPTER 9: LIGHTNING ROUND (bonus, 20 s per question)
+let L = null;
+function blitz(id) {
+  view(`<div class="wrap">${topBar()}<div class="hero" style="margin-top:14px;background:linear-gradient(135deg,#21423A,#4A5C58 60%,#D7DEE0)"><div style="font-size:44px">⚡</div><h2 style="color:#fff">Bonus: Lightning Round</h2>
+    <p>10 rapid-fire exam questions. <b>20 seconds</b> each, <b>+10 XP</b> per correct answer. No time to discuss: trust your revision!</p></div>
+    <button class="btn block" onclick="blitzStart()">Go! ⚡</button></div>`);
+}
+function blitzStart() { startChTimer(10); L = { i: 0, xp: 0, c: 0, rev: [], qs: BLITZ.map((q) => ({ ...q, order: shuffle([0, 1, 2, 3]) })) }; blitzShow(); }
+function blitzShow() {
+  const q = L.qs[L.i]; setTimeout(() => runChTimer(10), 0);
+  view(`<div class="wrap">${topBar()}<div class="row" style="justify-content:space-between;margin:14px 0 6px"><span class="muted">⚡ ${L.i + 1} of 10 · ${timerChip()}</span><span id="t" class="timer"></span></div>
+    <div class="bar"><div style="width:${(L.i / 10) * 100}%"></div></div>
+    <div class="card"><div class="ask" style="font-size:22px">${q.q}</div>${q.order.map((k, pos) => `<button class="opt" data-k="${k}" onclick="blitzPick(${k})"><span class="k">${"ABCD"[pos]}</span><span>${q.o[k]}</span></button>`).join("")}<div id="fb"></div></div></div>`);
+  countdown($("#t"), 20, () => blitzPick(-1));
+}
+function blitzPick(k) {
+  if (L.locked) return; L.locked = true; stopTimers(); const q = L.qs[L.i], ok = k === 0;
+  document.querySelectorAll(".opt").forEach((b) => { const kk = +b.dataset.k; b.disabled = true; if (kk === 0) b.classList.add("right"); else if (kk === k) b.classList.add("wrong"); });
+  if (ok) { L.xp += 10; L.c++; SFX.good(); pop("+10 XP"); } else SFX.soft();
+  L.rev.push(`<p>${ok ? "✅" : "💭"} ${q.q} <b>${q.o[0]}</b></p>`);
+  setTimeout(() => { L.locked = false; L.i++; if (L.i < 10) blitzShow(); else { S.data.rev10 = L.rev.join(""); const xp = L.xp, c = L.c; L = null; finish(10, xp, `${c}/10 correct at lightning speed ⚡`); } }, ok ? 900 : 1800);
+}
+
+// ============================================================ CHAPTER 8: THE PAY TALKS (pair vs pair negotiation)
+const DEAL = {
+  issues: [
+    { name: "Pay rise for next year", opts: ["1%", "2%", "3%", "4%"] },
+    { name: "Bonus design", opts: ["Top-10% individual bonus", "Team bonus for hitting team goals", "Profit-sharing for all staff", "No bonus scheme"] },
+    { name: "Flexible working", opts: ["Office 5 days", "1 remote day a week", "2 remote days a week", "Fully flexible: teams decide"] },
+    { name: "Learning budget per person", opts: ["€0", "€300", "€600", "€900"] },
+    { name: "Recognition", opts: ["No scheme", "Annual awards night", "Monthly peer recognition", "Both"] },
+  ],
+  L: [[14, 10, 5, 0], [6, 10, 7, 2], [6, 6, 4, 1], [10, 7, 4, 0], [0, 4, 10, 7]],
+  N: [[0, 4, 8, 11], [0, 9, 10, 2], [0, 6, 12, 16], [0, 3, 6, 8], [0, 4, 10, 9]],
+  noDeal: { L: 8, N: 8 },
+  role: { L: "HR Director", N: "Employee Rep" },
+  brief: {
+    L: `<b>You are Pulse's HR Director.</b> The board insists that payroll costs stay under control: <b>every 1% pay rise costs €400,000</b>. You're far less worried about where people work, because the offices are half empty anyway. You want a reward system that encourages <b>teamwork</b>, and you'd love a <b>recognition</b> scheme: cheap and effective. Training budgets are tight.`,
+    N: `<b>You represent Pulse's employees on the Employee Forum.</b> Staff are angry that pay has fallen behind rivals, but in your survey the number one request was <b>flexibility</b>: 70% said remote working matters more to them than a small pay rise. People also want to be <b>recognised</b> and to keep learning. Top-10% bonuses are unpopular: "the same people always win".`,
+  },
+};
+const dealMax = (t) => t.reduce((a, r) => a + Math.max(...r), 0);
+function duel(id) {
+  startChTimer(9); setTimeout(() => runChTimer(9), 0);
+  const d = S.data.duel || { side: S.pair % 2 === 1 ? "L" : "N", step: 0, sel: [null, null, null, null, null] }; S.data.duel = d; save();
+  const side = d.side, tbl = DEAL[side], max = dealMax(tbl), other = side === "L" ? "N" : "L";
+  const head = `${topBar()}<div class="row" style="justify-content:flex-end;margin-top:10px">${timerChip()}</div>
+    <div class="hero" style="margin-top:8px;background:linear-gradient(135deg,#21423A,#2B5754 50%,#5A0F3A)"><div style="font-size:44px">🤝</div><h2 style="color:#fff">Chapter 9: The Pay Talks</h2>
+    <p>Pair vs pair. Pulse's HR Director meets the Employee Rep to agree next year's pay and engagement package.</p><div class="vs">${DEAL.role[side]} vs ${DEAL.role[other]}</div></div>`;
+  if (d.step === 0) {
+    view(`<div class="wrap">${head}
+      <div class="row"><span class="muted">Your role:</span>
+        <button class="pill ${side === "L" ? "on" : ""}" onclick="duelSide('L')">HR Director</button>
+        <button class="pill ${side === "N" ? "on" : ""}" onclick="duelSide('N')">Employee Rep</button></div>
+      <div class="brief">${DEAL.brief[side]}<br><br>Agree a plan on <b>5 issues</b> with the rival pair your lecturer assigns. 🔒 <b>Your points table is SECRET</b>: don't show your screen!</div>
+      <div class="card" style="overflow-x:auto"><table class="dealtable"><tr><th style="text-align:left">Issue</th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+        ${DEAL.issues.map((is, i) => `<tr><td style="text-align:left">${is.name}<br><span class="muted">${is.opts.map((o, k) => `${"ABCD"[k]}: ${o}`).join(" · ")}</span></td>${tbl[i].map((v) => `<td class="${v === Math.max(...tbl[i]) ? "best" : ""}">${v}</td>`).join("")}</tr>`).join("")}
+      </table><p class="muted" style="margin-bottom:0">Your maximum: ${max} points. No deal = ${DEAL.noDeal[side]} points. A deal also earns a <b>+30 XP</b> bonus.</p></div>
+      <div class="card"><h3>Lead the negotiation</h3><ul style="line-height:1.8;margin:0;padding-left:20px">
+        <li>💎 <b>Find their valence:</b> ask what the other side values most before making offers (expectancy theory).</li>
+        <li>🔁 <b>Trade:</b> give way on issues that matter little to you to win the ones you care about.</li>
+        <li>⚖️ <b>Keep it fair:</b> a transparent process builds procedural justice and trust. Bluffing can backfire.</li>
+        <li>🔋 <b>Remember Herzberg:</b> pay removes dissatisfaction; recognition, growth and flexibility can motivate.</li></ul></div>
+      <div class="card row" style="justify-content:space-between"><span><b>Negotiation clock</b></span><span id="t" class="timer">10:00</span><button class="btn small" onclick="duelClock()">Start 10 min</button></div>
+      <button class="btn block" onclick="duelStep(1)">We've finished: enter the deal →</button></div>`);
+  } else {
+    view(`<div class="wrap">${head}
+      <p>Enter the <b>agreed</b> option for each issue. Both pairs must enter the <b>same</b> deal: your lecturer checks that the deal codes match.</p>
+      <div class="card">${DEAL.issues.map((is, i) => `<label>${is.name}</label><select id="d${i}"><option value="">Choose…</option>${is.opts.map((o, k) => `<option value="${k}" ${d.sel[i] === k ? "selected" : ""}>${"ABCD"[k]}: ${o}</option>`).join("")}</select>`).join("")}</div>
+      <button class="btn block teal" onclick="duelSubmit(false)">Submit our deal ✅</button>
+      <button class="btn block coral" onclick="duelSubmit(true)">We reached NO deal ❌</button>
+      <button class="btn ghost small" onclick="duelStep(0)">← Back to my brief</button></div>`);
+  }
+}
+function duelSide(s) { S.data.duel.side = s; save(); SFX.tap(); duel(9); }
+function duelStep(n) { S.data.duel.step = n; save(); duel(9); }
+function duelClock() { stopTimers(); runChTimer(9); countdown($("#t"), 600, () => { toast("⏰ Negotiation time is up: enter your deal now!", 4000); SFX.soft(); }); SFX.tap(); }
+function duelSubmit(none) {
+  const d = S.data.duel, tbl = DEAL[d.side], max = dealMax(tbl);
+  let raw, code;
+  if (none) { raw = DEAL.noDeal[d.side]; code = "NO DEAL"; }
+  else {
+    const sel = DEAL.issues.map((_, i) => $("#d" + i).value);
+    if (sel.some((v) => v === "")) return toast("Choose an option for every issue");
+    d.sel = sel.map(Number); raw = d.sel.reduce((a, k, i) => a + tbl[i][k], 0); code = d.sel.map((k) => "ABCD"[k]).join("");
+  }
+  const xp = Math.min(150, Math.round((raw / max) * 120) + (none ? 0 : 30)); save();
+  S.data.rev9 = `<p><b>The hidden structure</b></p><p>🔁 <b>Pay</b> mattered most to the HR Director (cost), while <b>flexible working</b> mattered most to the Employee Rep: the best deals kept the pay rise modest and gave real flexibility.</p>
+    <p>🤝 A <b>team bonus</b> and <b>monthly peer recognition</b> worked well for BOTH sides: win-wins if you asked about them.</p><p>⚖️ The <b>learning budget</b> was a pure tug-of-war: every euro one side gained, the other lost.</p>
+    <p>🧠 The link to theory: each side's <b>valence</b> was different (expectancy theory), and pay is a hygiene factor while flexibility and recognition can motivate (Herzberg).</p>
+    <p>💡 Pairs who asked questions and shared priorities usually found more value than pairs who only argued positions.</p>`;
+  finish(9, xp, `Your role: <b>${DEAL.role[d.side]}</b> · Deal value ${raw}/${max}${none ? "" : " + 30 deal bonus"}<br>Deal code: <b class="kbd">${code}</b> (must match your rival pair's)`);
+}
+
+// ============================================================ HQ
+function hostSetup() {
+  view(`<div class="wrap"><div class="hero" style="margin-top:10px"><div class="chip dark">Lecturer HQ</div><h1 style="margin-top:12px">Engage Quest</h1><p>Create a scoreboard for today's class.</p></div>
+    <div class="card"><label for="np">Number of pairs</label><select id="np">${[4, 5, 6, 7, 8, 9, 10].map((n) => `<option ${n === 7 ? "selected" : ""}>${n}</option>`).join("")}</select>
+    <p class="muted">Scores are saved on this device only. Project this screen for the class.</p><button class="btn block" onclick="hostCreate()">Create scoreboard</button></div>
+    <p class="center"><a href="#play" style="color:var(--violet);font-weight:700">← Player app</a></p></div>`);
+}
+function hostCreate() { HOST = { pairs: Array.from({ length: +$("#np").value }, (_, i) => ({ name: `Pair ${i + 1}`, s: {} })), tab: "scores" }; saveHost(); hostBoard(); }
+const hTotal = (p) => CH.reduce((a, c) => a + (+p.s[c.id] || 0), 0);
+function hostBoard() {
+  const t = HOST.tab || "scores";
+  view(`<div class="wrap wide"><div class="top"><span class="brand">ENGAGE QUEST · HQ</span><a href="#play" style="color:var(--violet);font-weight:700;font-size:14px">Player app</a></div>
+    <div class="tabs">${[["scores", "✏️ Scores"], ["board", "📊 Leaderboard"], ["podium", "🏆 Podium"], ["reset", "⚙️ Reset"]].map(([k, l]) => `<button class="pill ${t === k ? "on" : ""}" onclick="hostTab('${k}')">${l}</button>`).join("")}</div><div id="hb"></div></div>`);
+  ({ scores: hScores, board: hBoard, podium: hPodium, reset: hReset })[t]();
+}
+function hostTab(t) { HOST.tab = t; saveHost(); hostBoard(); }
+function hScores() {
+  $("#hb").innerHTML = `<div class="card"><label for="sc">Type a score code (e.g. <span class="kbd">3-2-84-KQ</span>) and press Enter</label>
+    <div class="row"><input id="sc" style="max-width:300px" placeholder="pair-chapter-xp-XX" onkeydown="if(event.key==='Enter')hostCode()"><button class="btn small" onclick="hostCode()">Add</button><span class="muted" id="msg">${HOST._msg || ""}</span></div></div>
+    <div class="card" style="overflow-x:auto"><table><tr><th>#</th><th style="text-align:left">Team</th>${CH.map((c) => `<th title="${c.title}">Ch${c.id}<br>/${c.max}</th>`).join("")}<th>Total</th></tr>
+    ${HOST.pairs.map((p, i) => `<tr><td>${i + 1}</td><td class="name"><input value="${esc(p.name)}" onchange="hostName(${i},this.value)"></td>${CH.map((c) => `<td><input inputmode="numeric" value="${p.s[c.id] ?? ""}" onchange="hostSet(${i},${c.id},this.value)"></td>`).join("")}<td><b id="tot${i}">${hTotal(p)}</b></td></tr>`).join("")}</table>
+    <p class="muted">Every chapter is scored in the app. You can type or override any score, e.g. bonus XP for a great contribution.</p></div>`;
+}
+function hostName(i, v) { HOST.pairs[i].name = v.trim() || `Pair ${i + 1}`; saveHost(); }
+function hostSet(i, id, v) { const n = v === "" ? undefined : Math.max(0, Math.min(C(id).max, Math.round(+v || 0))); if (n === undefined) delete HOST.pairs[i].s[id]; else HOST.pairs[i].s[id] = n; saveHost(); const e = $("#tot" + i); if (e) e.textContent = hTotal(HOST.pairs[i]); }
+function hostCode() {
+  const m = $("#sc").value.trim().toUpperCase().match(/^(\d+)-(\d+)-(\d+)-([A-Z]{2})$/);
+  if (!m) { $("#msg").textContent = "❌ Format: pair-chapter-xp-XX"; return; }
+  const [, p, r, s, c] = m, pi = +p - 1;
+  if (!HOST.pairs[pi] || !C(+r)) { $("#msg").textContent = "❌ Unknown pair or chapter"; return; }
+  if (checksum(+p, +r, +s) !== c) { $("#msg").textContent = "⚠️ This code doesn't verify"; return; }
+  hostSet(pi, +r, s); HOST._msg = `✅ ${HOST.pairs[pi].name}: Chapter ${r} = ${s} XP`; hScores(); setTimeout(() => $("#sc") && $("#sc").focus(), 30);
+}
+const ranked = () => HOST.pairs.map((p) => ({ ...p, total: hTotal(p) })).sort((a, b) => b.total - a.total);
+function hBoard() {
+  const rk = ranked(), max = Math.max(1, ...rk.map((p) => p.total));
+  $("#hb").innerHTML = `<h1 class="center">Leaderboard</h1>${rk.map((p, k) => `<div class="lb"><div class="rk" style="${k < 3 ? `background:${["#D7DEE0", "#E3EBE8", "#A3E635"][k]};color:#183229` : ""}">${k + 1}</div>
+    <div><div class="nm">${esc(p.name)}</div><div class="barw"><div data-w="${(p.total / max) * 100}"></div></div></div><div class="xp">${p.total} XP</div></div>`).join("")}`;
+  document.querySelectorAll(".lb").forEach((el, k) => setTimeout(() => { el.classList.add("show"); const b = el.querySelector(".barw div"); b.style.width = b.dataset.w + "%"; }, 100 + k * 120));
+}
+function hPodium() {
+  $("#hb").innerHTML = `<div class="center"><h1>🏆 Engagement Champions</h1><button class="btn" id="rv" onclick="reveal()">Reveal 3rd place</button></div>
+    <div class="podium"><div class="step" id="p2" style="height:240px;background:linear-gradient(180deg,#C0C8CC,#1F7A5A)"></div><div class="step" id="p1" style="height:320px;background:linear-gradient(180deg,#34D399,#0F766E)"></div><div class="step" id="p3" style="height:180px;background:linear-gradient(180deg,#C0C8CC,#7C8A87)"></div></div>`;
+  HOST._rv = 0;
+}
+function reveal() {
+  const rk = ranked(), place = [3, 2, 1][HOST._rv]; if (!place) return; const p = rk[place - 1], el = $("#p" + place);
+  if (p) { el.innerHTML = `<div class="medal">${["🥇", "🥈", "🥉"][place - 1]}</div><div class="n2">${esc(p.name)}</div><div class="pp">${p.total} XP</div>`; el.classList.add("show"); }
+  HOST._rv++; const b = $("#rv");
+  if (HOST._rv === 1) { b.textContent = "Reveal 2nd place"; SFX.good(); confetti(1000); } else if (HOST._rv === 2) { b.textContent = "Reveal the winners 🥁"; SFX.good(); confetti(1000); } else { b.textContent = "Congratulations! 🎉"; b.disabled = true; SFX.win(); confetti(6000); }
+}
+function hReset() { $("#hb").innerHTML = `<div class="card"><h3>Start a new game</h3><p>Clears all scores on this device.</p><button class="btn coral" onclick="this.classList.add('hide');this.nextElementSibling.classList.remove('hide')">Clear scoreboard…</button><button class="btn coral hide" onclick="HOST=null;saveHost();hostSetup()">Yes, clear everything</button></div>`; }
+route();
+</script>
+</body>
+</html>
