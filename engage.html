@@ -120,16 +120,16 @@ td.name input{width:150px;text-align:left}
 /* ENGAGE QUEST: Robbins, Coulter & Long (2025) Ch.13, 14, 16; Mullins & Rees (2023) Ch.7. Fictional company: Pulse. */
 const mem = {};
 const store = { get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return mem[k] !== undefined ? mem[k] : d; } }, set(k, v) { mem[k] = v; try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
-let S = store.get("eq2_pair", { team: "", pair: 0, avatar: "🐉", xp: {}, done: {}, unlocked: {}, sound: true, data: {} });
-let HOST = store.get("eq2_host", null);
-const save = () => store.set("eq2_pair", S), saveHost = () => store.set("eq2_host", HOST);
+let S = store.get("eq3_pair", { team: "", pair: 0, avatar: "🐉", xp: {}, done: {}, unlocked: {}, sound: true, data: {} });
+let HOST = store.get("eq3_host", null);
+const save = () => store.set("eq3_pair", S), saveHost = () => store.set("eq3_host", HOST);
 const $ = (s) => document.querySelector(s);
 const esc = (t) => String(t).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 function toast(m, ms = 2200) { const t = $("#toast"); t.textContent = m; t.classList.remove("hide"); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.add("hide"), ms); }
 let timers = []; function stopTimers() { timers.forEach(clearInterval); timers = []; }
 function view(h) { stopTimers(); $("#app").innerHTML = h; window.scrollTo(0, 0); }
 function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
-function checksum(p, r, s) { const str = `EQ2|${p}|${r}|${s}|PULSE`; let h = 2166136261; for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } const A = "ABCDEFGHJKLMNPQRSTUVWXYZ"; return A[h % 24] + A[Math.floor(h / 24) % 24]; }
+function checksum(p, r, s) { const str = `EQ3|${p}|${r}|${s}|PULSE`; let h = 2166136261; for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } const A = "ABCDEFGHJKLMNPQRSTUVWXYZ"; return A[h % 24] + A[Math.floor(h / 24) % 24]; }
 const makeCode = (r, s) => `${S.pair}-${r}-${s}-${checksum(S.pair, r, s)}`;
 function pop(t, col) { const d = document.createElement("div"); d.className = "pop"; d.textContent = t; if (col) d.style.color = col; document.body.appendChild(d); setTimeout(() => d.remove(), 1000); }
 function countdown(el, secs, onEnd) { let left = secs; const draw = () => { if (!el) return; el.textContent = `${Math.floor(left / 60)}:${String(left % 60).padStart(2, "0")}`; el.classList.toggle("warn", left <= 10); }; draw(); const id = setInterval(() => { left--; if (left <= 0) { left = 0; draw(); clearInterval(id); onEnd && onEnd(); } else draw(); }, 1000); timers.push(id); }
@@ -139,18 +139,17 @@ const SFX = { good: () => tone([[784, .12], [1175, .22]]), streak: () => tone([[
 function confetti(ms = 3000) { const c = $("#confetti"), x = c.getContext("2d"); c.width = innerWidth; c.height = innerHeight; const cols = ["#34D399", "#6EE7B7", "#D7DEE0", "#F87171", "#C0C8CC"]; const P = Array.from({ length: 160 }, () => ({ x: Math.random() * c.width, y: -20 - Math.random() * c.height * .5, r: 3 + Math.random() * 5, c: cols[Math.floor(Math.random() * 5)], vy: 2 + Math.random() * 3.5, vx: -1.5 + Math.random() * 3, a: Math.random() * 6 })); const end = Date.now() + ms; (function f() { x.clearRect(0, 0, c.width, c.height); P.forEach(p => { p.y += p.vy; p.x += p.vx; p.a += .08; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.beginPath(); x.roundRect ? x.roundRect(-p.r, -p.r / 2, p.r * 2, p.r, 2) : x.rect(-p.r, -p.r / 2, p.r * 2, p.r); x.fill(); x.restore(); }); if (Date.now() < end) requestAnimationFrame(f); else x.clearRect(0, 0, c.width, c.height); })(); }
 
 // ============================================================ CHAPTERS
-const SECTIONS = { A: "Section A · Individual behaviour", B: "Section B · Motivation & job design", C: "Section C · Rewards, well-being & leadership" };
+const SECTIONS = { A: "Section 1 · Organizational behaviour", B: "Section 2 · Motivation & reward", C: "Final challenges" };
 const CH = [
-  { id: 1, sec: "A", key: "ATTITUDE", title: "Read the People", sub: "Attitudes, satisfaction, engagement · OB outcomes", max: 100, ico: "🔍", col: "#34D399", ref: "RCL Ch.13", type: "quiz" },
-  { id: 2, sec: "A", key: "PERCEPTION", title: "Inside Their Heads", sub: "Personality, perception, attribution, learning", max: 100, ico: "🧠", col: "#C0C8CC", ref: "RCL Ch.13", type: "quiz" },
+  { id: 1, sec: "A", key: "ATTITUDE", title: "Read the People", sub: "OB goals, attitudes, engagement, attitude surveys", max: 100, ico: "🔍", col: "#34D399", ref: "RCL Ch.13", type: "quiz" },
+  { id: 2, sec: "A", key: "PERCEPTION", title: "Inside Their Heads", sub: "Personality, perception, attribution, shaping", max: 100, ico: "🧠", col: "#C0C8CC", ref: "RCL Ch.13", type: "quiz" },
   { id: 3, sec: "B", key: "NEEDS", title: "What Drives Them", sub: "Content theories: Maslow, Herzberg, McClelland, ERG", max: 100, ico: "🔋", col: "#6EE7B7", ref: "RCL Ch.14 · M&R Ch.7", type: "quiz" },
   { id: 4, sec: "B", key: "EQUITY", title: "Fair Play", sub: "Contemporary theories: expectancy, equity, goals", max: 100, ico: "⚖️", col: "#D7DEE0", ref: "RCL Ch.14 · M&R Ch.7", type: "quiz" },
   { id: 5, sec: "B", key: "ENRICH", title: "Design the Job", sub: "Job design for today's workforce", max: 100, ico: "🛠️", col: "#A7F3D0", ref: "RCL Ch.14", type: "quiz" },
-  { id: 6, sec: "C", key: "THRIVE", title: "Thrive at Work", sub: "Feedback, rewards beyond pay, well-being", max: 100, ico: "🌱", col: "#6EE7B7", ref: "RCL Ch.13, 14 · M&R Ch.7", type: "quiz" },
-  { id: 7, sec: "C", key: "INSPIRE", title: "Lead to Engage", sub: "Leadership theories that drive engagement", max: 100, ico: "🌟", col: "#34D399", ref: "RCL Ch.16", type: "quiz" },
-  { id: 8, sec: "C", key: "SIMULATE", title: "The Engagement Simulator", sub: "Run Pulse for a year · budget, events, results", max: 150, ico: "📈", col: "#6EE7B7", ref: "All readings", type: "sim" },
-  { id: 9, sec: "C", key: "DEAL", title: "The Pay Talks", sub: "Pair vs pair negotiation", max: 150, ico: "🤝", col: "#C0C8CC", ref: "All readings", type: "duel" },
-  { id: 10, sec: "C", key: "LIGHTNING", title: "Lightning Round", sub: "Bonus if time allows · 10 rapid-fire questions", max: 100, ico: "⚡", col: "#D7DEE0", ref: "All readings", type: "blitz" },
+  { id: 6, sec: "B", key: "THRIVE", title: "Thrive at Work", sub: "Feedback, rewards beyond pay, well-being", max: 100, ico: "🌱", col: "#6EE7B7", ref: "RCL Ch.13, 14 · M&R Ch.7", type: "quiz" },
+  { id: 7, sec: "C", key: "SIMULATE", title: "The Engagement Simulator", sub: "Run Pulse for a year · budget, events, results", max: 150, ico: "📈", col: "#6EE7B7", ref: "All readings", type: "sim" },
+  { id: 8, sec: "C", key: "DEAL", title: "The Pay Talks", sub: "Pair vs pair negotiation", max: 150, ico: "🤝", col: "#C0C8CC", ref: "All readings", type: "duel" },
+  { id: 9, sec: "C", key: "LIGHTNING", title: "Lightning Round", sub: "Bonus if time allows · 10 rapid-fire questions", max: 100, ico: "⚡", col: "#D7DEE0", ref: "All readings", type: "blitz" },
 ];
 const TOTAL = CH.reduce((a, c) => a + c.max, 0);
 const C = (id) => CH.find((x) => x.id === id);
@@ -161,24 +160,24 @@ const totalXP = () => Object.values(S.xp).reduce((a, b) => a + b, 0);
 /* Each question: f = face, n = who, s = situation ("" = concept check), q = question, o = options (FIRST = correct; shuffled at runtime), w = why */
 const Q = {
 1: [
-  { f: "🧑‍🔧", n: "Leo, support team", s: "Leo often covers colleagues' shifts and trains new starters, although none of this is in his job description.", q: "What is Leo's behaviour called?", o: ["Organisational citizenship behaviour", "Job involvement in his own tasks", "Workplace misbehaviour", "Employee productivity"], w: "OCB is discretionary behaviour beyond formal job requirements that helps the organisation." },
-  { f: "😒", n: "Survey comment", s: "\"I think my job is pointless.\" The same employee says she feels irritated every morning and has started arriving late.", q: "Which three parts of an attitude does this show?", o: ["Cognitive, affective and behavioural", "Perceptual, emotional and rational", "Conscious, unconscious and learned", "Personal, social and organisational"], w: "Attitudes have a cognitive part (belief), an affective part (feeling) and a behavioural part (intention to act)." },
-  { f: "💙", n: "Exit-interview data", s: "Staff who turned down offers from rivals say: \"I identify with Pulse and want to stay here.\"", q: "Which job attitude is this mainly?", o: ["Organisational commitment", "Job involvement", "Cognitive dissonance", "High self-monitoring"], w: "Organisational commitment is identifying with the organisation and wanting to remain a member." },
-  { f: "😬", n: "Sam, product designer", s: "Sam believes strongly in work-life balance but works every weekend. He feels uneasy and starts telling himself weekends \"don't matter much\".", q: "What is happening?", o: ["He is reducing cognitive dissonance", "He has an external locus of control", "He is showing the halo effect", "He is showing citizenship behaviour"], w: "Cognitive dissonance is the discomfort of inconsistent attitudes and behaviour; people often change the attitude to reduce it." },
-  { f: "", n: "", s: "", q: "Employee engagement is best described as…", o: ["Being connected to, satisfied with and enthusiastic about one's job", "Being paid well above the market rate for the same kind of role in the sector", "Having worked for the same organisation for many years", "Attending every company social event and team meeting"], w: "Engagement combines connection, satisfaction and enthusiasm. Pay and tenure don't define it." },
-  { f: "💼", n: "Pulse's CFO", s: "\"Engagement fell from 52% to 38%. So what? People still turn up.\"", q: "What's your best evidence-based reply?", o: ["Engaged staff tend to perform better and are less likely to quit", "Engagement only really matters for the senior leadership team at Pulse", "Engagement has no link with performance or turnover", "Engaged staff always ask for much higher salaries"], w: "Research links high engagement with better performance, customer outcomes and lower turnover." },
-  { f: "", n: "", s: "", q: "Which of these is an example of workplace misbehaviour?", o: ["Spreading rumours to undermine a colleague", "Refusing to do overtime that isn't in the contract", "Asking a manager for feedback after a presentation", "Taking every single annual leave day in the year"], w: "Workplace misbehaviour is intentional behaviour that harms the organisation or people in it." },
-  { f: "📊", n: "People analytics", s: "Satisfaction in the sales team rose sharply this year, but individual sales hardly changed.", q: "What does research suggest about satisfaction and productivity?", o: ["There is a link, but it is modest for individuals", "Satisfied workers are always far more productive", "There is no relationship between the two at all", "Only productivity affects satisfaction, never the reverse"], w: "The link exists but is modest at the individual level; organisations with more satisfied staff tend to be more effective overall." },
+  { f: "🧊", n: "Pulse's new CEO", s: "\"I can see our strategy, structure and policies. What am I missing?\"", q: "In the iceberg metaphor, which of these is a hidden aspect?", o: ["Attitudes and perceptions", "Strategies and objectives", "Policies and procedures", "The chain of command"], w: "Exhibit 13-1: visible aspects include strategies, structure and formal authority; hidden aspects include attitudes, perceptions, group norms, informal interactions and conflicts." },
+  { f: "🧑‍🔧", n: "Leo, support team", s: "Leo often covers colleagues' shifts and trains new starters, although none of this is in his job description.", q: "What is Leo's behaviour called?", o: ["Organisational citizenship behaviour", "Job involvement in his own daily tasks", "Counterproductive workplace behaviour", "Employee productivity"], w: "OCB is discretionary behaviour that isn't part of formal job requirements but promotes the effective functioning of the organisation." },
+  { f: "😒", n: "Survey comment", s: "\"I think my job is pointless.\" The same employee says she feels irritated every morning and has started arriving late.", q: "Which three parts of an attitude does this show?", o: ["Cognitive, affective and behavioural", "Perceptual, emotional and rational elements", "Conscious, unconscious and learned", "Personal, social and organisational"], w: "Attitudes have a cognitive part (beliefs), an affective part (feelings) and a behavioural part (an intention to behave in a certain way)." },
+  { f: "💙", n: "Exit-interview data", s: "Staff tell you: \"Pulse values what we contribute and genuinely cares about our well-being.\"", q: "Which concept is this?", o: ["Perceived organisational support", "Job involvement", "Cognitive dissonance", "Self-monitoring"], w: "Perceived organisational support: employees' general belief that the organisation values their contribution and cares about their well-being." },
+  { f: "😬", n: "Sam, product designer", s: "Sam believes strongly in work-life balance but works every weekend. He feels uneasy and starts telling himself weekends \"don't matter much\".", q: "What is happening?", o: ["He is reducing cognitive dissonance", "He has an external locus of control", "He is showing the halo effect", "He is showing citizenship behaviour"], w: "Cognitive dissonance is any inconsistency between attitudes, or between behaviour and attitudes; people try to reduce it." },
+  { f: "", n: "", s: "", q: "Employee engagement is when employees are…", o: ["Connected to, satisfied with and enthusiastic about their jobs", "Paid well above the market rate for the same kind of role in the sector", "Working for the same organisation for many years", "Attending every company social event and team meeting"], w: "Engagement means being connected to, satisfied with and enthusiastic about the job. Disengaged employees have 'checked out'." },
+  { f: "", n: "", s: "", q: "Which of these is counterproductive workplace behaviour?", o: ["Spreading rumours to undermine a colleague", "Refusing to do overtime that isn't in the contract", "Asking a manager for feedback after a presentation", "Taking every single annual leave day in the year"], w: "Counterproductive workplace behaviour is any intentional behaviour that is potentially damaging to the organisation or to individuals in it." },
+  { f: "📱", n: "People analytics", s: "Every Monday, Pulse sends staff a three-question survey on how they feel about their work this week.", q: "What is this called?", o: ["A pulse survey", "An exit interview", "A personality test", "A job analysis"], w: "A pulse survey is a short employee attitude survey sent at a regular interval, such as weekly." },
 ],
 2: [
-  { f: "📅", n: "Ana, project lead", s: "Ana is organised, dependable and has never missed a deadline in three years.", q: "Which Big Five dimension describes her best?", o: ["Conscientiousness", "Agreeableness towards others", "Openness to experience", "Emotional stability"], w: "Conscientiousness (responsible, dependable, organised) is the Big Five dimension most consistently linked with job performance." },
-  { f: "🎲", n: "Ben, analyst", s: "\"Promotions here are about luck and who you know. Working harder won't change anything.\"", q: "Ben shows…", o: ["An external locus of control", "An internal locus of control", "A high level of self-monitoring", "A proactive personality"], w: "People with an external locus of control believe outside forces control what happens to them." },
-  { f: "", n: "", s: "", q: "Emotional intelligence (EI) is…", o: ["The ability to notice and manage emotional cues and information", "A measure of general intelligence and how quickly people reason", "One of the 16 personality types in the Myers-Briggs indicator", "The habit of keeping all emotions completely hidden at work"], w: "EI covers self-awareness, self-management, self-motivation, empathy and social skills." },
-  { f: "✨", n: "Appraisal panel", s: "Chloe gave one brilliant presentation, and her manager now rates her highly on every criterion, including punctuality.", q: "Which perception shortcut is this?", o: ["The halo effect", "Stereotyping", "Assumed similarity", "Selective perception"], w: "The halo effect: forming a general impression from a single characteristic." },
-  { f: "📉", n: "Team manager", s: "When the team hits its target she credits her leadership. When it misses, she blames \"the market\".", q: "This is…", o: ["Self-serving bias", "The fundamental attribution error", "The halo effect", "Assumed similarity"], w: "Self-serving bias: crediting our own success to internal factors and blaming failure on external factors." },
-  { f: "🚆", n: "Monday 9:20", s: "Dev arrives late, but so does the whole team: there was a train strike.", q: "High consensus suggests the cause is…", o: ["External: something in the situation", "Internal: Dev's own lack of effort", "A stable personality trait of Dev's", "Dev's low commitment to the team"], w: "Attribution theory: if everyone behaves the same way (high consensus), we tend to attribute the behaviour to external causes." },
-  { f: "🎧", n: "New starter, Mia", s: "Her manager praises her every time her call-handling time gets a little closer to the target.", q: "Which learning technique is the manager using?", o: ["Shaping through successive reinforcement", "Social learning by watching a role model", "Extinction by ignoring the behaviour", "Punishment to stop unwanted behaviour"], w: "Shaping reinforces each successive step that moves an individual closer to the desired behaviour." },
-  { f: "", n: "", s: "", q: "Social learning theory says that people learn…", o: ["By observing others as well as through direct experience", "Only from the rewards and the punishments they personally receive", "Only through formal training courses and education", "By instinct, without needing any experience at all"], w: "Social learning: people learn through observation and direct experience. Role models matter." },
+  { f: "📅", n: "Ana, project lead", s: "Ana is organised, dependable and has never missed a deadline in three years.", q: "Which Big Five dimension describes her best?", o: ["Conscientiousness", "Agreeableness towards others", "Openness to experience", "Emotional stability"], w: "The Big Five: extraversion, agreeableness, conscientiousness, emotional stability and openness to experience." },
+  { f: "", n: "", s: "", q: "Which of these is one of the four MBTI® preference categories?", o: ["Sensing or intuition", "Optimism or pessimism", "Leading or following", "Planning or improvising"], w: "The MBTI® categories: extraversion/introversion, sensing/intuition, thinking/feeling, judging/perceiving." },
+  { f: "🪞", n: "Regional manager", s: "He is arrogant, has a grandiose sense of his own importance and needs constant admiration.", q: "Which Dark Triad trait is this?", o: ["Narcissism", "Machiavellianism", "Psychopathy", "High self-monitoring"], w: "The Dark Triad: Machiavellianism, narcissism and psychopathy." },
+  { f: "🎲", n: "Ben, analyst", s: "\"Promotions here are about luck and who you know. Working harder won't change anything.\"", q: "Ben's belief is about his…", o: ["Locus of control", "Self-esteem", "Risk-taking", "Self-monitoring"], w: "Locus of control measures how far people believe they control their own fate." },
+  { f: "🤝", n: "Ines, job hunting", s: "Ines prefers activities that involve helping and developing others.", q: "Which Holland personality type is she?", o: ["Social", "Investigative", "Enterprising", "Conventional"], w: "Holland's Social type prefers helping and developing others, e.g. social worker or teacher (Exhibit 13-4)." },
+  { f: "🚆", n: "Monday 9:20", s: "Dev arrives late, but so does the whole team: there was a train strike.", q: "High consensus suggests the cause is…", o: ["External: something in the situation", "Internal: Dev's own lack of effort and care", "A stable personality trait of Dev's", "Dev's low commitment to the team"], w: "Exhibit 13-6: if others behave the same way in similar situations (high consensus), we attribute the behaviour externally." },
+  { f: "🧑‍💼", n: "Interview panel", s: "An average candidate is interviewed right after three very weak ones, and the panel rates her as excellent.", q: "Which shortcut is this?", o: ["Contrast effect", "Halo effect", "Stereotyping", "Assumed similarity"], w: "Contrast effect: our perception of someone can be influenced by the context or surroundings." },
+  { f: "🔇", n: "Weekly meeting", s: "A manager stops reacting to an employee's constant interruptions, and over time they stop.", q: "Which way of shaping behaviour is this?", o: ["Extinction", "Positive reinforcement", "Negative reinforcement", "Punishment"], w: "The four ways to shape behaviour: positive reinforcement, negative reinforcement, punishment and extinction." },
 ],
 3: [
   { f: "💷", n: "HR dashboard", s: "After a 6% pay rise, complaints about pay stopped, but motivation scores didn't move.", q: "Herzberg would call pay…", o: ["A hygiene factor", "A motivator", "A growth need", "A valence"], w: "Hygiene factors remove dissatisfaction but don't create motivation." },
@@ -220,16 +219,6 @@ const Q = {
   { f: "😠", n: "Sara, overloaded", s: "Sara's workload has doubled and her requests for help were ignored. She has started snapping at colleagues.", q: "Which frustration-induced behaviour is this (Mullins & Rees)?", o: ["Aggression", "Withdrawal", "Fixation", "Regression"], w: "Aggression is one reaction to frustration. Removing the barrier (here, workload) protects well-being." },
   { f: "🌱", n: "Jon, team lead", s: "After a tough reorganisation, Jon bounces back quickly, adapts and helps others cope.", q: "Which personal characteristic is Jon showing?", o: ["Resilience", "Self-monitoring", "Machiavellianism", "An external locus of control"], w: "Resilience is the ability to overcome challenges and cope with stress and change." },
 ],
-7: [
-  { f: "📋", n: "Sales manager", s: "She sets clear roles, tasks and deadlines, but rarely asks how people are feeling.", q: "In the Ohio State terms, she is…", o: ["High initiating structure, low consideration", "High consideration, low initiating structure", "Low on both initiating structure and consideration", "High on both initiating structure and consideration"], w: "Initiating structure = task focus; consideration = trust, respect and concern for followers." },
-  { f: "🏆", n: "Data team", s: "Your data team is experienced, highly skilled and keen to take ownership.", q: "Which situational leadership style fits?", o: ["Delegating", "Telling", "Selling", "Participating"], w: "Hersey and Blanchard: able and willing followers (R4) suit delegating." },
-  { f: "🚀", n: "New CEO", s: "She paints an exciting picture of Pulse's future and takes time to develop each person individually.", q: "This is mainly…", o: ["Transformational leadership", "Transactional leadership", "Laissez-faire leadership", "Autocratic leadership"], w: "Transformational leaders inspire with vision and show individualised consideration." },
-  { f: "💰", n: "Regional manager", s: "\"Hit your numbers and you get the bonus. Miss them and you don't. Simple.\"", q: "This is mainly…", o: ["Transactional leadership", "Transformational leadership", "Servant leadership", "Charismatic leadership"], w: "Transactional leaders exchange rewards for performance." },
-  { f: "👥", n: "Survey comment", s: "\"Our manager has a small inner circle who always get the best projects.\"", q: "Which theory explains this?", o: ["Leader-member exchange (in-groups)", "Fiedler's contingency model of leadership", "Path-goal theory", "The Managerial Grid"], w: "LMX: leaders create in-groups and out-groups, with real effects on engagement." },
-  { f: "", n: "", s: "", q: "Path-goal theory is built on…", o: ["Expectancy theory", "Adams' equity theory", "Maslow's hierarchy of needs", "Herzberg's two-factor theory"], w: "Leaders clear the path from effort to goals and rewards: expectancy theory applied to leadership." },
-  { f: "", n: "", s: "", q: "Which dimension of trust is seen as the most critical?", o: ["Integrity", "Loyalty to the team", "Openness with staff", "Competence at the job"], w: "Integrity (honesty and truthfulness) is seen as the most critical dimension of trust." },
-  { f: "🌟", n: "Team lead Rosa", s: "People follow Rosa's lead because they admire her and want to be like her.", q: "Which source of power is this?", o: ["Referent power", "Coercive power", "Legitimate power", "Reward power"], w: "Referent power comes from people identifying with you." },
-],
 };
 const BLITZ = [
   { q: "Which is a hygiene factor?", o: ["Salary", "Recognition", "Achievement", "Growth"], w: "Herzberg: salary is a hygiene factor." },
@@ -240,12 +229,12 @@ const BLITZ = [
   { q: "The top level of Maslow's hierarchy is…", o: ["Self-actualisation", "Esteem and status needs", "Social", "Safety"], w: "Self-actualisation." },
   { q: "Blaming people rather than the situation is…", o: ["The fundamental attribution error", "The self-serving bias in judgement", "The halo effect", "Stereotyping"], w: "We underestimate external causes and overestimate internal ones when judging others." },
   { q: "The Big Five trait for calm and secure is…", o: ["Emotional stability", "Extraversion", "Agreeableness", "Openness"], w: "Emotional stability." },
-  { q: "Unable and unwilling followers (R1) need…", o: ["Telling", "Delegating", "Participating", "Selling"], w: "Hersey and Blanchard: R1 suits telling." },
-  { q: "Exchanging rewards for performance is…", o: ["Transactional leadership", "Transformational leadership", "Servant leadership", "Authentic leadership"], w: "Transactional leadership." },
+  { q: "Adding planning and control to a job is…", o: ["Job enrichment", "Job enlargement", "Job sharing", "Flextime"], w: "Enrichment increases job depth." },
+  { q: "Paying commission on sales is an example of…", o: ["Pay-for-performance", "Open-book management", "A recognition programme", "A compressed workweek"], w: "Pay-for-performance links pay to a performance measure." },
 ];
 
 // ============================================================ CHAPTER TIMERS (minutes of play per chapter)
-const LIMIT = { 1: 4, 2: 4, 3: 4, 4: 4, 5: 4, 6: 4, 7: 4, 8: 15, 9: 14, 10: 5 };
+const LIMIT = { 1: 6, 2: 6, 3: 6, 4: 6, 5: 6, 6: 6, 7: 15, 8: 14, 9: 5 };
 const fmt = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 function startChTimer(id) { if (!S.data["t" + id]) { S.data["t" + id] = Date.now(); save(); } runChTimer(id); }
 function chLeft(id) { return Math.max(0, Math.round(LIMIT[id] * 60 - (Date.now() - S.data["t" + id]) / 1000)); }
@@ -365,8 +354,8 @@ const SIM = {
     { id: "enrich", ico: "🧩", name: "Job enrichment & rotation", d: "More variety, ownership and decision-making", cost: 3, E: 5, T: -3, P: 3, th: "Job characteristics model: variety, identity, autonomy" },
     { id: "flex", ico: "🏡", name: "Flexible & hybrid working", d: "Flextime and remote days", cost: 2, E: 4, T: -3, P: 1, th: "Flexible work arrangements · work-life balance" },
     { id: "paybands", ico: "📐", name: "Fix pay gaps & publish pay bands", d: "Same job, same pay range, open criteria", cost: 4, E: 4, T: -4, P: 1, th: "Equity theory: distributive and procedural justice" },
-    { id: "coach", ico: "🧭", name: "Leadership coaching for managers", d: "Managers learn coaching and consideration", cost: 3, E: 4, T: -2, P: 3, th: "Transformational leadership · consideration" },
-    { id: "oneone", ico: "💬", name: "Regular feedback check-ins", d: "Short 1:1 feedback for every employee, every month", cost: 1, E: 3, T: -1, P: 1, th: "Timely feedback (goal-setting, JCM, reinforcement) and consideration · no out-group (LMX)" },
+    { id: "openbook", ico: "📊", name: "Open-book management", d: "Share results and show each team how its work affects them", cost: 2, E: 3, T: -1, P: 3, th: "Open-book management: designing appropriate rewards (RCL Ch. 14)" },
+    { id: "oneone", ico: "💬", name: "Regular feedback check-ins", d: "Short 1:1 feedback for every employee, every month", cost: 1, E: 3, T: -1, P: 1, th: "Timely feedback: goal-setting, the job characteristics model and reinforcement" },
     { id: "wellbeing", ico: "🌿", name: "Workload review & well-being support", d: "Realistic workloads, time off to recover, support for stress", cost: 2, E: 4, T: -3, P: 1, th: "Removes the cause of frustration (M&R) and supports job satisfaction and work-life balance" },
     { id: "monitor", ico: "👁️", name: "Productivity tracking software", d: "Track keystrokes and activity", cost: 2, E: -6, T: 3, P: 2, th: "Theory X assumptions: destroys autonomy and trust" },
     { id: "perks", ico: "🍕", name: "Pizza Fridays & games room", d: "Fun perks in the office", cost: 2, E: 1, T: 0, P: 0, th: "Nice, but a superficial hygiene factor: no lasting effect" },
@@ -376,7 +365,7 @@ const SIM = {
     { t: "Quarter 1 · The survey shock", s: "Engagement is just 38%. The two most common survey comments: \"Nobody notices good work\" and \"I don't know what I'm aiming for\".", best: ["recog", "goals"], worst: ["monitor"] },
     { t: "Quarter 2 · Burnout in Customer Support", s: "Support agents handle the same tickets all day; two resign every week. \"I'm a robot,\" says one. Many are parents juggling school runs.", best: ["enrich", "flex", "wellbeing"], worst: ["monitor", "topbonus"] },
     { t: "Quarter 3 · The pay comparison", s: "Staff discover that new hires earn more than experienced colleagues in the same role. A rival is recruiting your best people.", best: ["paybands", "career"], worst: ["topbonus", "perks"] },
-    { t: "Quarter 4 · The new Sales manager", s: "Greg, the new Sales manager, shouts at underperformers and only talks to his three favourites. Sales morale is collapsing.", best: ["coach", "oneone"], worst: ["monitor", "topbonus"] },
+    { t: "Quarter 4 · Review season", s: "Staff only hear how they're doing once a year, and nobody understands how their work affects Pulse's results. \"Why should I care?\" says one.", best: ["oneone", "openbook"], worst: ["monitor", "topbonus"] },
   ],
 };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -397,7 +386,7 @@ function simStep(st, picks, qi, used) {
 }
 const simXP = (s) => Math.round(150 * (clamp((s.E - 38) / 50, 0, 1) * 0.5 + clamp((31 - s.T) / 21, 0, 1) * 0.3 + clamp((s.P - 58) / 30, 0, 1) * 0.2));
 function sim(id) {
-  startChTimer(8); setTimeout(() => runChTimer(8), 0);
+  startChTimer(7); setTimeout(() => runChTimer(7), 0);
   const d = S.data.sim || { q: 0, st: { ...SIM.start }, used: {}, hist: [], picks: [], phase: "plan" }; S.data.sim = d; save();
   const ev = SIM.events[d.q], spent = d.picks.reduce((a, id) => a + SIM.cards.find((c) => c.id === id).cost, 0);
   const meter = (lab, v, unit, good, max) => `<div style="flex:1;min-width:150px"><div class="muted">${lab}</div><div style="font-size:28px;font-weight:700;color:${good ? "#6EE7B7" : "#F87171"}">${v}${unit}</div><div class="bar" style="margin-top:4px"><div style="width:${(v / max) * 100}%"></div></div></div>`;
@@ -425,21 +414,21 @@ function simPick(id) {
   if (d.picks.includes(id)) d.picks = d.picks.filter((k) => k !== id);
   else if (spent + c.cost > SIM.budget) return toast("Not enough credits: remove an action first");
   else d.picks.push(id);
-  save(); SFX.tap(); sim(8);
+  save(); SFX.tap(); sim(7);
 }
 function simRun() {
   const d = S.data.sim, before = { ...d.st }, { ns, lines } = simStep(d.st, d.picks, d.q, d.used);
   d.picks.forEach((id) => (d.used[id] = true)); d.hist.push({ before, after: ns, lines, picks: d.picks.slice() }); d.st = ns; d.picks = []; d.phase = "result"; save();
-  ns.E > before.E ? SFX.good() : SFX.soft(); sim(8);
+  ns.E > before.E ? SFX.good() : SFX.soft(); sim(7);
 }
 function simNext() {
   const d = S.data.sim;
-  if (d.q < 3) { d.q++; d.phase = "plan"; save(); return sim(8); }
+  if (d.q < 3) { d.q++; d.phase = "plan"; save(); return sim(7); }
   const xp = simXP(d.st);
-  S.data.rev8 = `<p><b>Year-end:</b> engagement ${SIM.start.E}% → ${d.st.E}% · turnover ${SIM.start.T}% → ${d.st.T}% · performance ${SIM.start.P} → ${d.st.P}</p>
-    <p>✨ <b>Best fits:</b> Q1 recognition + SMART goals (Herzberg, reinforcement, goal-setting) · Q2 job enrichment, flexible work + well-being support (JCM, frustration, work-life balance) · Q3 fix pay gaps + career paths (equity, growth needs) · Q4 leadership coaching + feedback check-ins (consideration, transformational leadership, LMX).</p>
+  S.data.rev7 = `<p><b>Year-end:</b> engagement ${SIM.start.E}% → ${d.st.E}% · turnover ${SIM.start.T}% → ${d.st.T}% · performance ${SIM.start.P} → ${d.st.P}</p>
+    <p>✨ <b>Best fits:</b> Q1 recognition + SMART goals (Herzberg, reinforcement, goal-setting) · Q2 job enrichment, flexible work + well-being support (JCM, frustration, work-life balance) · Q3 fix pay gaps + career paths (equity, growth needs) · Q4 feedback check-ins + open-book management (feedback, reinforcement, designing rewards).</p>
     <p>⚠️ <b>Traps:</b> tracking software (Theory X), top-10% bonuses (expectancy and equity), pizza and perks (superficial hygiene), and big pay rises (hygiene: expensive, little motivation).</p>`;
-  finish(8, xp, `Engagement <b>${d.st.E}%</b> · Turnover <b>${d.st.T}%</b> · Performance <b>${d.st.P}</b>`);
+  finish(7, xp, `Engagement <b>${d.st.E}%</b> · Turnover <b>${d.st.T}%</b> · Performance <b>${d.st.P}</b>`);
 }
 
 // ============================================================ CHAPTER 9: LIGHTNING ROUND (bonus, 20 s per question)
@@ -449,9 +438,9 @@ function blitz(id) {
     <p>10 rapid-fire exam questions. <b>20 seconds</b> each, <b>+10 XP</b> per correct answer. No time to discuss: trust your revision!</p></div>
     <button class="btn block" onclick="blitzStart()">Go! ⚡</button></div>`);
 }
-function blitzStart() { startChTimer(10); L = { i: 0, xp: 0, c: 0, rev: [], qs: BLITZ.map((q) => ({ ...q, order: shuffle([0, 1, 2, 3]) })) }; blitzShow(); }
+function blitzStart() { startChTimer(9); L = { i: 0, xp: 0, c: 0, rev: [], qs: BLITZ.map((q) => ({ ...q, order: shuffle([0, 1, 2, 3]) })) }; blitzShow(); }
 function blitzShow() {
-  const q = L.qs[L.i]; setTimeout(() => runChTimer(10), 0);
+  const q = L.qs[L.i]; setTimeout(() => runChTimer(9), 0);
   view(`<div class="wrap">${topBar()}<div class="row" style="justify-content:space-between;margin:14px 0 6px"><span class="muted">⚡ ${L.i + 1} of 10 · ${timerChip()}</span><span id="t" class="timer"></span></div>
     <div class="bar"><div style="width:${(L.i / 10) * 100}%"></div></div>
     <div class="card"><div class="ask" style="font-size:22px">${q.q}</div>${q.order.map((k, pos) => `<button class="opt" data-k="${k}" onclick="blitzPick(${k})"><span class="k">${"ABCD"[pos]}</span><span>${q.o[k]}</span></button>`).join("")}<div id="fb"></div></div></div>`);
@@ -462,7 +451,7 @@ function blitzPick(k) {
   document.querySelectorAll(".opt").forEach((b) => { const kk = +b.dataset.k; b.disabled = true; if (kk === 0) b.classList.add("right"); else if (kk === k) b.classList.add("wrong"); });
   if (ok) { L.xp += 10; L.c++; SFX.good(); pop("+10 XP"); } else SFX.soft();
   L.rev.push(`<p>${ok ? "✅" : "💭"} ${q.q} <b>${q.o[0]}</b></p>`);
-  setTimeout(() => { L.locked = false; L.i++; if (L.i < 10) blitzShow(); else { S.data.rev10 = L.rev.join(""); const xp = L.xp, c = L.c; L = null; finish(10, xp, `${c}/10 correct at lightning speed ⚡`); } }, ok ? 900 : 1800);
+  setTimeout(() => { L.locked = false; L.i++; if (L.i < 10) blitzShow(); else { S.data.rev9 = L.rev.join(""); const xp = L.xp, c = L.c; L = null; finish(9, xp, `${c}/10 correct at lightning speed ⚡`); } }, ok ? 900 : 1800);
 }
 
 // ============================================================ CHAPTER 8: THE PAY TALKS (pair vs pair negotiation)
@@ -485,11 +474,11 @@ const DEAL = {
 };
 const dealMax = (t) => t.reduce((a, r) => a + Math.max(...r), 0);
 function duel(id) {
-  startChTimer(9); setTimeout(() => runChTimer(9), 0);
+  startChTimer(8); setTimeout(() => runChTimer(8), 0);
   const d = S.data.duel || { side: S.pair % 2 === 1 ? "L" : "N", step: 0, sel: [null, null, null, null, null] }; S.data.duel = d; save();
   const side = d.side, tbl = DEAL[side], max = dealMax(tbl), other = side === "L" ? "N" : "L";
   const head = `${topBar()}<div class="row" style="justify-content:flex-end;margin-top:10px">${timerChip()}</div>
-    <div class="hero" style="margin-top:8px;background:linear-gradient(135deg,#21423A,#2B5754 50%,#5A0F3A)"><div style="font-size:44px">🤝</div><h2 style="color:#fff">Chapter 9: The Pay Talks</h2>
+    <div class="hero" style="margin-top:8px;background:linear-gradient(135deg,#21423A,#2B5754 50%,#5A0F3A)"><div style="font-size:44px">🤝</div><h2 style="color:#fff">Chapter 8: The Pay Talks</h2>
     <p>Pair vs pair. Pulse's HR Director meets the Employee Rep to agree next year's pay and engagement package.</p><div class="vs">${DEAL.role[side]} vs ${DEAL.role[other]}</div></div>`;
   if (d.step === 0) {
     view(`<div class="wrap">${head}
@@ -516,9 +505,9 @@ function duel(id) {
       <button class="btn ghost small" onclick="duelStep(0)">← Back to my brief</button></div>`);
   }
 }
-function duelSide(s) { S.data.duel.side = s; save(); SFX.tap(); duel(9); }
-function duelStep(n) { S.data.duel.step = n; save(); duel(9); }
-function duelClock() { stopTimers(); runChTimer(9); countdown($("#t"), 600, () => { toast("⏰ Negotiation time is up: enter your deal now!", 4000); SFX.soft(); }); SFX.tap(); }
+function duelSide(s) { S.data.duel.side = s; save(); SFX.tap(); duel(8); }
+function duelStep(n) { S.data.duel.step = n; save(); duel(8); }
+function duelClock() { stopTimers(); runChTimer(8); countdown($("#t"), 600, () => { toast("⏰ Negotiation time is up: enter your deal now!", 4000); SFX.soft(); }); SFX.tap(); }
 function duelSubmit(none) {
   const d = S.data.duel, tbl = DEAL[d.side], max = dealMax(tbl);
   let raw, code;
@@ -529,11 +518,11 @@ function duelSubmit(none) {
     d.sel = sel.map(Number); raw = d.sel.reduce((a, k, i) => a + tbl[i][k], 0); code = d.sel.map((k) => "ABCD"[k]).join("");
   }
   const xp = Math.min(150, Math.round((raw / max) * 120) + (none ? 0 : 30)); save();
-  S.data.rev9 = `<p><b>The hidden structure</b></p><p>🔁 <b>Pay</b> mattered most to the HR Director (cost), while <b>flexible working</b> mattered most to the Employee Rep: the best deals kept the pay rise modest and gave real flexibility.</p>
+  S.data.rev8 = `<p><b>The hidden structure</b></p><p>🔁 <b>Pay</b> mattered most to the HR Director (cost), while <b>flexible working</b> mattered most to the Employee Rep: the best deals kept the pay rise modest and gave real flexibility.</p>
     <p>🤝 A <b>team bonus</b> and <b>monthly peer recognition</b> worked well for BOTH sides: win-wins if you asked about them.</p><p>⚖️ The <b>learning budget</b> was a pure tug-of-war: every euro one side gained, the other lost.</p>
     <p>🧠 The link to theory: each side's <b>valence</b> was different (expectancy theory), and pay is a hygiene factor while flexibility and recognition can motivate (Herzberg).</p>
     <p>💡 Pairs who asked questions and shared priorities usually found more value than pairs who only argued positions.</p>`;
-  finish(9, xp, `Your role: <b>${DEAL.role[d.side]}</b> · Deal value ${raw}/${max}${none ? "" : " + 30 deal bonus"}<br>Deal code: <b class="kbd">${code}</b> (must match your rival pair's)`);
+  finish(8, xp, `Your role: <b>${DEAL.role[d.side]}</b> · Deal value ${raw}/${max}${none ? "" : " + 30 deal bonus"}<br>Deal code: <b class="kbd">${code}</b> (must match your rival pair's)`);
 }
 
 // ============================================================ HQ
